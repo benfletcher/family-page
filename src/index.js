@@ -5,7 +5,9 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { Router, Route, IndexRoute, hashHistory, browserHistory } from 'react-router';
 import Welcome from './components/Welcome';
+import App from './components/App';
 import './index.css';
 
 import statusReducer from './reducers';
@@ -19,7 +21,19 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <Welcome />
+    <Router history={hashHistory}>
+      <Route path="/" component={Welcome} />
+      <Route path="/#/protected" component={App} />
+    </Router>
   </Provider>,
   document.getElementById('root'),
 );
+
+// <Provider store={createStoreWithMiddleware(reducers)}>
+//   <Router history={hashHistory}>
+//     <Route path="/" component={App} >
+//       <IndexRoute component={LandingContainer} />
+//       <Route path="/question" component={FlashCards} />
+//     </Route >
+//   </Router>
+// </Provider>,

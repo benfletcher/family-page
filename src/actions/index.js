@@ -15,7 +15,7 @@ export const getStatusSuccess = message => ({
 export const fetchStatus = () => (dispatch) => {
   dispatch(getStatus());
 
-  fetch('http://localhost:8080/', {
+  fetch('http://localhost:8080/protected', {
     headers: {
       Authorization: `Bearer ${cookie.load('accessToken')}`,
     },
@@ -49,7 +49,7 @@ export const getPhotoSuccess = photo => ({
 export const fetchPhotos = () => (dispatch) => {
   dispatch(getPhoto());
 
-  fetch('http://localhost:8080/', {
+  fetch('http://localhost:8080/protected', {
     headers: {
       Authorization: `Bearer ${cookie.load('accessToken')}`,
     },
