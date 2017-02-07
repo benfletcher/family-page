@@ -30,12 +30,14 @@ export const fetchStatus = () => (dispatch) => {
   .catch(console.error);
 };
 
+export const GET_PHOTOS = 'GET_PHOTOS';
 export const getPhotos = () => ({
-  type: 'GET_PHOTOS',
+  type: GET_PHOTOS,
 });
 
+export const GET_PHOTO_SUCCESS = 'GET_STATUS_SUCCESS';
 export const getPhotosSuccess = (photos) => ({
-  type: 'GET_PHOTO_SUCCESS',
+  type: GET_PHOTO_SUCCESS,
   photos
 });
 

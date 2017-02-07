@@ -28,7 +28,7 @@ class App extends Component {
 const mapStateToProps = (state, props) => ({
   status: state.status,
   loading: state.statusLoading,
-  photos: state.photos
+  photos: state.photos,
 });
 
 export default connect(mapStateToProps)(App);
