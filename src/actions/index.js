@@ -29,3 +29,33 @@ export const fetchStatus = () => (dispatch) => {
   // TODO fetch error action
   .catch(console.error);
 };
+
+export const getPhotos = () => ({
+  type: 'GET_PHOTOS',
+});
+
+export const getPhotosSuccess = (photos) => ({
+  type: 'GET_PHOTO_SUCCESS',
+  photos
+});
+
+export const fetchPhotos = () => (dispatch) => {
+  dispatch(getPhotos());
+
+  fetch('http://localhost:8080/')
+  .then(res => {
+    console.log('get photos');
+    if (!res.ok) {
+      const error = new Error(res.statusText);
+      error.response = res;
+      throw error;
+    }
+    return res;
+  })
+  .then(res => res.json())
+  .then(data => dispatch(getPhotosSuccess(data.photos)))
+  // TODO fetch error action
+  .catch(console.error);
+};
+
+

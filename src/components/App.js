@@ -7,6 +7,7 @@ class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(actions.fetchStatus());
+    this.props.dispatch(actions.fetchPhotos());
   }
 
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
 const mapStateToProps = (state, props) => ({
   status: state.status,
   loading: state.statusLoading,
+  photos: state.photos
 });
 
 export default connect(mapStateToProps)(App);
