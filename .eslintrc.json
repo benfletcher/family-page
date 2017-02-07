@@ -5,7 +5,11 @@
         "jsx-a11y",
         "import"
     ],
+    "globals": {
+      "fetch": true
+    },
     "rules": {
+      "no-console": 0,
       "react/jsx-filename-extension": [0]
     }
 }
