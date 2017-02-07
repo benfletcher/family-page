@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
-import App from './components/App';
+import Welcome from './components/Welcome';
 import './index.css';
 
 import statusReducer from './reducers';
@@ -19,7 +19,7 @@ const store = createStore(
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Welcome />
   </Provider>,
   document.getElementById('root'),
 );
