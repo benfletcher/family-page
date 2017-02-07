@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import cookie from 'react-cookie';
 
 export const GET_STATUS = 'GET_STATUS';
 export const getStatus = () => ({
@@ -14,7 +15,11 @@ export const getStatusSuccess = message => ({
 export const fetchStatus = () => (dispatch) => {
   dispatch(getStatus());
 
-  fetch('http://localhost:8080/')
+  fetch('http://localhost:8080/', {
+    headers: {
+      Authorization: `Bearer ${cookie.load('accessToken')}`,
+    },
+  })
   .then((res) => {
     console.info('get status');
     if (!res.ok) {
@@ -44,7 +49,11 @@ export const getPhotoSuccess = photo => ({
 export const fetchPhotos = () => (dispatch) => {
   dispatch(getPhoto());
 
-  fetch('http://localhost:8080/')
+  fetch('http://localhost:8080/', {
+    headers: {
+      Authorization: `Bearer ${cookie.load('accessToken')}`,
+    },
+  })
   .then((res) => {
     console.log('get photo');
     if (!res.ok) {
