@@ -6,17 +6,17 @@ export const getStatus = () => ({
 });
 
 export const GET_STATUS_SUCCESS = 'GET_STATUS_SUCCESS';
-export const getStatusSuccess = (message) => ({
+export const getStatusSuccess = message => ({
   type: GET_STATUS_SUCCESS,
-  message
+  message,
 });
 
 export const fetchStatus = () => (dispatch) => {
   dispatch(getStatus());
 
   fetch('http://localhost:8080/')
-  .then(res => {
-    console.log('get status');
+  .then((res) => {
+    console.info('get status');
     if (!res.ok) {
       const error = new Error(res.statusText);
       error.response = res;
@@ -30,23 +30,23 @@ export const fetchStatus = () => (dispatch) => {
   .catch(console.error);
 };
 
-export const GET_PHOTOS = 'GET_PHOTOS';
-export const getPhotos = () => ({
-  type: GET_PHOTOS,
+export const GET_PHOTO = 'GET_PHOTO';
+export const getPhoto = () => ({
+  type: GET_PHOTO,
 });
 
-export const GET_PHOTO_SUCCESS = 'GET_STATUS_SUCCESS';
-export const getPhotosSuccess = (photos) => ({
+export const GET_PHOTO_SUCCESS = 'GET_PHOTO_SUCCESS';
+export const getPhotoSuccess = photo => ({
   type: GET_PHOTO_SUCCESS,
-  photos
+  photo,
 });
 
 export const fetchPhotos = () => (dispatch) => {
-  dispatch(getPhotos());
+  dispatch(getPhoto());
 
   fetch('http://localhost:8080/')
-  .then(res => {
-    console.log('get photos');
+  .then((res) => {
+    console.log('get photo');
     if (!res.ok) {
       const error = new Error(res.statusText);
       error.response = res;
@@ -55,9 +55,7 @@ export const fetchPhotos = () => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(data => dispatch(getPhotosSuccess(data.photos)))
+  .then(data => dispatch(getPhotoSuccess(['photo1', 'photo2'])))
   // TODO fetch error action
   .catch(console.error);
 };
-
-

@@ -1,53 +1,53 @@
+import { combineReducers } from 'redux';
 import * as actions from '../actions';
-import { combineReducers } from 'redux'
 
-const initialState = {
-  messages: [],
-  status: '',
-  statusLoading: false
+const initialStateStatus = {
+  message: '',
+  loading: true,
 };
 
-const statusReducer = (state = initialState, action) => {
-
+const status = (state = initialStateStatus, action) => {
+  console.log(state);
   if (action.type === actions.GET_STATUS) {
     return {
       ...state,
-      statusLoading: true
+      loading: true,
     };
-  }
-
-  else if (action.type === actions.GET_STATUS_SUCCESS) {
+  } else if (action.type === actions.GET_STATUS_SUCCESS) {
     return {
       ...state,
-      status: action.message,
-      statusLoading: false
+      message: action.message,
+      loading: false,
     };
   }
 
   return state;
 };
 
-const photoReducer = (state = initialState, action) => {
+const initialStatePhoto = {
+  photos: [],
+  loading: true,
+};
 
-  if (action.type === actions.GET_PHOTOS) {
+const photo = (state = initialStatePhoto, action) => {
+  console.log('photosreducer', state);
+  if (action.type === actions.GET_PHOTO) {
     return {
       ...state,
-      photosLoading: true
+      loading: true,
     };
-  }
-
-  else if (action.type === actions.GET_STATUS_SUCCESS) {
+  } else if (action.type === actions.GET_PHOTO_SUCCESS) {
     return {
       ...state,
-      photos: action.photos,
-      statusLoading: false
+      photos: action.photo,
+      loading: false,
     };
   }
 
   return state;
 };
 
-export default combineReducers({ 
-  statusReducer,
-  photoReducer
-});  
+export default combineReducers({
+  status,
+  photo,
+});

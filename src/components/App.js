@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import '../App.css';
 import * as actions from '../actions';
-import { connect } from 'react-redux';
 
 class App extends Component {
+  // constructor(props) {
+  //   super(props);
+  // }
 
   componentDidMount() {
     this.props.dispatch(actions.fetchStatus());
@@ -11,6 +14,7 @@ class App extends Component {
   }
 
   render() {
+    console.log(this.props);
     return (
       <div className="App">
         <div className="App-header">
@@ -26,9 +30,9 @@ class App extends Component {
 }
 
 const mapStateToProps = (state, props) => ({
-  status: state.status,
-  loading: state.statusLoading,
-  photos: state.photos,
+  status: state.status.message,
+  loading: state.status.loading,
+  photos: state.photo.photos,
 });
 
 export default connect(mapStateToProps)(App);
