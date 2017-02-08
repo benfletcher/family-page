@@ -64,7 +64,7 @@ export const fetchPhotos = () => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(data => dispatch(getPhotoSuccess(['photo1', 'photo2'])))
+  .then(() => dispatch(getPhotoSuccess(['photo1', 'photo2'])))
   // TODO fetch error action
   .catch(console.error);
 };
