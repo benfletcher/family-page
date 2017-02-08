@@ -23,7 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={Welcome} />
-      <Route path="/#/protected" component={App} />
+      <Route path="/hello" component={App} />
     </Router>
   </Provider>,
   document.getElementById('root'),
