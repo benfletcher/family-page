@@ -16,13 +16,22 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log('photos in app:', this.props.photos);
+
     return (
       <div className="App">
         <div className="App-header">
           <NavBar />
           <h2>Welcome to React</h2>
           <div>Status: {this.props.status}</div>
+          {
+            this.props.photos.map(photo =>
+              <img
+                src={photo.url}
+                alt="placeholder"
+              />
+            )
+          }
         </div>
       </div>
     );
@@ -31,16 +40,18 @@ class App extends Component {
 
 App.defaultProps = {
   status: 'loading...',
+  photos: [],
 };
 
 App.propTypes = {
   status: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
+  photos: React.PropTypes.arrayOf(React.PropTypes.object),
 };
 
 const mapStateToProps = state => ({
   status: state.status.message,
-  photos: state.photo.photos,
+  photos: state.photos.photos,
 });
 
 export default connect(mapStateToProps)(App);
