@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import '../App.css';
 import * as actions from '../actions';
 
+import NavBar from './NavBar';
+
 class App extends Component {
   // constructor(props) {
   //   super(props);
@@ -18,6 +20,7 @@ class App extends Component {
     return (
       <div className="App">
         <div className="App-header">
+          <NavBar />
           <h2>Welcome to React</h2>
           <div>Status: {this.props.status}</div>
         </div>
