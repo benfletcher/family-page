@@ -19,19 +19,24 @@ class App extends Component {
       <div className="App">
         <div className="App-header">
           <h2>Welcome to React</h2>
-          <div>Status: {this.props.loading ? 'loading...' : this.props.status}</div>
+          <div>Status: {this.props.status}</div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }
 }
 
-const mapStateToProps = (state, props) => ({
+App.defaultProps = {
+  status: 'loading...',
+};
+
+App.propTypes = {
+  status: React.PropTypes.string,
+  dispatch: React.PropTypes.func.isRequired,
+};
+
+const mapStateToProps = state => ({
   status: state.status.message,
-  loading: state.status.loading,
   photos: state.photo.photos,
 });
 
