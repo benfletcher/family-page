@@ -11,10 +11,10 @@ const photos = (state = initialState, action) => {
       ...state,
       loading: true,
     };
-  } else if (action.type === actions.GET_PHOTO_SUCCESS) {
+  } else if (action.type === actions.GET_PHOTOS_SUCCESS) {
     return {
       ...state,
-      photos: action.photo,
+      photos: action.photos,
       loading: false,
     };
   }

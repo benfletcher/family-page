@@ -14,7 +14,8 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props);
+    console.log('photos in app:', this.props.photos);
+
     return (
       <div className="App">
         <div className="App-header">
@@ -25,7 +26,6 @@ class App extends Component {
               <img
                 src={photo.url}
                 alt="placeholder"
-                key={photo.date}
               />
             )
           }
@@ -43,7 +43,7 @@ App.defaultProps = {
 App.propTypes = {
   status: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
-  photos: React.PropTypes.arrayOf(React.PropTypes.string),
+  photos: React.PropTypes.arrayOf(React.PropTypes.object),
 };
 
 const mapStateToProps = state => ({

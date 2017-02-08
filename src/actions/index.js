@@ -61,19 +61,19 @@ const mockPhotos = [
   },
   {
     userId: 'Alex',
-    url: 'http://lorempixel.com/800/600/people/',
+    url: 'http://lorempixel.com/600/800/people/',
     date: new Date(),
     tags: ['Alex', 'Grandma', 'Spot'],
   },
   {
     userId: 'Ben',
-    url: 'http://lorempixel.com/800/600/people/',
+    url: 'http://lorempixel.com/1000/800/city/',
     date: new Date(),
     tags: ['Jamie', 'Ben', 'Spot'],
   },
   {
     userId: 'Grandma',
-    url: 'http://lorempixel.com/800/600/people/',
+    url: 'http://lorempixel.com/600/800/sports/',
     date: new Date(),
     tags: ['Jimmy', 'Grandma', 'Spot'],
   },
@@ -109,6 +109,10 @@ const mockPeople = {
   Jamie: {
     avatar: '...url...',
     fullname: 'Jamie Davella',
+  },
+  Ben: {
+    avatar: '...url...',
+    fullname: 'Ben Fletcher',
   },
 };
 
