@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-/* eslint react/prefer-stateless-function: 0 */
+// eslint-disable-next-line react/prefer-stateless-function
 class PhotoNode extends Component {
   render() {
     return (
