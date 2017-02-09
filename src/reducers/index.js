@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux';
 import photos from './photos';
 import status from './status';
-import people from './people';
+import members from './members';
 
 export default combineReducers({
   status,
   photos,
-  people,
+  members,
 });

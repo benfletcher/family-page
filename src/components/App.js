@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import '../App.css';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
-import * as actions from '../actions';
+import { fetchPhotos } from '../actions/photos';
 
 class App extends Component {
 
   componentDidMount() {
-    this.props.dispatch(actions.fetchStatus());
-    this.props.dispatch(actions.fetchPhotos());
+    this.props.dispatch(fetchPhotos());
   }
 
   render() {
@@ -20,7 +19,11 @@ class App extends Component {
         <Header />
         {
           this.props.photos.map(photo =>
-            <PhotoNode user={photo.userId} photo={photo.url} key={photo.userId + photo.url} />
+            <PhotoNode
+              user={photo.userId}
+              photo={photo.url}
+              key={photo.userId + photo.url}
+            />
           )
         }
       </div>

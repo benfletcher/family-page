@@ -28,12 +28,3 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root'),
 );
-
-// <Provider store={createStoreWithMiddleware(reducers)}>
-//   <Router history={hashHistory}>
-//     <Route path="/" component={App} >
-//       <IndexRoute component={LandingContainer} />
-//       <Route path="/question" component={FlashCards} />
-//     </Route >
-//   </Router>
-// </Provider>,
