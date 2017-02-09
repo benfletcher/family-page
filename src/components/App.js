@@ -18,31 +18,27 @@ class App extends Component {
 
     return (
       <div className="container">
-          <Header />
-          {
-            this.props.photos.map(photo =>
-              <PhotoNode user={photo.userId} photo={photo.url} />
-            )
-          }
-        
+        <Header />
+        {
+          this.props.photos.map(photo =>
+            <PhotoNode user={photo.userId} photo={photo.url} />
+          )
+        }
       </div>
     );
   }
 }
 
 App.defaultProps = {
-  status: 'loading...',
   photos: [],
 };
 
 App.propTypes = {
-  status: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
 };
 
 const mapStateToProps = state => ({
-  status: state.status.message,
   photos: state.photos.photos,
 });
 

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
 
+/* eslint react/prefer-stateless-function: 0 */
 class Welcome extends Component {
   render() {
     return (
