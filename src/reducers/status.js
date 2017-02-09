@@ -3,6 +3,7 @@ import * as actions from '../actions';
 const initialStateStatus = {
   message: '',
   loading: true,
+  userId: 'Jamie'
 };
 
 const status = (state = initialStateStatus, action) => {
