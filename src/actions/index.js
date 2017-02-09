@@ -132,3 +132,29 @@ export const fetchPeople = () => (dispatch) => {
 
   dispatch(getPeopleSuccess(mockPeople));
 };
+
+// Action to post image url
+export const postImg = uploadImg => (dispatch) => {
+  fetch('http://localhost:8080/photos', {
+    headers: {
+      // Authorization: `Bearer ${cookie.load('accessToken')}`,
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(uploadImg)
+  })
+  .then((res) => {
+    // console.info('image upload/post');
+    if (!res.ok) {
+      const error = new Error(res.statusText);
+      error.response = res;
+      throw error;
+    }
+    return res;
+  })
+  .then(res => res.json())
+  .then(() => dispatch(fetchPhotos()))
+
+  // TODO fetch error action
+  .catch(console.error);
+};
