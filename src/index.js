@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 import App from './components/App';
+import PhotoNode from './components/PhotoNode';
 import './index.css';
 
 import statusReducer from './reducers';

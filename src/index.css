@@ -1,5 +1,101 @@
+
+* {
+    box-sizing: border-box;
+    font-family: 'Work Sans', sans-serif;
+    margin: 0;
+}
+
+@-ms-viewport{
+    width: device-width;
+}
+
 body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+	background-color: #1DA1F2;
+}
+
+button {
+	height: 40px;
+}
+
+img.userIcon {
+	height: 41px;
+	border-radius: 50%;
+	padding: 5px;
+	display: inline;
+	float: left;
+}
+
+img.familyPhoto {
+	width: 100%;
+}
+
+img.messageIcon {
+	height: 41px;
+	padding-top: 5px;
+	float: right;
+	padding-right: 6px;
+}
+
+.container {
+	padding-bottom: 100px;
+}
+
+.navButton {
+	color: white;
+	height: 46px;
+	padding: 15px;
+	background-color: #E46651;
+}
+
+.node {
+	padding-left: 5%;
+    padding-right: 5%;
+    padding-top: 60px;
+}
+
+.nodeTitle {
+	text-align: center;
+    padding-right: 43px;
+    padding-top: 14px;
+    color: white;
+}
+
+.photoHeader {
+	height: 50px;
+	padding: 5px;
+	margin-bottom: 4px;
+}
+
+.photoFooter {
+	height: 50px;
+	padding: 3px;
+	background-color: #323333;
+}
+
+.uploadButton {
+	height: 50px;
+	float: right;
+	padding-bottom: 19px;
+	margin: -6px;
+	filter: invert(100%);
+}
+
+@media only screen and (min-width: 1000px) {
+	.col-1 {width: 8.33%;}
+	.col-2 {width: 16.66%;}
+	.col-3 {width: 25%;}
+	.col-4 {width: 33.33%;}
+	.col-5 {width: 41.66%;}
+	.col-6 {width: 50%;}
+	.col-7 {width: 58.33%;}
+	.col-8 {width: 66.66%;}
+	.col-9 {width: 75%;}
+	.col-10 {width: 83.33%;}
+	.col-11 {width: 91.66%;}
+	.col-12 {width: 100%;}
+    .container {
+    	display: inline;
+    	padding-bottom: 100px;
+    }
+
 }
