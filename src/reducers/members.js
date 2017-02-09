@@ -1,20 +1,20 @@
 import * as actions from '../actions/members';
 
 const initialState = {
-  people: {},
+  members: {},
   loading: false,
 };
 
-const people = (state = initialState, action) => {
-  if (action.type === actions.GET_PEOPLE) {
+const members = (state = initialState, action) => {
+  if (action.type === actions.GET_MEMBERS) {
     return {
       ...state,
       loading: true,
     };
-  } else if (action.type === actions.GET_PEOPLE_SUCCESS) {
+  } else if (action.type === actions.GET_MEMBERS_SUCCESS) {
     return {
       ...state,
-      people: action.photos,
+      members: action.members,
       loading: false,
     };
   }
@@ -22,4 +22,4 @@ const people = (state = initialState, action) => {
   return state;
 };
 
-export default people;
+export default members;
