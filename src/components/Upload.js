@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import * as actions from '../actions';
+import { postPhoto } from '../actions/photos';
 
 class Upload extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       photoUrl: '',
       caption: ''
     };
+
     this.uploadSubmit = this.uploadSubmit.bind(this);
     this.photoUrlInputChange = this.photoUrlInputChange.bind(this);
     this.captionInputChange = this.captionInputChange.bind(this);
@@ -19,7 +21,7 @@ class Upload extends Component {
     event.preventDefault();
     // TODO add to input validation
     if (this.state.photoUrl && this.state.caption) {
-      this.props.dispatch(actions.postImg({
+      this.props.dispatch(postPhoto({
         userId: this.props.userId,
         url: this.state.photoUrl,
         caption: this.state.caption

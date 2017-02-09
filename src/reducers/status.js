@@ -1,12 +1,12 @@
 import * as actions from '../actions';
 
-const initialStateStatus = {
+const initialState = {
   message: '',
   loading: true,
   userId: 'Jamie'
 };
 
-const status = (state = initialStateStatus, action) => {
+const status = (state = initialState, action) => {
   if (action.type === actions.GET_STATUS) {
     return {
       ...state,
