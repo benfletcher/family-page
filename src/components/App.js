@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import '../App.css';
+import PhotoNode from './PhotoNode';
+import Header from './Header';
 import * as actions from '../actions';
 
+<<<<<<< HEAD
 import NavBar from './NavBar';
+=======
+>>>>>>> master
 
 class App extends Component {
-  // constructor(props) {
-  //   super(props);
-  // }
 
   componentDidMount() {
     this.props.dispatch(actions.fetchStatus());
@@ -19,38 +21,28 @@ class App extends Component {
     console.log('photos in app:', this.props.photos);
 
     return (
-      <div className="App">
-        <div className="App-header">
-          <NavBar />
-          <h2>Welcome to React</h2>
-          <div>Status: {this.props.status}</div>
-          {
-            this.props.photos.map(photo =>
-              <img
-                src={photo.url}
-                alt="placeholder"
-              />
-            )
-          }
-        </div>
+      <div className="container">
+        <Header />
+        {
+          this.props.photos.map(photo =>
+            <PhotoNode user={photo.userId} photo={photo.url} />
+          )
+        }
       </div>
     );
   }
 }
 
 App.defaultProps = {
-  status: 'loading...',
   photos: [],
 };
 
 App.propTypes = {
-  status: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
 };
 
 const mapStateToProps = state => ({
-  status: state.status.message,
   photos: state.photos.photos,
 });
 
