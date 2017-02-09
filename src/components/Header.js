@@ -1,11 +1,12 @@
 import React from 'react';
+import { Link } from 'react-router';
 
 const Header = () => (
   <div className="navButton">
     <p className="navTitle">Gallery
-      <a href="www.upload.com">
+      <Link to="/upload">
         <img className="uploadButton" alt="upload" src="upload.png" />
-      </a>
+      </Link>
     </p>
   </div>
 );

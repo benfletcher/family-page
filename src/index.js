@@ -7,6 +7,7 @@ import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
 import App from './components/App';
+import Upload from './components/Upload';
 import './index.css';
 
 import statusReducer from './reducers';
@@ -22,6 +23,7 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={App} />
+      <Route path="/upload" component={Upload} />
     </Router>
   </Provider>,
   document.getElementById('root'),

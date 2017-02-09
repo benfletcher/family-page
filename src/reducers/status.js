@@ -3,10 +3,10 @@ import * as actions from '../actions';
 const initialStateStatus = {
   message: '',
   loading: true,
+  userId: 'Jamie'
 };
 
 const status = (state = initialStateStatus, action) => {
-  console.log(state);
   if (action.type === actions.GET_STATUS) {
     return {
       ...state,
