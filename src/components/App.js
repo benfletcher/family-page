@@ -5,11 +5,6 @@ import PhotoNode from './PhotoNode';
 import Header from './Header';
 import * as actions from '../actions';
 
-<<<<<<< HEAD
-import NavBar from './NavBar';
-=======
->>>>>>> master
-
 class App extends Component {
 
   componentDidMount() {
