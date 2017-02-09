@@ -20,7 +20,7 @@ class App extends Component {
         <Header />
         {
           this.props.photos.map(photo =>
-            <PhotoNode user={photo.userId} photo={photo.url} />
+            <PhotoNode user={photo.userId} photo={photo.url} key={photo.userId + photo.url} />
           )
         }
       </div>

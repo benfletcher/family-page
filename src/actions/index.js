@@ -134,7 +134,6 @@ export const fetchPeople = () => (dispatch) => {
 };
 
 // Action to post image url
-// did not use loading status since I am not activating any reducers, can/will add if desired
 export const postImg = uploadImg => (dispatch) => {
   fetch('http://localhost:8080/photos', {
     headers: {
@@ -142,10 +141,10 @@ export const postImg = uploadImg => (dispatch) => {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    body: JSON.stringify({ uploadImg })
+    body: JSON.stringify(uploadImg)
   })
   .then((res) => {
-    console.info('image upload/post');
+    // console.info('image upload/post');
     if (!res.ok) {
       const error = new Error(res.statusText);
       error.response = res;

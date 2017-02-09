@@ -5,15 +5,33 @@ import * as actions from '../actions';
 class Upload extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      imageUrl: '',
+      caption: ''
+    };
     this.uploadSubmit = this.uploadSubmit.bind(this);
+    this.urlInputChange = this.urlInputChange.bind(this);
+    this.captionInputChange = this.captionInputChange.bind(this);
   }
 
   uploadSubmit(event) {
     // grabs text url and dispatches action to post to database
     event.preventDefault();
-    const imageUrl = this.textInput.value;
-    this.props.dispatch(actions.postImg({ userId: this.props.userId, url: imageUrl }));
-    this.textInput.value = '';
+    this.props.dispatch(actions.postImg({
+      userId: this.props.userId,
+      url: this.state.imageUrl,
+      caption: this.state.caption
+    }));
+    this.setState({ imageUrl: '', caption: '' });
+  }
+
+  urlInputChange(event) {
+    // console.log(this.state.imageUrl);
+    this.setState({ imageUrl: event.target.value });
+  }
+
+  captionInputChange(event) {
+    this.setState({ caption: event.target.value });
   }
 
   render() {
@@ -23,8 +41,16 @@ class Upload extends Component {
           <input
             type="text"
             placeholder="url to upload"
-            ref={(input) => { this.textInput = input; }}
+            value={this.state.imageUrl}
+            onChange={this.urlInputChange}
           />
+          <input
+            type="text"
+            placeholder="describe your picture"
+            value={this.state.caption}
+            onChange={this.captionInputChange}
+          />
+          <button type="submit">Upload</button>
         </form>
       </div>
     );
@@ -37,7 +63,7 @@ Upload.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userId: state.userId
+  userId: state.status.userId
 });
 
 export default connect(mapStateToProps)(Upload);
