@@ -3,7 +3,11 @@ exports[`test Header snapshot is the same 1`] = `
   className="navButton">
   <p
     className="navTitle">
-    Gallery
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      Gallery
+    </a>
     <a
       onClick={[Function]}
       style={Object {}}>
