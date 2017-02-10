@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postPhoto } from '../actions/photos';
+import CloudUpload from './Dropzone';
 
 class Upload extends Component {
   constructor(props) {
@@ -61,6 +62,7 @@ class Upload extends Component {
           />
           <button type="submit">Upload</button>
         </form>
+        <CloudUpload />
       </div>
     );
   }
