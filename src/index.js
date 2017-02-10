@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
-import App from './components/App';
+import App from './components/App'; // eslint-disable-line
 import Upload from './components/Upload';
 import Gallery from './components/Gallery';
 import './index.css';
