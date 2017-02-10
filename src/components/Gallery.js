@@ -8,6 +8,7 @@ import { fetchMembers } from '../actions/members';
 import { showZoomed } from '../actions';
 import { hideZoomed } from '../actions';
 
+
 class Gallery extends Component {
 
   componentDidMount() {
@@ -28,9 +29,11 @@ class Gallery extends Component {
     return (
     	<div>
     	  <Header />
+
     	  {this.props.zoomed ? <GalleryZoomed onClick={ this.closeZoom.bind(this) }
           photoUrl={ this.props.zoomedUrl.url } /> : ''}
-	      <div className="galleryContainer">
+	     
+      <div className="galleryContainer">
 	        {
 	          this.props.photos.map(photo =>
 	            <GalleryThumbnail

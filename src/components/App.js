@@ -5,7 +5,7 @@ import Header from './Header';
 import { fetchPhotos } from '../actions/photos';
 import { fetchMembers } from '../actions/members';
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchPhotos());
@@ -13,19 +13,18 @@ class App extends Component {
   }
 
   render() {
-    console.log('photos in app:', this.props.photos);
-
     return (
       <div className="container">
         <Header />
         <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>Family Members:
           {
             Object.keys(this.props.members).map(member => (
-              <li>
+              <li
+                key={this.props.members[member]._id} // eslint-disable-line no-underscore-dangle
+              >
                 <img
                   src={this.props.members[member].avatar}
                   alt="avatar"
-                  key={member}
                   style={{ maxWidth: '50px', borderRadius: '50%' }}
                 />
               </li>
@@ -37,7 +36,10 @@ class App extends Component {
             <PhotoNode
               user={photo.userId}
               photo={photo.url}
-              key={photo.userId + photo.url}
+              caption={photo.caption}
+              memberAvatar={(photo.userId in this.props.members)
+              ? this.props.members[photo.userId].avatar : undefined}
+              key={photo._id} // eslint-disable-line no-underscore-dangle
             />
           )
         }
@@ -54,7 +56,7 @@ App.defaultProps = {
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
-  members: React.PropTypes.objectOf(React.PropTypes.string),
+  members: React.PropTypes.objectOf(React.PropTypes.object),
 };
 
 const mapStateToProps = state => ({
