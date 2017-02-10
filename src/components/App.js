@@ -39,6 +39,7 @@ class App extends Component {
             <PhotoNode
               user={photo.userId}
               photo={photo.url}
+              caption={photo.caption}
               memberAvatar={(photo.userId in this.props.members)
               ? this.props.members[photo.userId].avatar : undefined}
               key={photo._id} // eslint-disable-line no-underscore-dangle
