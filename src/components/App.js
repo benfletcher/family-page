@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import '../App.css';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
 import { fetchPhotos } from '../actions/photos';
