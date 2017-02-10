@@ -45,6 +45,10 @@ img.galleryThumbnail {
 	height: 100px;
 }
 
+ul.userPhotoIcon {
+	width: 10%;
+	float: left;
+}
 .container {
 	padding-bottom: 100px;
 }
@@ -52,6 +56,8 @@ img.galleryThumbnail {
 .navButton {
 	color: white;
 	height: 46px;
+	width: 100%;
+	position: fixed;
 	padding: 15px;
 	background-color: #E46651;
 }
@@ -132,6 +138,11 @@ img.galleryThumbnail {
 	height: 100px;
 	background-color: powderblue;
 	margin: 5px;
+}
+
+.galleryContainer img {
+	width: 100%;
+	overflow: hidden;
 }
 
 .zoomedNav {

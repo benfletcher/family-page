@@ -5,8 +5,8 @@ const Header = () => (
   <div className="navButton">
     <p className="navTitle">
       <Link to="/gallery">
-        Gallery
-      </Link>
+   		Gallery
+   	  </Link>
       <Link to="/upload">
         <img className="uploadButton" alt="upload" src="upload.png" />
       </Link>
