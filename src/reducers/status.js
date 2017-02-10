@@ -3,7 +3,10 @@ import * as actions from '../actions';
 const initialState = {
   message: '',
   loading: true,
-  userId: 'Jamie'
+  userId: 'Jamie',
+  zoomed: false,
+  zoomedUrl: '',
+  zoomedCurrentId: null,
 };
 
 const status = (state = initialState, action) => {
@@ -17,6 +20,17 @@ const status = (state = initialState, action) => {
       ...state,
       message: action.message,
       loading: false,
+    };
+  } else if (action.type === actions.SHOW_ZOOMED) {
+    return {
+      ...state,
+      zoomed: true,
+    };
+  }
+  else if (action.type === actions.HIDE_ZOOMED) {
+    return {
+      ...state,
+      zoomed: false,
     };
   }
 
