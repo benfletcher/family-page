@@ -134,6 +134,11 @@ img.galleryThumbnail {
 	margin: 5px;
 }
 
+.galleryContainer img {
+	width: 100%;
+	overflow: hidden;
+}
+
 .zoomedNav {
 	display: flex;
 	justify-content: center;

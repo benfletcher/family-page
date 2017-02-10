@@ -2,8 +2,9 @@ import 'isomorphic-fetch';
 
 
 export const SHOW_ZOOMED = 'SHOW_ZOOMED';
-export const showZoomed = () => ({
+export const showZoomed = (zoomedUrl) => ({
   type: SHOW_ZOOMED,
+  zoomedUrl,
 });
 
 export const HIDE_ZOOMED = 'HIDE_ZOOMED';
