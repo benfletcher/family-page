@@ -18,7 +18,7 @@ class App extends Component {
     return (
       <div className="container">
         <Header />
-        <ul style={{ listStyle: 'none' }}>Family Members:
+        <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>Family Members:
           {
             Object.keys(this.props.members).map(member => (
               <li>
