@@ -12,20 +12,25 @@ class Gallery extends Component {
     this.props.dispatch(fetchPhotos());
     this.props.dispatch(fetchMembers());
   }
+
+  openZoom() {
+    alert('hi')
+  }
   //use LINK to wrap gallery thumbnail, with photo prop ???
   render() {
     console.log('photos in gallery:', this.props.photos);
     return (
     	<div>
     	  <Header />
-    	  <GalleryZoomed />
+    	  {this.props.zoomed ? <GalleryZoomed /> : ''}
 	      <div className="galleryContainer">
 	        {
 	          this.props.photos.map(photo =>
 	            <GalleryThumbnail
 	              user={photo.userId}
-	              photo={photo.url}
+	              photoUrl={photo.url}
 	              key={photo.userId + photo.url}
+                onClick={this.openZoom.bind(this, photo)}
 	            />
 	          )
 	        }
@@ -49,6 +54,7 @@ Gallery.propTypes = {
 const mapStateToProps = state => ({
   photos: state.photos.photos,
   members: state.members.members,
+  zoomed: state.status.zoomed,
 });
 
 export default connect(mapStateToProps)(Gallery);
