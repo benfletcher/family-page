@@ -22,11 +22,12 @@ class App extends Component {
         <ul style={{ listStyle: 'none' }}>Family Members:
           {
             Object.keys(this.props.members).map(member => (
-              <li>
+              <li
+                key={this.props.members[member]._id} // eslint-disable-line no-underscore-dangle
+              >
                 <img
                   src={this.props.members[member].avatar}
                   alt="avatar"
-                  key={member}
                   style={{ maxWidth: '50px', borderRadius: '50%' }}
                 />
               </li>
@@ -38,7 +39,10 @@ class App extends Component {
             <PhotoNode
               user={photo.userId}
               photo={photo.url}
-              key={photo.userId + photo.url}
+              caption={photo.caption}
+              memberAvatar={(photo.userId in this.props.members)
+              ? this.props.members[photo.userId].avatar : undefined}
+              key={photo._id} // eslint-disable-line no-underscore-dangle
             />
           )
         }
@@ -55,7 +59,7 @@ App.defaultProps = {
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
-  members: React.PropTypes.objectOf(React.PropTypes.string),
+  members: React.PropTypes.objectOf(React.PropTypes.object),
 };
 
 const mapStateToProps = state => ({
