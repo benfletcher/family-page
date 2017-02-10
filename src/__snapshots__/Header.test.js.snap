@@ -1,0 +1,17 @@
+exports[`test Header snapshot is the same 1`] = `
+<div
+  className="navButton">
+  <p
+    className="navTitle">
+    Gallery
+    <a
+      onClick={[Function]}
+      style={Object {}}>
+      <img
+        alt="upload"
+        className="uploadButton"
+        src="upload.png" />
+    </a>
+  </p>
+</div>
+`;

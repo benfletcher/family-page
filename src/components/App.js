@@ -14,8 +14,6 @@ export class App extends Component {
   }
 
   render() {
-    console.log('photos in app:', this.props.photos);
-
     return (
       <div className="container">
         <Header />
