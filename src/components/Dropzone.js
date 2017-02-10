@@ -12,8 +12,6 @@ class CloudUpload extends Component {
       uploadedFile: null,
       uploadedFileCloudinaryUrl: ''
     };
-
-    this.onImageDrop = this.onImageDrop.bind(this);
   }
 
   onImageDrop(files) {
