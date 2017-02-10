@@ -27,6 +27,8 @@ class Upload extends Component {
         caption: this.state.caption
       }));
       this.setState({ photoUrl: '', caption: '' });
+    } else if (!this.state.phototUrl || !this.state.caption) {
+      alert('Both URL field and description need to be filled out');
     }
   }
 
