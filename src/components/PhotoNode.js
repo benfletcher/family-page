@@ -6,7 +6,7 @@ class PhotoNode extends Component {
     return (
       <div className="node col-6">
         <div className="photoHeader inline">
-          <img className="userIcon" src="./JamieDavella.png" alt="avatar" />
+          <img className="userIcon" src={this.props.memberAvatar} alt="avatar" />
           <p className="nodeTitle">{this.props.user}</p>
         </div>
         <div className="photoContainer">
@@ -20,9 +20,14 @@ class PhotoNode extends Component {
   }
 }
 
+PhotoNode.defaultProps = {
+  memberAvatar: './JamieDavella.png'
+};
+
 PhotoNode.propTypes = {
   photo: React.PropTypes.string.isRequired,
   user: React.PropTypes.string.isRequired,
+  memberAvatar: React.PropTypes.string,
 };
 
 export default PhotoNode;
