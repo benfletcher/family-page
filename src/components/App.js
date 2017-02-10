@@ -6,7 +6,7 @@ import Header from './Header';
 import { fetchPhotos } from '../actions/photos';
 import { fetchMembers } from '../actions/members';
 
-class App extends Component {
+export class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchPhotos());
@@ -14,8 +14,6 @@ class App extends Component {
   }
 
   render() {
-    console.log('photos in app:', this.props.photos);
-
     return (
       <div className="container">
         <Header />
