@@ -1,9 +1,15 @@
 import React from 'react';
 
-const GalleryThumbnail = (props) => (
+const GalleryThumbnail = props => (
+  // eslint-disable-next-line
   <div onClick={props.onClick}>
-    <img alt="photo thumbnail" src={props.photoUrl} />
+    <img alt="thumbnail" src={props.photoUrl} />
   </div>
 );
+
+GalleryThumbnail.propTypes = {
+  onClick: React.PropTypes.func.isRequired,
+  photoUrl: React.PropTypes.string.isRequired
+};
 
 export default GalleryThumbnail;
