@@ -14,7 +14,7 @@ export const getPhotosSuccess = photos => ({
 export const fetchPhotos = () => (dispatch) => {
   dispatch(getPhotos());
 
-  fetch('http://localhost:8080/photos')
+  fetch('https://calm-beach-24196.herokuapp.com/photos')
   .then((res) => {
     if (!res.ok) {
       const error = new Error(res.statusText);
@@ -31,7 +31,7 @@ export const fetchPhotos = () => (dispatch) => {
 };
 
 export const postPhoto = uploadImg => (dispatch) => {
-  fetch('http://localhost:8080/photos', {
+  fetch('https://calm-beach-24196.herokuapp.com/photos', {
     headers: {
       'Content-Type': 'application/json'
     },

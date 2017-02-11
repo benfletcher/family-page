@@ -2,7 +2,7 @@ import 'isomorphic-fetch';
 
 
 export const SHOW_ZOOMED = 'SHOW_ZOOMED';
-export const showZoomed = (zoomedUrl) => ({
+export const showZoomed = zoomedUrl => ({
   type: SHOW_ZOOMED,
   zoomedUrl,
 });
@@ -10,7 +10,7 @@ export const showZoomed = (zoomedUrl) => ({
 export const HIDE_ZOOMED = 'HIDE_ZOOMED';
 export const hideZoomed = () => ({
   type: HIDE_ZOOMED,
-})
+});
 
 
 // STATUS
@@ -29,7 +29,7 @@ export const getStatusSuccess = message => ({
 export const fetchStatus = () => (dispatch) => {
   dispatch(getStatus());
 
-  fetch('http://localhost:8080/')
+  fetch('https://calm-beach-24196.herokuapp.com/')
 
   .then((res) => {
     if (!res.ok) {

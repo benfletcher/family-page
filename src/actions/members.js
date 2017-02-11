@@ -14,7 +14,7 @@ export const getMembersSuccess = members => ({
 export const fetchMembers = () => (dispatch) => {
   dispatch(getMembers());
 
-  fetch('http://localhost:8080/members')
+  fetch('https://calm-beach-24196.herokuapp.com/members')
   .then((res) => {
     if (!res.ok) {
       const error = new Error(res.statusText);
