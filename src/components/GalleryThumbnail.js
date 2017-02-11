@@ -9,7 +9,7 @@ const GalleryThumbnail = props => (
 
 GalleryThumbnail.propTypes = {
   onClick: React.PropTypes.func.isRequired,
-  photoUrl: React.PropTypes.string.isRequired
+  photoUrl: React.PropTypes.string.isRequired,
 };
 
 export default GalleryThumbnail;

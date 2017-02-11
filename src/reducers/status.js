@@ -22,7 +22,6 @@ const status = (state = initialState, action) => {
       loading: false,
     };
   } else if (action.type === actions.SHOW_ZOOMED) {
-    console.log('d', action.zoomedUrl);
     return {
       ...state,
       zoomed: true,
