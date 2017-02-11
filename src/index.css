@@ -46,9 +46,9 @@ img.galleryThumbnail {
 }
 
 ul.userPhotoIcon {
-	width: 10%;
-	float: left;
+	display: none;
 }
+
 .container {
 	padding-bottom: 100px;
 }
@@ -121,7 +121,7 @@ ul.userPhotoIcon {
 	height: 100%;
 	padding-top: 100px;
 	padding-left: 5%;
-	padding-right: 5%;	
+	padding-right: 5%;
 
 }
 
@@ -186,4 +186,10 @@ ul.userPhotoIcon {
     	padding-top: 55px;
 
     }
+		ul.userPhotoIcon {
+			display: initial;
+			width: 10%;
+			float: left;
+			padding-top: 60px;
+		}
 }
