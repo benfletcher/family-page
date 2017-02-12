@@ -21,8 +21,8 @@ class Gallery extends Component {
     this.props.dispatch(fetchMembers());
   }
 
-  openZoom(photo) {
-    this.props.dispatch(showZoomed(photo));
+  openZoom({ photoUrl, photoIndex }) {
+    this.props.dispatch(showZoomed(photoUrl, photoIndex));
   }
 
   closeZoom() {
@@ -38,18 +38,19 @@ class Gallery extends Component {
           this.props.zoomed ?
             <GalleryZoomed
               onClick={this.closeZoom}
-              photoUrl={this.props.zoomedUrl.url}
-            /> : ''
+              photoUrl={this.props.zoomedUrl}
+            /> : null
         }
         <div className="galleryContainer">
           {
-            this.props.photos.map(photo =>
+            this.props.photos.map((photo, i) =>
               <GalleryThumbnail
-                user={photo.userId}
+                key={photo._id}
+                photoIndex={i}
                 photoUrl={photo.url}
-                key={photo.userId + photo.url}
+                user={photo.userId}
                 onClick={this.openZoom}
-              />,
+              />
             )
           }
         </div>
@@ -61,13 +62,14 @@ class Gallery extends Component {
 Gallery.defaultProps = {
   photos: [],
   members: {},
+  zoomedUrl: null,
 };
 
 Gallery.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
   zoomed: React.PropTypes.bool.isRequired,
-  zoomedUrl: React.PropTypes.string.isRequired,
+  zoomedUrl: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({
