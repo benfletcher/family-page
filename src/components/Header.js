@@ -9,8 +9,8 @@ const Header = () => (
       </Link>
       <span>  </span>
       <Link to="/gallery">
-   		Gallery
-   	  </Link>
+        Gallery
+      </Link>
       <Link to="/upload">
         <img className="uploadButton" alt="upload" src="upload.png" />
       </Link>

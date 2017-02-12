@@ -3,19 +3,24 @@ import { connect } from 'react-redux';
 import GalleryThumbnail from './GalleryThumbnail';
 import GalleryZoomed from './GalleryZoomed';
 import Header from './Header';
+
 import { fetchPhotos } from '../actions/photos';
 import { fetchMembers } from '../actions/members';
-import { showZoomed } from '../actions';
-import { hideZoomed } from '../actions';
-
+import { showZoomed, hideZoomed } from '../actions';
 
 class Gallery extends Component {
+  constructor(props) {
+    super(props);
+
+    this.openZoom = this.openZoom.bind(this);
+    this.closeZoom = this.closeZoom.bind(this);
+  }
   componentDidMount() {
     this.props.dispatch(fetchPhotos());
     this.props.dispatch(fetchMembers());
   }
-  openZoom(photo) {
-    this.props.dispatch(showZoomed(photo));
+  openZoom({ photoUrl, photoIndex }) {
+    this.props.dispatch(showZoomed(photoUrl, photoIndex));
   }
   closeZoom() {
     this.props.dispatch(hideZoomed());
@@ -33,34 +38,37 @@ class Gallery extends Component {
     	  {this.props.zoomed ? <GalleryZoomed 
           zoom={ this.closeZoom.bind(this) }
           goLeft={ this.goLeft.bind(this) }
-          goRigh={ this.goRight.bind(this) }
-          photoUrl={ this.props.zoomedPhoto.url } /> : ''}	     
+          goRight={ this.goRight.bind(this) }
+          photoUrl={ this.props.zoomedPhoto } /> : ''}	     
     
       <div className="galleryContainer">
 	        {
-	          this.props.photos.map(photo =>
-	            <GalleryThumbnail
-	              user={photo.userId}
-	              photoUrl={photo.url}
-	              key={photo.userId + photo.url}
-                onClick={this.openZoom.bind(this, photo)}
+            this.props.photos.map((photo, i) =>
+              <GalleryThumbnail
+                key={photo._id}
+                photoIndex={i}
+                photoUrl={photo.url}
+                user={photo.userId}
+                onClick={this.openZoom}
 	            />
 	          )
 	        }
 	      </div>
-	    </div>  
+	    </div>
     );
   }
 }
 Gallery.defaultProps = {
   photos: [],
   members: {},
+  zoomedUrl: null,
 };
 
 Gallery.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
-  members: React.PropTypes.objectOf(React.PropTypes.string),
+  zoomed: React.PropTypes.bool.isRequired,
+  zoomedUrl: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({

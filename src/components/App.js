@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
+
 import { fetchPhotos } from '../actions/photos';
 import { fetchMembers } from '../actions/members';
 
@@ -39,7 +40,7 @@ export class App extends Component {
               caption={photo.caption}
               memberAvatar={(photo.userId in this.props.members)
               ? this.props.members[photo.userId].avatar : undefined}
-              key={photo._id} // eslint-disable-line no-underscore-dangle
+              key={photo._id}
             />
           )
         }
