@@ -10,29 +10,32 @@ import { hideZoomed } from '../actions';
 
 
 class Gallery extends Component {
-
   componentDidMount() {
     this.props.dispatch(fetchPhotos());
     this.props.dispatch(fetchMembers());
   }
-
   openZoom(photo) {
     this.props.dispatch(showZoomed(photo));
-    console.log('yah', this.props.zoomedUrl)
   }
   closeZoom() {
     this.props.dispatch(hideZoomed());
   }
-  //use LINK to wrap gallery thumbnail, with photo prop ???
+  goLeft() {
+    console.log(this.props.zoomedPhoto.id)
+  }
+  goRight() {
+
+  }
   render() {
-    console.log('photos in gallery:', this.props.photos);
     return (
     	<div>
     	  <Header />
-
-    	  {this.props.zoomed ? <GalleryZoomed onClick={ this.closeZoom.bind(this) }
-          photoUrl={ this.props.zoomedUrl.url } /> : ''}
-	     
+    	  {this.props.zoomed ? <GalleryZoomed 
+          zoom={ this.closeZoom.bind(this) }
+          goLeft={ this.goLeft.bind(this) }
+          goRigh={ this.goRight.bind(this) }
+          photoUrl={ this.props.zoomedPhoto.url } /> : ''}	     
+    
       <div className="galleryContainer">
 	        {
 	          this.props.photos.map(photo =>
@@ -49,7 +52,6 @@ class Gallery extends Component {
     );
   }
 }
-
 Gallery.defaultProps = {
   photos: [],
   members: {},
@@ -65,7 +67,7 @@ const mapStateToProps = state => ({
   photos: state.photos.photos,
   members: state.members.members,
   zoomed: state.status.zoomed,
-  zoomedUrl: state.status.zoomedUrl
+  zoomedPhoto: state.status.zoomedPhoto
 });
 
 export default connect(mapStateToProps)(Gallery);

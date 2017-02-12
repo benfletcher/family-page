@@ -12,9 +12,11 @@ exports[`test Header snapshot is the same 1`] = `
     className="zoomedNav">
     <img
       className="arrow"
+      onClick={undefined}
       src="arrow.png" />
     <img
       className="arrow"
+      onClick={undefined}
       src="arrowRight.png" />
   </div>
 </div>

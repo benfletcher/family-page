@@ -1,4 +1,5 @@
 import * as actions from '../actions';
+import { fetchPhotos } from '../actions/photos';
 
 const initialState = {
   message: '',
@@ -22,11 +23,10 @@ const status = (state = initialState, action) => {
       loading: false,
     };
   } else if (action.type === actions.SHOW_ZOOMED) {
-    console.log('d', action.zoomedUrl)
     return {
       ...state,
       zoomed: true,
-      zoomedUrl: action.zoomedUrl,
+      zoomedPhoto: action.photo,
     };
   }
   else if (action.type === actions.HIDE_ZOOMED) {
