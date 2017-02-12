@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Header from './Header';
 import { connect } from 'react-redux';
 import { postPhoto } from '../actions/photos';
 import CloudUpload from './Dropzone';
@@ -46,23 +47,25 @@ class Upload extends Component {
   render() {
     return (
       <div>
-        <form onSubmit={this.uploadSubmit}>
-          <p>Both fields are required at this moment</p>
-          <input
-            type="text"
-            placeholder="url to upload"
-            value={this.state.photoUrl}
-            onChange={this.photoUrlInputChange}
-          />
-          <input
-            type="text"
-            placeholder="describe your picture"
-            value={this.state.caption}
-            onChange={this.captionInputChange}
-          />
-          <button type="submit">Upload</button>
-        </form>
-        <CloudUpload />
+        <Header />
+        <div className="uploadContainer">
+          <form className="uploadForm" onSubmit={this.uploadSubmit}>
+            <input
+              type="text"
+              placeholder="url to upload"
+              value={this.state.photoUrl}
+              onChange={this.photoUrlInputChange}
+            />
+            <input
+              type="text"
+              placeholder="describe your picture"
+              value={this.state.caption}
+              onChange={this.captionInputChange}
+            />
+            <button className="formButton" type="submit">Upload</button>
+          </form>
+          <CloudUpload />
+        </div>
       </div>
     );
   }

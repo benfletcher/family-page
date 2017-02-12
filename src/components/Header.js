@@ -3,7 +3,10 @@ import { Link } from 'react-router';
 
 const Header = () => (
   <div className="navButton">
-    <p className="navTitle">Gallery
+    <p className="navTitle">
+      <Link to="/gallery">
+   		Gallery
+   	  </Link>
       <Link to="/upload">
         <img className="uploadButton" alt="upload" src="upload.png" />
       </Link>

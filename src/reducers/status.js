@@ -3,7 +3,10 @@ import * as actions from '../actions';
 const initialState = {
   message: '',
   loading: true,
-  userId: 'Jamie'
+  userId: 'Jamie',
+  zoomed: false,
+  zoomedUrl: "http://www.valentinesdaysurprises.com/wp-content/uploads/2017/01/Valentine-Day-Greeting-Cards-Download.jpg",
+  zoomedCurrentId: null,
 };
 
 const status = (state = initialState, action) => {
@@ -17,6 +20,19 @@ const status = (state = initialState, action) => {
       ...state,
       message: action.message,
       loading: false,
+    };
+  } else if (action.type === actions.SHOW_ZOOMED) {
+    console.log('d', action.zoomedUrl)
+    return {
+      ...state,
+      zoomed: true,
+      zoomedUrl: action.zoomedUrl,
+    };
+  }
+  else if (action.type === actions.HIDE_ZOOMED) {
+    return {
+      ...state,
+      zoomed: false,
     };
   }
 
