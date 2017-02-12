@@ -1,0 +1,21 @@
+exports[`test Header snapshot is the same 1`] = `
+<div
+  className="galleryZoomed">
+  <img
+    className="xIcon"
+    onClick={undefined}
+    src="xIcon.png" />
+  <img
+    className="familyPhoto"
+    src={undefined} />
+  <div
+    className="zoomedNav">
+    <img
+      className="arrow"
+      src="arrow.png" />
+    <img
+      className="arrow"
+      src="arrowRight.png" />
+  </div>
+</div>
+`;
