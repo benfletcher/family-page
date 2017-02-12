@@ -26,9 +26,14 @@ class Gallery extends Component {
     this.props.dispatch(hideZoomed());
   }
   goLeft() {
-    console.log(this.props.zoomedPhoto.id)
+    let currentIndex = this.props.zoomedIndex;
+    let newIndex = currentIndex - 1;
+    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
   }
   goRight() {
+    let currentIndex = this.props.zoomedIndex;
+    let newIndex = currentIndex + 1;
+    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
 
   }
   render() {
@@ -75,7 +80,8 @@ const mapStateToProps = state => ({
   photos: state.photos.photos,
   members: state.members.members,
   zoomed: state.status.zoomed,
-  zoomedPhoto: state.status.zoomedPhoto
+  zoomedPhoto: state.status.zoomedPhoto,
+  zoomedIndex: state.status.zoomedIndex,
 });
 
 export default connect(mapStateToProps)(Gallery);
