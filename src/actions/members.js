@@ -32,8 +32,6 @@ export const fetchMembers = () => (dispatch) => {
       membersObj[member.nickname] = member;
     });
 
-    console.log(membersObj);
-
     dispatch(getMembersSuccess(membersObj));
   })
   .catch(console.error);

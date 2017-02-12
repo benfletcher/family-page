@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from './Header'
 import { connect } from 'react-redux';
+import Header from './Header';
 import { postPhoto } from '../actions/photos';
 
 class Upload extends Component {
@@ -61,7 +61,7 @@ class Upload extends Component {
             />
             <button className="formButton" type="submit">Upload</button>
           </form>
-        </div>  
+        </div>
       </div>
     );
   }
