@@ -3,6 +3,7 @@ import request from 'superagent';
 import { connect } from 'react-redux';
 import UploadBox from './UploadBox';
 import { postPhoto } from '../actions/photos';
+import { Link } from 'react-router';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 const CLOUDINARY_UPLOAD_URL = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;
@@ -102,7 +103,9 @@ class UploadContainer extends Component {
             <p>{this.state.uploadedFile.size}</p>
           </div>}
         </div>
-        <button onClick={this.saveUpload}>Save</button>
+        <Link to="/">
+          <button onClick={this.saveUpload}>Save</button>
+        </Link>  
         <button onClick={this.resetState}>Cancel</button>
       </div>
     );

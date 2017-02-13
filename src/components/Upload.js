@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import { postPhoto } from '../actions/photos';
 import UploadContainer from './UploadContainer';
+import { Link } from 'react-router';
 
 class Upload extends Component {
   constructor(props) {
@@ -60,7 +61,9 @@ class Upload extends Component {
               value={this.state.caption}
               onChange={this.captionInputChange}
             />
-            <button className="formButton" type="submit">Upload</button>
+            <Link to="/">
+              <button className="formButton" type="submit">Upload</button>
+            </Link>  
           </form>
           <UploadContainer />
         </div>
