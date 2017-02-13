@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Header from './Header';
 import { connect } from 'react-redux';
 import { postPhoto } from '../actions/photos';
-import CloudUpload from './Dropzone';
+import UploadContainer from './UploadContainer';
 
 class Upload extends Component {
   constructor(props) {
@@ -64,7 +64,7 @@ class Upload extends Component {
             />
             <button className="formButton" type="submit">Upload</button>
           </form>
-          <CloudUpload />
+          <UploadContainer />
         </div>
       </div>
     );
