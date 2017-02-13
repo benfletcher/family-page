@@ -13,6 +13,7 @@ class UploadContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      caption: '',
       uploadedFile: null,
       size: 0,
       previewUrl: '',
@@ -22,6 +23,7 @@ class UploadContainer extends Component {
     this.resetState = this.resetState.bind(this);
     this.saveUpload = this.saveUpload.bind(this);
     this.onImageDrop = this.onImageDrop.bind(this);
+    this.captionInputChange = this.captionInputChange.bind(this);
   }
 
   onImageDrop(files) {
@@ -35,6 +37,7 @@ class UploadContainer extends Component {
   resetState() {
     this.setState({
       zoomedIn: false,
+      caption: '',
       uploadedFile: null,
       uploadedFileCloudinaryUrl: '',
       size: 0,
@@ -43,11 +46,16 @@ class UploadContainer extends Component {
     });
   }
 
+  captionInputChange(event) {
+    this.setState({ caption: event.target.value });
+    console.log(this.state.caption);
+  }
+
   saveUpload(event) {
     event.preventDefault();
     console.log('saveUpload button clicked');
     this.handleImageUpload(this.state.uploadedFile);
-    this.resetState();
+    // this.resetState();
   }
 
   handleImageUpload(file) {
@@ -64,7 +72,7 @@ class UploadContainer extends Component {
         this.props.dispatch(postPhoto({
           url: response.body.secure_url,
           userId: this.props.userId,
-          caption: 'test'
+          caption: this.state.caption
         }));
       }
     });
@@ -80,7 +88,12 @@ class UploadContainer extends Component {
     return (
       <div>
         <img alt="preview" src={placeholder} style={{ maxWidth: '150px' }} />
-        <input />
+        <input
+          type="text"
+          placeholder="describe your picture"
+          value={this.state.caption}
+          onChange={this.captionInputChange}
+        />
         <UploadBox onImageDrop={this.onImageDrop} />
         <div>
           {this.state.uploadPhotoName === '' ? null :
