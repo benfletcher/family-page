@@ -14,20 +14,16 @@ class UploadContainer extends Component {
     super(props);
     this.state = {
       uploadedFile: null,
-      uploadedFileCloudinaryUrl: '',
       size: 0,
       previewUrl: '',
       uploadPhotoName: '',
       zoomedIn: true
     };
-    this.cancelUpload = this.cancelUpload.bind(this);
+    this.resetState = this.resetState.bind(this);
     this.saveUpload = this.saveUpload.bind(this);
     this.onImageDrop = this.onImageDrop.bind(this);
-    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
-  componentDidMount() {
-    console.log(this.state);
-  }
+
   onImageDrop(files) {
     this.setState({
       uploadedFile: files[0],
@@ -36,18 +32,7 @@ class UploadContainer extends Component {
     });
   }
 
-  saveUpload(event) {
-    event.preventDefault();
-    console.log('saveUpload button clicked');
-    this.handleImageUpload(this.state.uploadedFile)
-    .then(() => {
-      this.props.dispatch(postPhoto({
-        url: this.state.uploadedFileCloudinaryUrl,
-        userId: this.props.userId,
-        caption: 'test'
-      })
-  );
-    });
+  resetState() {
     this.setState({
       zoomedIn: false,
       uploadedFile: null,
@@ -58,8 +43,11 @@ class UploadContainer extends Component {
     });
   }
 
-  cancelUpload() {
-    this.setState({ zoomedIn: false });
+  saveUpload(event) {
+    event.preventDefault();
+    console.log('saveUpload button clicked');
+    this.handleImageUpload(this.state.uploadedFile);
+    this.resetState();
   }
 
   handleImageUpload(file) {
@@ -73,21 +61,22 @@ class UploadContainer extends Component {
       }
 
       if (response.body.secure_url !== '') {
-        this.setState({
-          uploadedFileCloudinaryUrl: response.body.secure_url
-        });
+        this.props.dispatch(postPhoto({
+          url: response.body.secure_url,
+          userId: this.props.userId,
+          caption: 'test'
+        }));
       }
     });
   }
 
   render() {
     if (!this.state.previewUrl) {
-      placeholder = '../public/photoPlaceholder';
+      placeholder = '.../public/photoPlaceholder';
     } else {
       placeholder = this.state.previewUrl;
     }
 
-    console.log(this.state.uploadedFile);
     return (
       <div>
         <img alt="preview" src={placeholder} style={{ maxWidth: '150px' }} />
@@ -101,7 +90,7 @@ class UploadContainer extends Component {
           </div>}
         </div>
         <button onClick={this.saveUpload}>Save</button>
-        <button onClick={this.cancelUpload}>Cancel</button>
+        <button onClick={this.resetState}>Cancel</button>
       </div>
     );
   }
