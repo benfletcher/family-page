@@ -31,9 +31,7 @@ class Upload extends Component {
     }
   }
 
-
   photoUrlInputChange(event) {
-    // console.log(this.state.imageUrl);
     this.setState({ photoUrl: event.target.value });
   }
 

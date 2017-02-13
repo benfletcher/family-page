@@ -14,22 +14,30 @@ class Gallery extends Component {
 
     this.openZoom = this.openZoom.bind(this);
     this.closeZoom = this.closeZoom.bind(this);
+    this.closeZoom = this.closeZoom.bind(this);
+    this.goLeft = this.goLeft.bind(this);
+    this.goRight = this.goRight.bind(this);
   }
-
   componentDidMount() {
     this.props.dispatch(fetchPhotos());
     this.props.dispatch(fetchMembers());
   }
-
   openZoom({ photoUrl, photoIndex }) {
     this.props.dispatch(showZoomed(photoUrl, photoIndex));
   }
-
   closeZoom() {
     this.props.dispatch(hideZoomed());
   }
-
-  // use LINK to wrap gallery thumbnail, with photo prop ???
+  goLeft() {
+    const currentIndex = this.props.zoomedIndex;
+    const newIndex = currentIndex - 1;
+    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
+  }
+  goRight() {
+    const currentIndex = this.props.zoomedIndex;
+    const newIndex = currentIndex + 1;
+    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
+  }
   render() {
     return (
       <div>
@@ -37,10 +45,14 @@ class Gallery extends Component {
         {
           this.props.zoomed ?
             <GalleryZoomed
-              onClick={this.closeZoom}
-              photoUrl={this.props.zoomedUrl}
-            /> : null
+              zoom={this.closeZoom}
+              goLeft={this.goLeft}
+              goRight={this.goRight}
+              photoUrl={this.props.zoomedPhoto}
+            />
+          : null
         }
+
         <div className="galleryContainer">
           {
             this.props.photos.map((photo, i) =>
@@ -58,25 +70,26 @@ class Gallery extends Component {
     );
   }
 }
-
 Gallery.defaultProps = {
   photos: [],
   members: {},
-  zoomedUrl: null,
+  zoomedPhoto: null,
 };
 
 Gallery.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
   zoomed: React.PropTypes.bool.isRequired,
-  zoomedUrl: React.PropTypes.string,
+  zoomedIndex: React.PropTypes.number.isRequired,
+  zoomedPhoto: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
   photos: state.photos.photos,
   members: state.members.members,
   zoomed: state.status.zoomed,
-  zoomedUrl: state.status.zoomedUrl,
+  zoomedPhoto: state.status.zoomedPhoto,
+  zoomedIndex: state.status.zoomedIndex,
 });
 
 export default connect(mapStateToProps)(Gallery);

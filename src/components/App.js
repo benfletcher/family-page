@@ -38,8 +38,11 @@ export class App extends Component {
               user={photo.userId}
               photo={photo.url}
               caption={photo.caption}
-              memberAvatar={(photo.userId in this.props.members)
-              ? this.props.members[photo.userId].avatar : undefined}
+              memberAvatar={
+                (photo.userId in this.props.members)
+                  ? this.props.members[photo.userId].avatar
+                  : null
+              }
               key={photo._id}
             />
           )
