@@ -14,29 +14,51 @@ class UploadContainer extends Component {
     this.state = {
       uploadedFile: null,
       uploadedFileCloudinaryUrl: '',
+      size: 0,
+      previewUrl: '',
+      uploadPhotoName: '',
       zoomedIn: true
     };
     this.cancelUpload = this.cancelUpload.bind(this);
     this.saveUpload = this.saveUpload.bind(this);
     this.onImageDrop = this.onImageDrop.bind(this);
+    // this.updateUploadState = this.updateUploadState.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   onImageDrop(files) {
     this.setState({
-      uploadedFile: files[0]
+      uploadedFile: files[0],
     });
-    console.log(this.state.uploadedFile);
-    this.handleImageUpload(files[0]);
+    // this.updateUploadState();
   }
+
+  // updateUploadState() {
+  //   this.setState({
+  //     size: this.state.uploadedFile.size
+  //   });
+  // }
 
   saveUpload(event) {
     event.preventDefault();
-    this.props.dispatch(postPhoto({
-      url: this.state.uploadedFileCloudinaryUrl,
-      userId: 'Jamie',
-      caption: 'test'
-    }));
-    this.setState({ zoomedIn: false });
+    console.log('saveUpload button clicked');
+    this.handleImageUpload(this.state.uploadedFile)
+    .then(() => {
+      this.props.dispatch(postPhoto({
+        url: this.state.uploadedFileCloudinaryUrl,
+        userId: this.props.userId,
+        caption: 'test'
+      })
+  );
+    });
+    this.setState({
+      zoomedIn: false,
+      uploadedFile: null,
+      uploadedFileCloudinaryUrl: '',
+      size: 0,
+      previewUrl: '',
+      uploadPhotoName: ''
+    });
   }
 
   cancelUpload() {
@@ -62,26 +84,27 @@ class UploadContainer extends Component {
   }
 
   render() {
-    console.log('this is a test');
+    console.log(this.state.uploadedFile);
     return (
       <div>
+        <img alt="preview" src={this.previewUrl} />
+        <input />
         <UploadBox onImageDrop={this.onImageDrop} />
-        <div>
-          {this.state.uploadedFileCloudinaryUrl === '' ? null :
-          <div>
-            <p>{this.state.uploadedFile.name}</p>
-            <p>{this.state.uploadedFileCloudinaryUrl}</p>
-            <img src={this.state.uploadedFile.preview} alt="upload preview" style={{ maxWidth: '150px' }} />
-            <button onClick={this.saveUpload}>Save</button>
-            <button onClick={this.cancelUpload}>Cancel</button>
-          </div>}
-        </div>
+        <button onClick={this.saveUpload}>Save</button>
+        <button onClick={this.cancelUpload}>Cancel</button>
+        <p>{this.state.size}</p>
       </div>
     );
   }
 }
-export default connect()(UploadContainer);
 
 UploadContainer.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  userId: React.PropTypes.string.isRequired
 };
+
+const mapStateToProps = state => ({
+  userId: state.status.userId
+});
+
+export default connect(mapStateToProps)(UploadContainer);
