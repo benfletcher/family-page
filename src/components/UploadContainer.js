@@ -4,9 +4,10 @@ import { connect } from 'react-redux';
 import UploadBox from './UploadBox';
 import { postPhoto } from '../actions/photos';
 
-
 const CLOUDINARY_UPLOAD_PRESET = 'jbrmwpgk';
 const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/family/upload';
+
+let placeholder = '';
 
 class UploadContainer extends Component {
   constructor(props) {
@@ -22,24 +23,18 @@ class UploadContainer extends Component {
     this.cancelUpload = this.cancelUpload.bind(this);
     this.saveUpload = this.saveUpload.bind(this);
     this.onImageDrop = this.onImageDrop.bind(this);
-    // this.updateUploadState = this.updateUploadState.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
   }
-
+  componentDidMount() {
+    console.log(this.state);
+  }
   onImageDrop(files) {
     this.setState({
       uploadedFile: files[0],
-      uploadPhotoName: files[0].name
+      uploadPhotoName: files[0].name,
+      previewUrl: files[0].preview
     });
-    // this.updateUploadState();
   }
-
-  // updateUploadState() {
-  //   console.log(this.state.uploadedFile);
-  //   this.setState({
-  //     size: this.state.uploadedFile.size
-  //   });
-  // }
 
   saveUpload(event) {
     event.preventDefault();
@@ -86,17 +81,22 @@ class UploadContainer extends Component {
   }
 
   render() {
+    if (!this.state.previewUrl) {
+      placeholder = '../public/photoPlaceholder';
+    } else {
+      placeholder = this.state.previewUrl;
+    }
+
     console.log(this.state.uploadedFile);
     return (
       <div>
-        <img alt="preview" src={this.previewUrl} />
+        <img alt="preview" src={placeholder} style={{ maxWidth: '150px' }} />
         <input />
         <UploadBox onImageDrop={this.onImageDrop} />
         <div>
           {this.state.uploadPhotoName === '' ? null :
           <div>
             <p>{this.state.uploadedFile.name}</p>
-            <img alt="preview" src={this.state.uploadedFile.preview} style={{ maxWidth: '150px' }} />
             <p>{this.state.uploadedFile.size}</p>
           </div>}
         </div>
