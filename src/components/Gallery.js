@@ -14,6 +14,9 @@ class Gallery extends Component {
 
     this.openZoom = this.openZoom.bind(this);
     this.closeZoom = this.closeZoom.bind(this);
+    this.closeZoom = this.closeZoom.bind(this);
+    this.goLeft = this.goLeft.bind(this);
+    this.goRight = this.goRight.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(fetchPhotos());
@@ -26,28 +29,32 @@ class Gallery extends Component {
     this.props.dispatch(hideZoomed());
   }
   goLeft() {
-    let currentIndex = this.props.zoomedIndex;
-    let newIndex = currentIndex - 1;
+    const currentIndex = this.props.zoomedIndex;
+    const newIndex = currentIndex - 1;
     this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
   }
   goRight() {
-    let currentIndex = this.props.zoomedIndex;
-    let newIndex = currentIndex + 1;
+    const currentIndex = this.props.zoomedIndex;
+    const newIndex = currentIndex + 1;
     this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
-
   }
   render() {
     return (
-    	<div>
-    	  <Header />
-    	  {this.props.zoomed ? <GalleryZoomed 
-          zoom={ this.closeZoom.bind(this) }
-          goLeft={ this.goLeft.bind(this) }
-          goRight={ this.goRight.bind(this) }
-          photoUrl={ this.props.zoomedPhoto } /> : ''}	     
-    
-      <div className="galleryContainer">
-	        {
+      <div>
+        <Header />
+        {
+          this.props.zoomed ?
+            <GalleryZoomed
+              zoom={this.closeZoom}
+              goLeft={this.goLeft}
+              goRight={this.goRight}
+              photoUrl={this.props.zoomedPhoto}
+            />
+          : null
+        }
+
+        <div className="galleryContainer">
+          {
             this.props.photos.map((photo, i) =>
               <GalleryThumbnail
                 key={photo._id}
@@ -55,25 +62,26 @@ class Gallery extends Component {
                 photoUrl={photo.url}
                 user={photo.userId}
                 onClick={this.openZoom}
-	            />
-	          )
-	        }
-	      </div>
-	    </div>
+              />
+            )
+          }
+        </div>
+      </div>
     );
   }
 }
 Gallery.defaultProps = {
   photos: [],
   members: {},
-  zoomedUrl: null,
+  zoomedPhoto: null,
 };
 
 Gallery.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.arrayOf(React.PropTypes.object),
   zoomed: React.PropTypes.bool.isRequired,
-  zoomedUrl: React.PropTypes.string,
+  zoomedIndex: React.PropTypes.number.isRequired,
+  zoomedPhoto: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
