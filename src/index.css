@@ -60,7 +60,7 @@ ul.userPhotoIcon {
 	width: 100%;
 	position: fixed;
 	padding: 15px;
-	background-color: #E46651;
+	background-color: #323333;
 }
 
 .node {
@@ -88,6 +88,18 @@ ul.userPhotoIcon {
 	background-color: #323333;
 }
 
+.parent {
+	display: flex;
+	justify-content: center;
+	background-color: pink;
+	padding-top: 40px; 
+}
+
+.child {
+	background-color: white;
+
+}
+
 .uploadButton {
 	height: 50px;
 	float: right;
@@ -103,11 +115,16 @@ ul.userPhotoIcon {
 	border-radius: 14px;
 	color: white;
 }
-
-.uploadContainer {
+.uploadParent {
 	display: flex;
 	justify-content: center;
+
+}
+
+.uploadContainer {
+	flex: 1;
 	padding-top: 50px;
+
 }
 
 .uploadForm {
@@ -192,7 +209,11 @@ ul.userPhotoIcon {
 			display: initial;
 			width: 10%;
 			float: left;
-			padding-top: 60px;
+			padding-top: 76px;
 			color: white;
+		}
+		
+		ul.userPhotoIcon img {
+			padding: 1px;
 		}
 }
