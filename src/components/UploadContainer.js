@@ -54,11 +54,11 @@ class UploadContainer extends Component {
   saveUpload(event) {
     event.preventDefault();
     console.log('saveUpload button clicked');
-    this.handleImageUpload(this.state.uploadedFile);
-    // this.resetState();
+    this.handleImageUpload(this.state.uploadedFile, this.props.userId, this.state.caption);
+    this.resetState();
   }
 
-  handleImageUpload(file) {
+  handleImageUpload(file, userId, caption) {
     const upload = request.post(CLOUDINARY_UPLOAD_URL)
                           .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                           .field('file', file);
@@ -71,8 +71,8 @@ class UploadContainer extends Component {
       if (response.body.secure_url !== '') {
         this.props.dispatch(postPhoto({
           url: response.body.secure_url,
-          userId: this.props.userId,
-          caption: this.state.caption
+          userId,
+          caption
         }));
       }
     });
@@ -80,14 +80,14 @@ class UploadContainer extends Component {
 
   render() {
     if (!this.state.previewUrl) {
-      placeholder = '.../public/photoPlaceholder';
+      placeholder = 'photoPlaceholder.jpg';
     } else {
       placeholder = this.state.previewUrl;
     }
 
     return (
       <div>
-        <img alt="preview" src={placeholder} style={{ maxWidth: '150px' }} />
+        <img alt="preview" src={placeholder} style={{ maxWidth: '200px' }} />
         <input
           type="text"
           placeholder="describe your picture"
