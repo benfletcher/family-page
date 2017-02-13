@@ -1,5 +1,6 @@
 import 'babel-polyfill';
 import 'isomorphic-fetch';
+import dotenv from 'dotenv';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { createStore, applyMiddleware } from 'redux';
@@ -10,8 +11,10 @@ import App from './components/App'; // eslint-disable-line
 import Upload from './components/Upload';
 import Gallery from './components/Gallery';
 import './index.css';
-
 import statusReducer from './reducers';
+
+dotenv.config();
+
 
 /* eslint-disable no-underscore-dangle, no-undef */
 const store = createStore(

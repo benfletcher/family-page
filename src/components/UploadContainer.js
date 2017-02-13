@@ -4,9 +4,9 @@ import { connect } from 'react-redux';
 import UploadBox from './UploadBox';
 import { postPhoto } from '../actions/photos';
 
-const CLOUDINARY_UPLOAD_PRESET = 'jbrmwpgk';
-const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/family/upload';
-
+const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+const CLOUDINARY_UPLOAD_URL = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;
+console.log(CLOUDINARY_UPLOAD_URL, CLOUDINARY_UPLOAD_PRESET);
 let placeholder = '';
 
 class UploadContainer extends Component {
