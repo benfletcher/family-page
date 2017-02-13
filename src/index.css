@@ -88,16 +88,18 @@ ul.userPhotoIcon {
 	background-color: #323333;
 }
 
-.parent {
+.uploadParent {
 	display: flex;
 	justify-content: center;
-	background-color: pink;
-	padding-top: 40px; 
+	padding-top: 40px;
 }
 
-.child {
+.uploadChild {
 	background-color: white;
-
+  text-align: center;
+  width: 90%;
+  padding: 46px;
+  margin-top: 100px
 }
 
 .uploadButton {
@@ -108,6 +110,40 @@ ul.userPhotoIcon {
 	filter: invert(100%);
 }
 
+.fileUpload {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+
+}
+
+input.imageDescription {
+  height: 50px;
+  width: 70%;
+  margin: 10px;
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.imgDropText {
+  text-align: center;
+  padding: 31px;
+  color: #323333;
+}
+
+p.dropZoneText {
+  color: #323333;
+  padding: 10px;
+  margin: 10px;
+  display: inline;
+}
+
+img.imageDropPreview {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+  display: none;
+}
 
 .formButton {
 	height: 23px;
@@ -199,6 +235,12 @@ ul.userPhotoIcon {
     .node {
     	margin: 0 auto;
     }
+
+    .dropZoneBox {
+      height: 200px;
+      width: 100%;
+    }
+
     .galleryContainer {
     	padding-left: 20%;
     	padding-right: 20%;
@@ -212,8 +254,12 @@ ul.userPhotoIcon {
 			padding-top: 76px;
 			color: white;
 		}
-		
+
 		ul.userPhotoIcon img {
 			padding: 1px;
 		}
+
+    .uploadChild {
+      width: 40%;
+    }
 }

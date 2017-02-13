@@ -88,14 +88,19 @@ class UploadContainer extends Component {
 
     return (
       <div>
-        <img alt="preview" src={placeholder} style={{ maxWidth: '200px' }} />
+        <UploadBox onImageDrop={this.onImageDrop} />
+        <img
+          className="imageDropPreview"
+          alt="preview" src={placeholder}
+          style={{ maxWidth: '200px' }}
+        />
         <input
+          className="imageDescription"
           type="text"
           placeholder="describe your picture"
           value={this.state.caption}
           onChange={this.captionInputChange}
         />
-        <UploadBox onImageDrop={this.onImageDrop} />
         <div>
           {this.state.uploadPhotoName === '' ? null :
           <div>
@@ -104,9 +109,17 @@ class UploadContainer extends Component {
           </div>}
         </div>
         <Link to="/">
-          <button onClick={this.saveUpload}>Save</button>
-        </Link>  
-        <button onClick={this.resetState}>Cancel</button>
+          <p
+            className="dropZoneText"
+          >Save
+          </p>
+        </Link>
+        <p
+          className="dropZoneText"
+          onClick={this.resetState}
+        >
+          Cancel
+        </p>
       </div>
     );
   }

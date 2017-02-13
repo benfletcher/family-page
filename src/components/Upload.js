@@ -47,49 +47,11 @@ class Upload extends Component {
     return (
       <div>
         <Header />
-        <div className='parent'>
-          <div className='child'>
-            <form onSubmit={this.uploadSubmit}>
-              <input
-                type="text"
-                placeholder="url to upload"
-                value={this.state.photoUrl}
-                onChange={this.photoUrlInputChange}
-              />
-              <input
-                type="text"
-                placeholder="describe your picture"
-                value={this.state.caption}
-                onChange={this.captionInputChange}
-              />
-              <Link to="/">
-                <button className="formButton" type="submit">Upload</button>
-              </Link>
-              <UploadContainer />  
-            </form>
-
-          </div>
-        </div>
-          <div className="uploadContainer">
-            <form onSubmit={this.uploadSubmit}>
-              <input
-                type="text"
-                placeholder="url to upload"
-                value={this.state.photoUrl}
-                onChange={this.photoUrlInputChange}
-              />
-              <input
-                type="text"
-                placeholder="describe your picture"
-                value={this.state.caption}
-                onChange={this.captionInputChange}
-              />
-              <Link to="/">
-                <button className="formButton" type="submit">Upload</button>
-              </Link>  
-            </form>
+        <div className="uploadParent">
+          <div className="uploadChild">
             <UploadContainer />
           </div>
+        </div>
       </div>
     );
   }
