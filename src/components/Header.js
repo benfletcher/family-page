@@ -4,9 +4,13 @@ import { Link } from 'react-router';
 const Header = () => (
   <div className="navButton">
     <p className="navTitle">
+      <Link to="/">
+      Home
+      </Link>
+      <span />
       <Link to="/gallery">
-   		Gallery
-   	  </Link>
+        Gallery
+      </Link>
       <Link to="/upload">
         <img className="uploadButton" alt="upload" src="upload.png" />
       </Link>

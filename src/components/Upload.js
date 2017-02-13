@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import Header from './Header';
 import { connect } from 'react-redux';
+import Header from './Header';
 import { postPhoto } from '../actions/photos';
 import UploadContainer from './UploadContainer';
 
@@ -34,9 +34,7 @@ class Upload extends Component {
     }
   }
 
-
   photoUrlInputChange(event) {
-    // console.log(this.state.imageUrl);
     this.setState({ photoUrl: event.target.value });
   }
 
