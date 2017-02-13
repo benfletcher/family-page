@@ -29,11 +29,13 @@ class UploadContainer extends Component {
   onImageDrop(files) {
     this.setState({
       uploadedFile: files[0],
+      uploadPhotoName: files[0].name
     });
     // this.updateUploadState();
   }
 
   // updateUploadState() {
+  //   console.log(this.state.uploadedFile);
   //   this.setState({
   //     size: this.state.uploadedFile.size
   //   });
@@ -90,9 +92,16 @@ class UploadContainer extends Component {
         <img alt="preview" src={this.previewUrl} />
         <input />
         <UploadBox onImageDrop={this.onImageDrop} />
+        <div>
+          {this.state.uploadPhotoName === '' ? null :
+          <div>
+            <p>{this.state.uploadedFile.name}</p>
+            <img alt="preview" src={this.state.uploadedFile.preview} style={{ maxWidth: '150px' }} />
+            <p>{this.state.uploadedFile.size}</p>
+          </div>}
+        </div>
         <button onClick={this.saveUpload}>Save</button>
         <button onClick={this.cancelUpload}>Cancel</button>
-        <p>{this.state.size}</p>
       </div>
     );
   }
