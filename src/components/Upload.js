@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
 import { postPhoto } from '../actions/photos';
+import UploadContainer from './UploadContainer';
 
 class Upload extends Component {
   constructor(props) {
@@ -28,6 +29,8 @@ class Upload extends Component {
         caption: this.state.caption
       }));
       this.setState({ photoUrl: '', caption: '' });
+    } else if (!this.state.phototUrl || !this.state.caption) {
+      alert('Both URL field and description need to be filled out'); // eslint-disable-line
     }
   }
 
@@ -59,6 +62,7 @@ class Upload extends Component {
             />
             <button className="formButton" type="submit">Upload</button>
           </form>
+          <UploadContainer />
         </div>
       </div>
     );

@@ -31,7 +31,9 @@ export const fetchPhotos = () => (dispatch) => {
 };
 
 export const postPhoto = uploadImg => (dispatch) => {
+  // fetch('https://calm-beach-24196.herokuapp.com/photos', {
   fetch('https://calm-beach-24196.herokuapp.com/photos', {
+  // fetch('https://localhost:8080/photos', {
     headers: {
       'Content-Type': 'application/json'
     },

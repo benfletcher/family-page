@@ -1,5 +1,4 @@
 import * as actions from '../actions';
-import { fetchPhotos } from '../actions/photos';
 
 const initialState = {
   message: '',
