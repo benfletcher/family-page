@@ -8,6 +8,7 @@ const initialState = {
   zoomedUrl: 'http://www.valentinesdaysurprises.com/wp-content/uploads/2017/01/Valentine-Day-Greeting-Cards-Download.jpg',
   zoomedCurrentId: null,
   zoomedIndex: 0,
+  zoomedPhoto: '',
 };
 
 const status = (state = initialState, action) => {

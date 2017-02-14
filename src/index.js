@@ -7,14 +7,14 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
 import { Router, Route, hashHistory } from 'react-router';
+import './index.css';
+
 import App from './components/App'; // eslint-disable-line
 import Upload from './components/Upload';
 import Gallery from './components/Gallery';
-import './index.css';
 import statusReducer from './reducers';
 
 dotenv.config();
-
 
 /* eslint-disable no-underscore-dangle, no-undef */
 const store = createStore(
