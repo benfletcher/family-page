@@ -4,7 +4,7 @@ import GalleryThumbnail from './GalleryThumbnail';
 import GalleryZoomed from './GalleryZoomed';
 import Header from './Header';
 
-import { fetchPhotos } from '../actions/photos';
+import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import { showZoomed, hideZoomed } from '../actions';
 
@@ -18,26 +18,32 @@ class Gallery extends Component {
     this.goLeft = this.goLeft.bind(this);
     this.goRight = this.goRight.bind(this);
   }
+
   componentDidMount() {
-    this.props.dispatch(fetchPhotos());
+    this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
   }
+
   openZoom({ photoUrl, photoIndex }) {
     this.props.dispatch(showZoomed(photoUrl, photoIndex));
   }
+
   closeZoom() {
     this.props.dispatch(hideZoomed());
   }
+
   goLeft() {
     const currentIndex = this.props.zoomedIndex;
     const newIndex = currentIndex - 1;
-    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
+    this.props.dispatch(showZoomed(this.props.messages[newIndex].url, newIndex));
   }
+
   goRight() {
     const currentIndex = this.props.zoomedIndex;
     const newIndex = currentIndex + 1;
-    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
+    this.props.dispatch(showZoomed(this.props.messages[newIndex].url, newIndex));
   }
+
   render() {
     return (
       <div>
@@ -55,7 +61,7 @@ class Gallery extends Component {
 
         <div className="galleryContainer">
           {
-            this.props.photos.map((photo, i) =>
+            this.props.messages.map((photo, i) =>
               <GalleryThumbnail
                 key={photo._id}
                 photoIndex={i}
@@ -71,21 +77,21 @@ class Gallery extends Component {
   }
 }
 Gallery.defaultProps = {
-  photos: [],
+  messages: [],
   members: {},
   zoomedPhoto: null,
 };
 
 Gallery.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  photos: React.PropTypes.arrayOf(React.PropTypes.object),
+  messages: React.PropTypes.arrayOf(React.PropTypes.object),
   zoomed: React.PropTypes.bool.isRequired,
   zoomedIndex: React.PropTypes.number.isRequired,
   zoomedPhoto: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  photos: state.photos.photos,
+  messages: state.messages.messages,
   members: state.members.members,
   zoomed: state.status.zoomed,
   zoomedPhoto: state.status.zoomedPhoto,
