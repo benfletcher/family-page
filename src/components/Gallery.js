@@ -87,7 +87,7 @@ Gallery.propTypes = {
   messages: React.PropTypes.arrayOf(React.PropTypes.object),
   zoomed: React.PropTypes.bool.isRequired,
   zoomedIndex: React.PropTypes.number.isRequired,
-  zoomedPhoto: React.PropTypes.string.isRequired,
+  zoomedPhoto: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({

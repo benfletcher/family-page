@@ -69,10 +69,11 @@ class UploadContainer extends Component {
       }
 
       if (response.body.secure_url !== '') {
+        console.log(response.body.secure_url);
         this.props.dispatch(postMessage({
           url: response.body.secure_url,
           userId,
-          text: caption
+          text: `testing captions ${caption}`
         }));
       }
     });

@@ -38,7 +38,7 @@ export class App extends Component {
             <PhotoNode
               user={message.userId}
               photo={message.url}
-              caption={message.caption}
+              caption={message.text}
               memberAvatar={
                 (message.userId in this.props.members)
                   ? this.props.members[message.userId].avatar
