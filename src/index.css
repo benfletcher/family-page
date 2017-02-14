@@ -169,6 +169,8 @@ img.imageDropPreview {
 }
 
 .galleryZoomed {
+  display: flex;
+  flex-direction: column;
 	background: rgba(0, 0, 0, 1);
 	position: fixed;
 	width: 100%;
@@ -201,8 +203,12 @@ img.imageDropPreview {
 }
 
 .zoomedNav {
-	display: flex;
-	justify-content: center;
+	text-align: center;
+}
+
+.zoomedPhoto {
+  width: 100%;
+  max-height: 90%;
 }
 
 .zoomedNav img {
@@ -210,6 +216,12 @@ img.imageDropPreview {
 	height: 45px;
 	margin: 100px;
 	box-shadow: 2px 141px 173px;
+}
+
+.white {
+  color: white;
+  margin: 45px;
+
 }
 
 .xIcon {
