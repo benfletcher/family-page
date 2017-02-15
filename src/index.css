@@ -60,7 +60,7 @@ ul.userPhotoIcon {
 	width: 100%;
 	position: fixed;
 	padding: 15px;
-	background-color: #E46651;
+	background-color: #323333;
 }
 
 .node {
@@ -88,6 +88,20 @@ ul.userPhotoIcon {
 	background-color: #323333;
 }
 
+.uploadParent {
+	display: flex;
+	justify-content: center;
+	padding-top: 40px;
+}
+
+.uploadChild {
+	background-color: white;
+  text-align: center;
+  width: 90%;
+  padding: 46px;
+  margin-top: 100px
+}
+
 .uploadButton {
 	height: 50px;
 	float: right;
@@ -96,6 +110,40 @@ ul.userPhotoIcon {
 	filter: invert(100%);
 }
 
+.fileUpload {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+
+}
+
+input.imageDescription {
+  height: 50px;
+  width: 70%;
+  margin: 10px;
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.imgDropText {
+  text-align: center;
+  padding: 31px;
+  color: #323333;
+}
+
+p.dropZoneText {
+  color: #323333;
+  padding: 10px;
+  margin: 10px;
+  display: inline;
+}
+
+img.imageDropPreview {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+  display: none;
+}
 
 .formButton {
 	height: 23px;
@@ -103,11 +151,16 @@ ul.userPhotoIcon {
 	border-radius: 14px;
 	color: white;
 }
-
-.uploadContainer {
+.uploadParent {
 	display: flex;
 	justify-content: center;
+
+}
+
+.uploadContainer {
+	flex: 1;
 	padding-top: 50px;
+
 }
 
 .uploadForm {
@@ -116,11 +169,13 @@ ul.userPhotoIcon {
 }
 
 .galleryZoomed {
+  display: flex;
+  flex-direction: column;
 	background: rgba(0, 0, 0, 1);
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	padding-top: 100px;
+	padding-top: 1px;
 	padding-left: 5%;
 	padding-right: 5%;
 
@@ -148,8 +203,12 @@ ul.userPhotoIcon {
 }
 
 .zoomedNav {
-	display: flex;
-	justify-content: center;
+	text-align: center;
+}
+
+.zoomedPhoto {
+  width: 100%;
+  max-height: 90%;
 }
 
 .zoomedNav img {
@@ -158,6 +217,11 @@ ul.userPhotoIcon {
 	margin: 100px;
 	box-shadow: 2px 141px 173px;
 }
+
+.white {
+  color: white;
+  margin: 45px;
+ }
 
 .xIcon {
 	filter: invert(100%);
@@ -182,16 +246,32 @@ ul.userPhotoIcon {
     .node {
     	margin: 0 auto;
     }
+
+    .dropZoneBox {
+      height: 200px;
+      width: 100%;
+    }
+
     .galleryContainer {
     	padding-left: 20%;
     	padding-right: 20%;
     	padding-top: 55px;
 
     }
+    
 		ul.userPhotoIcon {
 			display: initial;
 			width: 10%;
 			float: left;
-			padding-top: 60px;
+			padding-top: 76px;
+			color: white;
 		}
+
+		ul.userPhotoIcon img {
+			padding: 1px;
+		}
+
+    .uploadChild {
+      width: 40%;
+    }
 }

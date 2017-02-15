@@ -2,11 +2,13 @@ import React from 'react';
 
 const GalleryZoomed = props => (
   <div className="galleryZoomed">
-    <img onClick={props.zoom} className="xIcon" src="xIcon.png" alt="close" />
-    <img className="familyPhoto" src={props.photoUrl} alt="large" />
+    <div>
+      <img onClick={props.zoom} className="xIcon" src="xIcon.png" alt="close" />
+      <img className="zoomedPhoto" src={props.photoUrl} alt="large" />
+    </div>
     <div className="zoomedNav">
-      <img onClick={props.goLeft} className="arrow" src="arrow.png" alt="go left" />
-      <img onClick={props.goRight} className="arrow" src="arrowRight.png" alt="go right" />
+      <i className="fa fa-3x white fa-arrow-left" onClick={props.goLeft} aria-hidden="true" />
+      <i className="fa fa-3x white fa-arrow-right" onClick={props.goRight} aria-hidden="true" />
     </div>
   </div>
 );

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { connect } from 'react-redux';
 import UploadBox from './UploadBox';
+import { Link } from 'react-router';
 import { postMessage } from '../actions/messages';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -88,14 +89,19 @@ class UploadContainer extends Component {
 
     return (
       <div>
-        <img alt="preview" src={placeholder} style={{ maxWidth: '200px' }} />
+        <UploadBox onImageDrop={this.onImageDrop} />
+        <img
+          className="imageDropPreview"
+          alt="preview" src={placeholder}
+          style={{ maxWidth: '200px' }}
+        />
         <input
+          className="imageDescription"
           type="text"
           placeholder="describe your picture"
           value={this.state.caption}
           onChange={this.captionInputChange}
         />
-        <UploadBox onImageDrop={this.onImageDrop} />
         <div>
           {this.state.uploadPhotoName === '' ? null :
           <div>
@@ -103,8 +109,19 @@ class UploadContainer extends Component {
             <p>{this.state.uploadedFile.size}</p>
           </div>}
         </div>
-        <button onClick={this.saveUpload}>Save</button>
-        <button onClick={this.resetState}>Cancel</button>
+        <Link to="/">
+          <p
+            className="dropZoneText"
+            onClick={this.saveUpload}
+          >Save
+          </p>
+        </Link>
+        <p
+          className="dropZoneText"
+          onClick={this.resetState}
+        >
+          Cancel
+        </p>
       </div>
     );
   }

@@ -18,7 +18,6 @@ export class App extends Component {
       <div className="container">
         <Header />
         <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
-          Family Members:
           {
             Object.keys(this.props.members).map(member => (
               <li

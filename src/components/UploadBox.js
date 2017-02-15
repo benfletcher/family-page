@@ -2,13 +2,14 @@ import React from 'react';
 import Dropzone from 'react-dropzone';
 
 const UploadBox = props => (
-  <div className="FileUpload">
+  <div className="fileUpload">
     <Dropzone
+      className="dropZoneBox"
       multiple={false}
       accept="image/*"
       onDrop={props.onImageDrop}
     >
-      <p>Drag and Drop an Image or click to select a file to upload</p>
+      <p className="imgDropText">Click to upload, or drag image</p>
     </Dropzone>
   </div>
     );
