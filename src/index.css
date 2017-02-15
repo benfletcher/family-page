@@ -50,16 +50,62 @@ ul.userPhotoIcon {
 	display: none;
 }
 
+
 .announcementParent {
   display: flex;
   justify-content: center;
   padding-top: 76px;
 }
 
-.announcementForm {
-  flex: 1;
-  border: 1px solid black;
-  text-align: center;
+.announcementContainer {
+  margin-top: 10px;
+  height: 150px;
+  width: 95%;
+  background-color: white;
+}
+
+.announcementHeader {
+  height: 40px;
+  background-color: #1DA1F2;
+}
+
+.announcementFooter {
+  margin-top: 5px;
+  height: 45px;
+  background-color: #323333;
+}
+
+.announcementInputBox {
+  display: inline;
+  float: right;
+  width: 80%;
+  margin-right: 5px;
+}
+
+.announcementInput {
+  height: 65px;
+  outline: none;
+  width: 100%;
+  border: 1px solid white;
+}
+
+.announcementPost {
+  padding-top: 17px;
+  padding-right: 16px;
+  float: right;
+  color: white;
+}
+
+.avatarDiv {
+  width: 15%;
+  padding-left: 2%;
+  display: inline-block;
+}
+
+.avatarPhoto {
+  height: 50px;
+  margin: 5px;
+  padding-top: 5px;
 }
 
 .container {
@@ -180,8 +226,6 @@ img.imageDropPreview {
 	text-align: center;
 }
 
-
-
 .galleryZoomed {
   display: flex;
   flex-direction: column;
@@ -261,6 +305,11 @@ img.imageDropPreview {
     	margin: 0 auto;
     }
 
+    .announcementContainer {
+      width: 50%;
+      margin-right: 10%;
+    }
+
     .dropZoneBox {
       height: 200px;
       width: 100%;
@@ -270,7 +319,6 @@ img.imageDropPreview {
     	padding-left: 20%;
     	padding-right: 20%;
     	padding-top: 55px;
-
     }
 
 		ul.userPhotoIcon {
@@ -294,6 +342,5 @@ img.imageDropPreview {
     .zoomedPhotoContainer {
       width: 40%;
     }
-
 
 }

@@ -36,15 +36,33 @@ class UploadAnnouncement extends Component {
   render() {
     return (
       <div className="announcementParent">
-        <form className="announcementForm" onSubmit={this.announcementSubmit}>
-          <input
-            type="text"
-            placeholder="make an announcement"
-            value={this.state.text}
-            onChange={this.textInputChange}
-          />
-          <button type="submit">Post</button>
-        </form>
+        <div className="announcementContainer">
+          <div className="announcementHeader" />
+          <div className="avatarDiv">
+            <img
+              alt="avatar"
+              className="avatarPhoto"
+              src="https://img.clipartfest.com/6e64a4f961e27a821feb8071da9fe0a4_female-user-icon-clip-art-clipart-user-icon_300-300.png"
+            />
+          </div>
+          <div className="announcementInputBox">
+            <input
+              className="announcementInput"
+              placeholder="ihold places..."
+              value={this.state.text}
+              onChange={this.textInputChange}
+              type="text"
+            />
+          </div>
+          <div className="announcementFooter">
+            <p
+              onClick={this.announcementSubmit}
+              className="announcementPost"
+            >
+             Post
+             </p>
+          </div>
+        </div>
       </div>
     );
   }
