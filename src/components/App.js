@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AnnouncementNode from './AnnouncementNode';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
 import { fetchMessages } from '../actions/messages';
@@ -37,8 +38,23 @@ export class App extends Component {
         {
           this.props.messages.map((message) => {
             console.log(message.contentType);
+            if (message.contentType === 'photo') {
+              return (
+                <PhotoNode
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                  (message.userId in this.props.members)
+                    ? this.props.members[message.userId].avatar
+                    : null
+                }
+                  key={message._id}
+                />
+              );
+            }
             return (
-              <PhotoNode
+              <AnnouncementNode
                 user={message.userId}
                 photo={message.url}
                 caption={message.text}

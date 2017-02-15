@@ -31,6 +31,7 @@ img.userIcon {
 }
 
 img.familyPhoto {
+  margin-top: 5px;
 	width: 100%;
 }
 
@@ -48,6 +49,19 @@ img.galleryThumbnail {
 
 ul.userPhotoIcon {
 	display: none;
+}
+
+.announcementTextNode {
+	height: 100px;
+  background-color: #F5F8F2;
+	margin-bottom: 4px;
+}
+
+.announcementTextNodeTitle {
+  text-align: center;
+  padding-right: 43px;
+  padding-top: 14px;
+  color: #323333;
 }
 
 
@@ -124,15 +138,15 @@ ul.userPhotoIcon {
 
 .node {
 	padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 60px;
+  padding-right: 5%;
+  padding-top: 60px;
 }
 
 .nodeTitle {
-	text-align: center;
-    padding-right: 43px;
-    padding-top: 14px;
-    color: white;
+  text-align: center;
+  padding-right: 43px;
+  padding-top: 14px;
+  color: white;
 }
 
 .photoHeader {
