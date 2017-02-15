@@ -3,7 +3,8 @@ import React from 'react';
 // will need to do some logic to determine indentation when user replys to a comment
 // need to post a comment when reply button is clicked
 
-const CommentNode = props => (
+
+const CommentNodeComplex = props => (
   <div className="node col-6">
     <div className="photoHeader inline">
       <img className="userIcon" src={props.fromAvatar} alt="avatar" />
@@ -16,14 +17,14 @@ const CommentNode = props => (
 );
 
 
-CommentNode.defaultProps = {
+CommentNodeComplex.defaultProps = {
   fromAvatar: './JamieDavella.png',
 };
 
-CommentNode.propTypes = {
+CommentNodeComplex.propTypes = {
   comment: React.PropTypes.obj.isRequired,
   loggedInUser: React.PropTypes.string.isRequired,
   fromAvatar: React.PropTypes.string,
 };
 
-export default CommentNode;
+export default CommentNodeComplex;
