@@ -112,6 +112,7 @@ class UploadContainer extends Component {
         <Link to="/">
           <p
             className="dropZoneText"
+            onClick={this.saveUpload}
           >Save
           </p>
         </Link>
