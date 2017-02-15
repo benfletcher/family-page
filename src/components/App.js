@@ -3,13 +3,13 @@ import { connect } from 'react-redux';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
 
-import { fetchPhotos } from '../actions/photos';
+import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 
 export class App extends Component {
 
   componentDidMount() {
-    this.props.dispatch(fetchPhotos());
+    this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
   }
 
@@ -21,7 +21,7 @@ export class App extends Component {
           {
             Object.keys(this.props.members).map(member => (
               <li
-                key={this.props.members[member]._id} // eslint-disable-line no-underscore-dangle
+                key={this.props.members[member]._id}
               >
                 <img
                   src={this.props.members[member].avatar}
@@ -33,17 +33,17 @@ export class App extends Component {
           }
         </ul>
         {
-          this.props.photos.map(photo =>
+          this.props.messages.map(message =>
             <PhotoNode
-              user={photo.userId}
-              photo={photo.url}
-              caption={photo.caption}
+              user={message.userId}
+              photo={message.url}
+              caption={message.text}
               memberAvatar={
-                (photo.userId in this.props.members)
-                  ? this.props.members[photo.userId].avatar
+                (message.userId in this.props.members)
+                  ? this.props.members[message.userId].avatar
                   : null
               }
-              key={photo._id}
+              key={message._id}
             />
           )
         }
@@ -53,18 +53,18 @@ export class App extends Component {
 }
 
 App.defaultProps = {
-  photos: [],
+  messages: [],
   members: {},
 };
 
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  photos: React.PropTypes.arrayOf(React.PropTypes.object),
+  messages: React.PropTypes.arrayOf(React.PropTypes.object),
   members: React.PropTypes.objectOf(React.PropTypes.object),
 };
 
 const mapStateToProps = state => ({
-  photos: state.photos.photos,
+  messages: state.messages.messages,
   members: state.members.members,
 });
 

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Header from './Header';
-import { postPhoto } from '../actions/photos';
+import { postMessage } from '../actions/messages';
 import UploadContainer from './UploadContainer';
 import { Link } from 'react-router';
 
@@ -24,10 +24,10 @@ class Upload extends Component {
     event.preventDefault();
     // TODO add to input validation
     if (this.state.photoUrl && this.state.caption) {
-      this.props.dispatch(postPhoto({
+      this.props.dispatch(postMessage({
         userId: this.props.userId,
         url: this.state.photoUrl,
-        caption: this.state.caption
+        text: this.state.caption
       }));
       this.setState({ photoUrl: '', caption: '' });
     } else if (!this.state.phototUrl || !this.state.caption) {

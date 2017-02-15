@@ -2,17 +2,18 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { connect } from 'react-redux';
 import UploadBox from './UploadBox';
-import { postPhoto } from '../actions/photos';
 import { Link } from 'react-router';
+import { postMessage } from '../actions/messages';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 const CLOUDINARY_UPLOAD_URL = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;
-console.log(CLOUDINARY_UPLOAD_URL, CLOUDINARY_UPLOAD_PRESET);
+
 let placeholder = '';
 
 class UploadContainer extends Component {
   constructor(props) {
     super(props);
+
     this.state = {
       caption: '',
       uploadedFile: null,
@@ -21,6 +22,7 @@ class UploadContainer extends Component {
       uploadPhotoName: '',
       zoomedIn: true
     };
+
     this.resetState = this.resetState.bind(this);
     this.saveUpload = this.saveUpload.bind(this);
     this.onImageDrop = this.onImageDrop.bind(this);
@@ -49,12 +51,10 @@ class UploadContainer extends Component {
 
   captionInputChange(event) {
     this.setState({ caption: event.target.value });
-    console.log(this.state.caption);
   }
 
   saveUpload(event) {
     event.preventDefault();
-    console.log('saveUpload button clicked');
     this.handleImageUpload(this.state.uploadedFile, this.props.userId, this.state.caption);
     this.resetState();
   }
@@ -70,10 +70,11 @@ class UploadContainer extends Component {
       }
 
       if (response.body.secure_url !== '') {
-        this.props.dispatch(postPhoto({
+        console.log(response.body.secure_url);
+        this.props.dispatch(postMessage({
           url: response.body.secure_url,
           userId,
-          caption
+          text: `testing captions ${caption}`
         }));
       }
     });

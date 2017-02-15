@@ -24,24 +24,3 @@ export const getStatusSuccess = message => ({
   type: GET_STATUS_SUCCESS,
   message,
 });
-
-export const fetchStatus = () => (dispatch) => {
-  dispatch(getStatus());
-
-  fetch('https://calm-beach-24196.herokuapp.com/')
-
-  .then((res) => {
-    if (!res.ok) {
-      const error = new Error(res.statusText);
-      error.response = res;
-      throw error;
-    }
-    return res;
-  })
-
-  .then(res => res.json())
-
-  .then(data => dispatch(getStatusSuccess(data.message)))
-
-  .catch(console.error);
-};
