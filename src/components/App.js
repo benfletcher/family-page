@@ -15,6 +15,14 @@ export class App extends Component {
   }
 
   render() {
+    // need to add logic
+    //  if message.contentType === photo want the photoNode to render
+      // if that message has no comments then don't include CommentsContainer in return
+        // instead return messageReplyFooter
+      // else return photoNode with CommentsContainer
+    // else if message.contentType === announcement want announcementNode to render
+      // if that message has no comments then don't include CommentsContainer in return
+    // else return announcementNode with CommentsContainer
     return (
       <div className="container">
         <Header />
@@ -47,7 +55,10 @@ export class App extends Component {
               }
               key={message._id}
             />
-          <CommentsContainer message={message} />
+            <CommentsContainer
+              message={message}
+              key={message._id}
+            />
           )
         }
       </div>
