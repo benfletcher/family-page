@@ -35,18 +35,22 @@ export class App extends Component {
         </ul>
         <UploadAnnouncement />
         {
-          this.props.messages.map(message =>
-            <PhotoNode
-              user={message.userId}
-              photo={message.url}
-              caption={message.text}
-              memberAvatar={
+          this.props.messages.map((message) => {
+            console.log(message.contentType);
+            return (
+              <PhotoNode
+                user={message.userId}
+                photo={message.url}
+                caption={message.text}
+                memberAvatar={
                 (message.userId in this.props.members)
                   ? this.props.members[message.userId].avatar
                   : null
               }
-              key={message._id}
-            />
+                key={message._id}
+              />
+            );
+          }
           )
         }
       </div>

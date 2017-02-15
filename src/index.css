@@ -144,7 +144,7 @@ ul.userPhotoIcon {
 .photoFooter {
 	height: 50px;
 	padding: 3px;
-	background-color: #F5F8F2;
+	background-color: #323333;
 }
 
 .uploadParent {
@@ -308,7 +308,7 @@ img.imageDropPreview {
 
     .announcementContainer {
       width: 50%;
-      margin-right: 12%;
+      margin-right: 11%;
     }
 
     .dropZoneBox {
