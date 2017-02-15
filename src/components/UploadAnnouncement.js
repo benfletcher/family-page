@@ -35,8 +35,8 @@ class UploadAnnouncement extends Component {
 
   render() {
     return (
-      <div>
-        <form onSubmit={this.announcementSubmit}>
+      <div className="announcementParent">
+        <form className="announcementForm" onSubmit={this.announcementSubmit}>
           <input
             type="text"
             placeholder="make an announcement"

@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
-
-
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import UploadAnnouncement from './UploadAnnouncement';
