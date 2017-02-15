@@ -50,6 +50,18 @@ ul.userPhotoIcon {
 	display: none;
 }
 
+.announcementParent {
+  display: flex;
+  justify-content: center;
+  padding-top: 76px;
+}
+
+.announcementForm {
+  flex: 1;
+  border: 1px solid black;
+  text-align: center;
+}
+
 .container {
 	padding-bottom: 100px;
 }
@@ -167,6 +179,8 @@ img.imageDropPreview {
 	width: 50%;
 	text-align: center;
 }
+
+
 
 .galleryZoomed {
   display: flex;
