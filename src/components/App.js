@@ -33,8 +33,9 @@ export class App extends Component {
               </li>
             ))
           }
-          <UploadAnnouncement />
+
         </ul>
+        <UploadAnnouncement />
         {
           this.props.messages.map(message =>
             <PhotoNode
