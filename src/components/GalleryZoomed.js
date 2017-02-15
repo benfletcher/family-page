@@ -2,9 +2,11 @@ import React from 'react';
 
 const GalleryZoomed = props => (
   <div className="galleryZoomed">
-    <div>
-      <img onClick={props.zoom} className="xIcon" src="xIcon.png" alt="close" />
-      <img className="zoomedPhoto" src={props.photoUrl} alt="large" />
+    <div className="flexZoomedContainer">
+      <div className="zoomedPhotoContainer">
+        <img onClick={props.zoom} className="xIcon" src="xIcon.png" alt="close" />
+        <img className="zoomedPhoto" src={props.photoUrl} alt="large" />
+      </div>
     </div>
     <div className="zoomedNav">
       <i className="fa fa-3x white fa-arrow-left" onClick={props.goLeft} aria-hidden="true" />
