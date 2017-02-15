@@ -272,7 +272,7 @@ img.imageDropPreview {
     	padding-top: 55px;
 
     }
-    
+
 		ul.userPhotoIcon {
 			display: initial;
 			width: 10%;
@@ -285,7 +285,15 @@ img.imageDropPreview {
 			padding: 1px;
 		}
 
-    .uploadChild {
+    .flexZoomedContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .zoomedPhotoContainer {
       width: 40%;
     }
+
+
 }
