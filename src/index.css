@@ -221,8 +221,7 @@ img.imageDropPreview {
 .white {
   color: white;
   margin: 45px;
-
-}
+ }
 
 .xIcon {
 	filter: invert(100%);
@@ -259,6 +258,7 @@ img.imageDropPreview {
     	padding-top: 55px;
 
     }
+    
 		ul.userPhotoIcon {
 			display: initial;
 			width: 10%;
