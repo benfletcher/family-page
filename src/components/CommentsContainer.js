@@ -14,38 +14,35 @@ class CommentsContainer extends Component {
     // assume I have access to the one message object passed down as props
     const loggedInUser = this.props.loggedInUser;
 
-    const eachComment = props.message.comments.map((comment) => {
-      // determine if the logged in user should see this comment
-      if ((loggedInUser === comment.to) || (loggedInUser === comment.from)) {
+    const eachComment = this.props.message.comments.map((comment) => {
         // determine if logged in user is the sender of the message in which
         // case we will render the complex comment node interface
-        if (loggedInUser === props.message.userId) {
-          return (
-            <CommentNodeComplex
-              loggedInUser={loggedInUser}
-              comment={comment}
-              fromAvatar={
-                (props.message.userId in this.props.members)
-                  ? this.props.members[props.message.userId].avatar
-                  : null
-              }
-              key={comment._id}
-            />
-          );
-        }
+      if (loggedInUser === this.props.message.userId) {
         return (
-          <CommentNodeSimple
+          <CommentNodeComplex
             loggedInUser={loggedInUser}
             comment={comment}
             fromAvatar={
-                (props.message.userId in this.props.members)
-                  ? this.props.members[message.userId].avatar
+                (this.props.message.userId in this.props.members)
+                  ? this.props.members[this.props.message.userId].avatar
                   : null
               }
             key={comment._id}
           />
         );
       }
+      return (
+        <CommentNodeSimple
+          loggedInUser={loggedInUser}
+          comment={comment}
+          fromAvatar={
+                (this.props.message.userId in this.props.members)
+                  ? this.props.members[this.props.message.userId].avatar
+                  : null
+              }
+          key={comment._id}
+        />
+      );
     });
 
     return (
@@ -63,6 +60,7 @@ CommentsContainer.defaultProps = {
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
   loggedInUser: React.PropTypes.string.isRequired,
+  message: React.PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({

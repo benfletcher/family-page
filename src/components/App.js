@@ -44,21 +44,23 @@ export class App extends Component {
         </ul>
         {
           this.props.messages.map(message =>
-            <PhotoNode
-              user={message.userId}
-              photo={message.url}
-              caption={message.text}
-              memberAvatar={
+            <div>
+              <PhotoNode
+                user={message.userId}
+                photo={message.url}
+                caption={message.text}
+                memberAvatar={
                 (message.userId in this.props.members)
                   ? this.props.members[message.userId].avatar
                   : null
               }
-              key={message._id}
-            />
-            <CommentsContainer
-              message={message}
-              key={message._id}
-            />
+                key={message._id}
+              />
+              <CommentsContainer
+                message={message}
+                key={message._id}
+              />
+            </div>
           )
         }
       </div>
