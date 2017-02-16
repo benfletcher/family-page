@@ -55,6 +55,7 @@ class UploadAnnouncement extends Component {
             />
           </div>
           <div className="announcementFooter">
+            <div className="announcementBlueLine" />
             <p
               onClick={this.announcementSubmit}
               className="announcementPost"

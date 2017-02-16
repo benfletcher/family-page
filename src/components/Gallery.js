@@ -60,14 +60,19 @@ class Gallery extends Component {
 
         <div className="galleryContainer">
           {
-            this.props.messages.map((photo, i) =>
-              <GalleryThumbnail
-                key={photo._id}
-                photoIndex={i}
-                photoUrl={photo.url}
-                user={photo.userId}
-                onClick={this.openZoom}
-              />
+            this.props.messages.map((photo, i) => {
+              if (photo.contentType === 'photo') {
+                return (
+                  <GalleryThumbnail
+                    key={photo._id}
+                    photoIndex={i}
+                    photoUrl={photo.url}
+                    user={photo.userId}
+                    onClick={this.openZoom}
+                  />
+                );
+              }
+            }
             )
           }
         </div>

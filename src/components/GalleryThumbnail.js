@@ -1,13 +1,9 @@
 import React from 'react';
 
 const GalleryThumbnail = (props) => {
-  // Either method here works. 'bind' is shorter, but the other is maybe more readable?
-  // Leaving both until discussed.
-  // const onClick = props.onClick.bind(null, props);
   const onClick = () => {
     props.onClick(props);
   };
-  console.log(props.photoUrl);
 
   return (
     <div>

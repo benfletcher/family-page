@@ -27,7 +27,7 @@ const PhotoNode = (props) => {
             : null
         }
         <div className="photoFooter">
-          <img className="messageIcon" src="messageicon.png" alt="icon" />
+          <i className="messageIcon fa fa-comment-o" aria-hidden="true" />
         </div>
       </div>
     </div>
