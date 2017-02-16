@@ -25,9 +25,15 @@ export const fetchMessages = () => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then((messages) => {
-    dispatch(getMessagesSuccess(messages));
-  })
+  .then(messages =>
+    // convert Mongo date to JS date, sort messages on date
+    dispatch(getMessagesSuccess(
+      messages.map(message => ({
+        ...message,
+        date: new Date(message.date)
+      }))
+    .sort((x, y) => y.date - x.date)))
+  )
   .catch(console.error);
 };
 
