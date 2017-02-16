@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AnnouncementNode from './AnnouncementNode';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
-
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
+import UploadAnnouncement from './UploadAnnouncement';
 
 export class App extends Component {
 
@@ -16,18 +17,17 @@ export class App extends Component {
 
   render() {
     // need to add logic
-    //  if message.contentType === photo want the photoNode to render
       // if that message has no comments then don't include CommentsContainer in return
         // instead return messageReplyFooter
-      // else return photoNode with CommentsContainer
-    // else if message.contentType === announcement want announcementNode to render
-      // if that message has no comments then don't include CommentsContainer in return
-    // else return announcementNode with CommentsContainer
+    // pass down:
+    // <CommentsContainer
+    //   message={message}
+    //   key={message._id}
+    // />
     return (
       <div className="container">
         <Header />
         <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
-          Family Members:
           {
             Object.keys(this.props.members).map(member => (
               <li
@@ -42,25 +42,41 @@ export class App extends Component {
             ))
           }
         </ul>
+
+        <UploadAnnouncement userPhoto={'./JamieDavella.png'} />
         {
-          this.props.messages.map(message =>
-            <div>
-              <PhotoNode
-                user={message.userId}
-                photo={message.url}
-                caption={message.text}
-                memberAvatar={
-                (message.userId in this.props.members)
-                  ? this.props.members[message.userId].avatar
-                  : null
-              }
-                key={message._id}
-              />
-              <CommentsContainer
-                message={message}
-                key={message._id}
-              />
-            </div>
+          this.props.messages.map((message) => {
+            console.log(message.contentType);
+            if (message.contentType === 'photo') {
+              return (
+                <PhotoNode
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                  (message.userId in this.props.members)
+                    ? this.props.members[message.userId].avatar
+                    : null
+                }
+                  key={message._id}
+                />
+              );
+            } else if (message.contentType === 'announcement') {
+              return (
+                <AnnouncementNode
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                    (message.userId in this.props.members)
+                      ? this.props.members[message.userId].avatar
+                      : null
+                  }
+                  key={message._id}
+                />
+              );
+            }
+          }
           )
         }
       </div>

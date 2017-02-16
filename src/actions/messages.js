@@ -38,7 +38,7 @@ export const postMessage = content => (dispatch) => {
       'Content-Type': 'application/json'
     },
     method: 'POST',
-    body: JSON.stringify({ ...content, contentType: 'photo' })
+    body: JSON.stringify({ contentType: 'photo', ...content, })
   })
   .then((res) => {
     if (!res.ok) {

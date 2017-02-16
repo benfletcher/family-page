@@ -11,6 +11,27 @@
 a {
     text-decoration: none;
     color: white;
+    margin: 5px;
+}
+
+a:hover {
+  color: #EE930E;
+}
+
+i:hover {
+  color: #EE930E;
+}
+
+p.dropZoneText:hover {
+  color: #EE930E;
+}
+
+p.announcementPost:hover {
+  color: #EE930E;
+}
+
+a:hover {
+  color: #EE930E;
 }
 
 body {
@@ -31,6 +52,7 @@ img.userIcon {
 }
 
 img.familyPhoto {
+  margin-top: 5px;
 	width: 100%;
 }
 
@@ -50,6 +72,78 @@ ul.userPhotoIcon {
 	display: none;
 }
 
+.announcementTextNode {
+	height: 100px;
+  background-color: #F5F8F2;
+	margin-bottom: 4px;
+}
+
+.announcementTextNodeTitle {
+  text-align: center;
+  padding-right: 43px;
+  padding-top: 14px;
+  color: #323333;
+}
+
+
+.announcementParent {
+  display: flex;
+  justify-content: center;
+  padding-top: 30px;
+}
+
+.announcementContainer {
+  margin-top: 10px;
+  height: 150px;
+  width: 95%;
+  background-color: #F5F8F2;
+}
+
+.announcementHeader {
+  height: 40px;
+  background-color: #1DA1F2;
+}
+
+.announcementFooter {
+  margin-top: 16px;
+  height: 45px;
+  background-color: #1DA1F2;
+}
+
+.announcementInputBox {
+  display: inline;
+  float: right;
+  width: 80%;
+  margin-right: 5px;
+}
+
+.announcementInput {
+  height: 65px;
+  outline: none;
+  width: 100%;
+  background-color: #F5F8F2;
+  border: 1px solid #F5F8F2;
+}
+
+.announcementPost {
+  padding-top: 17px;
+  padding-right: 16px;
+  float: right;
+  color: white;
+}
+
+.avatarDiv {
+  width: 15%;
+  padding-left: 2%;
+  display: inline-block;
+}
+
+.avatarPhoto {
+  height: 50px;
+  margin: 5px;
+  padding-top: 5px;
+}
+
 .container {
 	padding-bottom: 100px;
 }
@@ -60,20 +154,20 @@ ul.userPhotoIcon {
 	width: 100%;
 	position: fixed;
 	padding: 15px;
-	background-color: #E46651;
+	background-color: #323333;
 }
 
 .node {
 	padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 60px;
+  padding-right: 5%;
+  padding-top: 60px;
 }
 
 .nodeTitle {
-	text-align: center;
-    padding-right: 43px;
-    padding-top: 14px;
-    color: white;
+  text-align: center;
+  padding-right: 43px;
+  padding-top: 14px;
+  color: white;
 }
 
 .photoHeader {
@@ -88,14 +182,64 @@ ul.userPhotoIcon {
 	background-color: #323333;
 }
 
+.uploadParent {
+	display: flex;
+	justify-content: center;
+	padding-top: 40px;
+}
+
+.uploadChild {
+	background-color: white;
+  text-align: center;
+  width: 90%;
+  padding: 46px;
+  margin-top: 100px
+}
+
 .uploadButton {
 	height: 50px;
 	float: right;
 	padding-bottom: 19px;
 	margin: -6px;
-	filter: invert(100%);
 }
 
+.uploadButton:hover {
+  filter: brightness(100%);}
+
+.fileUpload {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+
+}
+
+input.imageDescription {
+  height: 50px;
+  width: 70%;
+  margin: 10px;
+  margin-bottom: 42px;
+  text-align: center;
+}
+
+.imgDropText {
+  text-align: center;
+  padding: 31px;
+  color: #323333;
+}
+
+p.dropZoneText {
+  color: #323333;
+  padding: 10px;
+  margin: 10px;
+  display: inline;
+}
+
+img.imageDropPreview {
+  display: flex;
+  justify-content: center;
+  padding-top: 10%;
+  display: none;
+}
 
 .formButton {
 	height: 23px;
@@ -103,11 +247,16 @@ ul.userPhotoIcon {
 	border-radius: 14px;
 	color: white;
 }
-
-.uploadContainer {
+.uploadParent {
 	display: flex;
 	justify-content: center;
+
+}
+
+.uploadContainer {
+	flex: 1;
 	padding-top: 50px;
+
 }
 
 .uploadForm {
@@ -116,11 +265,13 @@ ul.userPhotoIcon {
 }
 
 .galleryZoomed {
+  display: flex;
+  flex-direction: column;
 	background: rgba(0, 0, 0, 1);
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	padding-top: 100px;
+	padding-top: 25px;
 	padding-left: 5%;
 	padding-right: 5%;
 
@@ -130,15 +281,15 @@ ul.userPhotoIcon {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding-top: 87px;
-	padding-left: 5%;
+	padding-top: 105px;
 }
 
 .galleryContainer div {
-	width: 150px;
-	height: 100px;
-	background-color: powderblue;
-	margin: 5px;
+	width: 200px;
+	height: 150px;
+	background-color: #F5F8F2;
+	margin: 2px;
+  padding: 16px;
 }
 
 .galleryContainer img {
@@ -148,8 +299,12 @@ ul.userPhotoIcon {
 }
 
 .zoomedNav {
-	display: flex;
-	justify-content: center;
+	text-align: center;
+}
+
+.zoomedPhoto {
+  width: 100%;
+  max-height: 90%;
 }
 
 .zoomedNav img {
@@ -158,6 +313,11 @@ ul.userPhotoIcon {
 	margin: 100px;
 	box-shadow: 2px 141px 173px;
 }
+
+.white {
+  color: white;
+  margin: 45px;
+ }
 
 .xIcon {
 	filter: invert(100%);
@@ -182,16 +342,51 @@ ul.userPhotoIcon {
     .node {
     	margin: 0 auto;
     }
+
+    .announcementContainer {
+      width: 50%;
+      margin-right: 11%;
+    }
+
+    .dropZoneBox {
+      height: 200px;
+      width: 100%;
+    }
+
+    .galleryContainer div {
+    	margin: 10px;
+    }
+
     .galleryContainer {
     	padding-left: 20%;
     	padding-right: 20%;
     	padding-top: 55px;
-
     }
+
 		ul.userPhotoIcon {
 			display: initial;
 			width: 10%;
 			float: left;
-			padding-top: 60px;
+			padding-top: 76px;
+			color: white;
 		}
+
+    .uploadChild {
+      width: 60%;
+    }
+
+		ul.userPhotoIcon img {
+			padding: 1px;
+		}
+
+    .flexZoomedContainer {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+    }
+
+    .zoomedPhotoContainer {
+      width: 40%;
+    }
+  
 }

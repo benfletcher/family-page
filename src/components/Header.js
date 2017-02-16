@@ -12,7 +12,7 @@ const Header = () => (
         Gallery
       </Link>
       <Link to="/upload">
-        <img className="uploadButton" alt="upload" src="upload.png" />
+        <i className="fa fa-cloud-upload fa-2x uploadButton" aria-hidden="true" />
       </Link>
     </p>
   </div>

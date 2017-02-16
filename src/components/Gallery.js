@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import GalleryThumbnail from './GalleryThumbnail';
 import GalleryZoomed from './GalleryZoomed';
 import Header from './Header';
-
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import { showZoomed, hideZoomed } from '../actions';
