@@ -30,6 +30,10 @@ p.announcementPost:hover {
   color: #EE930E;
 }
 
+a:hover {
+  color: #EE930E;
+}
+
 body {
 	background-color: #1DA1F2;
 	height: 100%;
@@ -198,6 +202,9 @@ ul.userPhotoIcon {
 	padding-bottom: 19px;
 	margin: -6px;
 }
+
+.uploadButton:hover {
+  filter: brightness(100%);}
 
 .fileUpload {
   display: flex;
@@ -381,7 +388,5 @@ img.imageDropPreview {
     .zoomedPhotoContainer {
       width: 40%;
     }
-
-
-
+  
 }
