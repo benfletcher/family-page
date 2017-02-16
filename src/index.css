@@ -11,9 +11,18 @@
 a {
     text-decoration: none;
     color: white;
+    margin: 5px;
 }
 
 a:hover {
+  color: #EE930E;
+}
+
+i:hover {
+  color: #EE930E;
+}
+
+p.announcementPost:hover {
   color: #EE930E;
 }
 
@@ -184,11 +193,7 @@ ul.userPhotoIcon {
 	float: right;
 	padding-bottom: 19px;
 	margin: -6px;
-	filter: invert(100%);
 }
-
-.uploadButton:hover {
-  filter: brightness(100%);}
 
 .fileUpload {
   display: flex;
