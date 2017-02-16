@@ -7,12 +7,15 @@ import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import UploadAnnouncement from './UploadAnnouncement';
+import * as helloActions from '../actions/index';
 
 export class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
+
+    this.props.dispatch(helloActions.fetchHelloWorld());
   }
 
   render() {
