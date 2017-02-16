@@ -23,8 +23,6 @@ AnnouncementNode.defaultProps = {
 };
 
 AnnouncementNode.propTypes = {
-  photo: React.PropTypes.string.isRequired,
-  user: React.PropTypes.string.isRequired,
   memberAvatar: React.PropTypes.string,
   caption: React.PropTypes.string,
 };

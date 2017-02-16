@@ -42,7 +42,7 @@ class UploadAnnouncement extends Component {
             <img
               alt="avatar"
               className="avatarPhoto"
-              src="https://img.clipartfest.com/6e64a4f961e27a821feb8071da9fe0a4_female-user-icon-clip-art-clipart-user-icon_300-300.png"
+              src={this.props.userPhoto}
             />
           </div>
           <div className="announcementInputBox">

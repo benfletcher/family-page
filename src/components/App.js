@@ -34,7 +34,7 @@ export class App extends Component {
           }
 
         </ul>
-        <UploadAnnouncement />
+        <UploadAnnouncement userPhoto={'./JamieDavella.png'} />
         {
           this.props.messages.map((message) => {
             console.log(message.contentType);
@@ -52,20 +52,21 @@ export class App extends Component {
                   key={message._id}
                 />
               );
+            } else if (message.contentType === 'announcement') {
+              return (
+                <AnnouncementNode
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                    (message.userId in this.props.members)
+                      ? this.props.members[message.userId].avatar
+                      : null
+                  }
+                  key={message._id}
+                />
+              );
             }
-            return (
-              <AnnouncementNode
-                user={message.userId}
-                photo={message.url}
-                caption={message.text}
-                memberAvatar={
-                (message.userId in this.props.members)
-                  ? this.props.members[message.userId].avatar
-                  : null
-              }
-                key={message._id}
-              />
-            );
           }
           )
         }

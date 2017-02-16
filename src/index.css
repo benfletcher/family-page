@@ -13,6 +13,10 @@ a {
     color: white;
 }
 
+a:hover {
+  color: #EE930E;
+}
+
 body {
 	background-color: #1DA1F2;
 	height: 100%;
@@ -68,7 +72,7 @@ ul.userPhotoIcon {
 .announcementParent {
   display: flex;
   justify-content: center;
-  padding-top: 76px;
+  padding-top: 30px;
 }
 
 .announcementContainer {
@@ -182,6 +186,9 @@ ul.userPhotoIcon {
 	margin: -6px;
 	filter: invert(100%);
 }
+
+.uploadButton:hover {
+  filter: brightness(100%);}
 
 .fileUpload {
   display: flex;
