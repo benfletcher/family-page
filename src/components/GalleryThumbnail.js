@@ -7,6 +7,7 @@ const GalleryThumbnail = (props) => {
   const onClick = () => {
     props.onClick(props);
   };
+  console.log(props.photoUrl);
 
   return (
     <div>

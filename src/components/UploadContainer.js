@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import { connect } from 'react-redux';
-import UploadBox from './UploadBox';
 import { hashHistory } from 'react-router';
+import UploadBox from './UploadBox';
 import { postMessage } from '../actions/messages';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -30,6 +30,7 @@ class UploadContainer extends Component {
   }
 
   onImageDrop(files) {
+    console.log(files);
     this.setState({
       uploadedFile: files[0],
       uploadPhotoName: files[0].name,
@@ -55,6 +56,7 @@ class UploadContainer extends Component {
 
   saveUpload(event) {
     event.preventDefault();
+    // if ()
     this.handleImageUpload(this.state.uploadedFile, this.props.userId, this.state.caption);
     this.resetState();
     // redirect to homepage
@@ -70,6 +72,10 @@ class UploadContainer extends Component {
       if (err) {
         console.error(err);
       }
+
+      console.log('handleImageUpload response.body', response.body);
+      // https://res.cloudinary.com/family/c_thumb,g_faces,h_150,w_200/nayysx6lzbbewmjtneou.jpg
+      // c_thumb,g_faces,h_400,r_5,w_400
 
       if (response.body.secure_url !== '') {
         console.log(response.body.secure_url);
@@ -91,7 +97,14 @@ class UploadContainer extends Component {
 
     return (
       <div>
-        <UploadBox onImageDrop={this.onImageDrop} />
+        {
+          this.state.uploadedFile ?
+            <div className="imageDropPreview">
+              <img src={this.state.previewUrl} alt="preview" style={{ maxWidth: '250px' }} />
+            </div>
+          :
+            <UploadBox onImageDrop={this.onImageDrop} />
+        }
         <img
           className="imageDropPreview"
           alt="preview" src={placeholder}
@@ -105,17 +118,23 @@ class UploadContainer extends Component {
           onChange={this.captionInputChange}
         />
         <div>
-          {this.state.uploadPhotoName === '' ? null :
-          <div>
-            <p>{this.state.uploadedFile.name}</p>
-            <p>{this.state.uploadedFile.size}</p>
-          </div>}
+          {
+            this.state.uploadPhotoName === '' ? null :
+            <div>
+              <p>{this.state.uploadedFile.name}</p>
+            </div>
+          }
         </div>
-        <p
-          className="dropZoneText"
-          onClick={this.saveUpload}
-        >Save
-        </p>
+        {
+          this.state.uploadedFile ?
+            <p
+              className="dropZoneText"
+              onClick={this.saveUpload}
+            >
+            Save
+          </p>
+          : null
+        }
         <p
           className="dropZoneText"
           onClick={this.resetState}
