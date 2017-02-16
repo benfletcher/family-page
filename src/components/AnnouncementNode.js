@@ -1,17 +1,5 @@
 import React from 'react';
 
-//
-
-
-//
-
-
-//
-
-
-//
-
-
 const AnnouncementNode = props => (
   <div className="node col-6">
     <div className="announcementTextNode inline">
