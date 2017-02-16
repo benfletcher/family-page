@@ -22,6 +22,10 @@ i:hover {
   color: #EE930E;
 }
 
+p.dropZoneText:hover {
+  color: #EE930E;
+}
+
 p.announcementPost:hover {
   color: #EE930E;
 }
@@ -359,6 +363,10 @@ img.imageDropPreview {
 			padding-top: 76px;
 			color: white;
 		}
+
+    .uploadChild {
+      width: 60%;
+    }
 
 		ul.userPhotoIcon img {
 			padding: 1px;
