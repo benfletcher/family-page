@@ -32,7 +32,8 @@ export const fetchMessages = () => (dispatch) => {
         ...message,
         date: new Date(message.date)
       }))
-    .sort((x, y) => y.date - x.date)))
+      .sort((x, y) => y.date - x.date)
+    ))
   )
   .catch(console.error);
 };
