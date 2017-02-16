@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import cookie from 'react-cookie';
 
 export const SHOW_ZOOMED = 'SHOW_ZOOMED';
 export const showZoomed = (photo, index) => ({
@@ -38,11 +39,12 @@ export const helloWorldSuccess = message => ({
   message,
 });
 
-export const fetchHelloWorld = () => (dispatch) => {
+export const fetchHelloWorld = () => () => {
+  console.log(cookie.load('accessToken'));
   fetch('http://localhost:8080/helloworld',
     {
       headers: {
-        Authorization: 'bearer abc'
+        Authorization: `bearer ${cookie.load('accessToken')}`
       }
     })
   // fetch('https://calm-beach-24196.herokuapp.com/photos')
