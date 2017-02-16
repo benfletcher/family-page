@@ -11,6 +11,23 @@
 a {
     text-decoration: none;
     color: white;
+    margin: 5px;
+}
+
+a:hover {
+  color: #EE930E;
+}
+
+i:hover {
+  color: #EE930E;
+}
+
+p.dropZoneText:hover {
+  color: #EE930E;
+}
+
+p.announcementPost:hover {
+  color: #EE930E;
 }
 
 a:hover {
@@ -184,7 +201,6 @@ ul.userPhotoIcon {
 	float: right;
 	padding-bottom: 19px;
 	margin: -6px;
-	filter: invert(100%);
 }
 
 .uploadButton:hover {
@@ -354,6 +370,10 @@ img.imageDropPreview {
 			padding-top: 76px;
 			color: white;
 		}
+
+    .uploadChild {
+      width: 60%;
+    }
 
 		ul.userPhotoIcon img {
 			padding: 1px;
