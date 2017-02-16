@@ -4,7 +4,7 @@ const GalleryZoomed = props => (
   <div className="galleryZoomed">
     <div className="flexZoomedContainer">
       <div className="zoomedPhotoContainer">
-        <img onClick={props.zoom} className="xIcon" src="xIcon.png" alt="close" />
+        <i onClick={props.zoom} className="xIcon fa fa-times" aria-hidden="true"alt="close" />
         <img className="zoomedPhoto" src={props.photoUrl} alt="large" />
       </div>
     </div>

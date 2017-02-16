@@ -56,11 +56,16 @@ img.familyPhoto {
 	width: 100%;
 }
 
-img.messageIcon {
-	height: 41px;
+i.messageIcon {
+  font-size: 30px;
+  color: white;
 	padding-top: 5px;
 	float: right;
 	padding-right: 6px;
+}
+
+i.messageIcon:hover {
+  color: #EE930E;
 }
 
 img.galleryThumbnail {
@@ -71,7 +76,6 @@ img.galleryThumbnail {
 ul.userPhotoIcon {
 	display: none;
 }
-
 .logoContainer {
   display: flex;
   justify-content: center;
@@ -93,6 +97,11 @@ ul.userPhotoIcon {
   height: 40px;
 }
 
+.announcementBlueLine {
+  height: 4px;
+  background-color: #1DA1F2;
+}
+
 .announcementTextNode {
 	height: 100px;
   background-color: #F5F8F2;
@@ -110,7 +119,7 @@ ul.userPhotoIcon {
 .announcementParent {
   display: flex;
   justify-content: center;
-  padding-top: 30px;
+  padding-top: 60px;
 }
 
 .announcementContainer {
@@ -121,14 +130,14 @@ ul.userPhotoIcon {
 }
 
 .announcementHeader {
-  height: 40px;
+  height: 25px;
   background-color: #1DA1F2;
 }
 
 .announcementFooter {
   margin-top: 16px;
   height: 45px;
-  background-color: #1DA1F2;
+  background-color: #323333;
 }
 
 .announcementInputBox {
@@ -147,7 +156,7 @@ ul.userPhotoIcon {
 }
 
 .announcementPost {
-  padding-top: 17px;
+  padding-top: 11px;
   padding-right: 16px;
   float: right;
   color: white;
@@ -341,10 +350,13 @@ img.imageDropPreview {
  }
 
 .xIcon {
-	filter: invert(100%);
-	height: 14px;
-	margin: -6px;
+  color: white;
+	font-size: 21px;
+	margin-left: -16px;
+}
 
+.xIcon:hover {
+  color: #EE930E;
 }
 
 @media only screen and (min-width: 1000px) {

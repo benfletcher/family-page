@@ -82,7 +82,7 @@ class UploadContainer extends Component {
         this.props.dispatch(postMessage({
           url: response.body.secure_url,
           userId,
-          text: `testing captions ${caption}`
+          text: `${caption}`
         }));
       }
     });
@@ -117,14 +117,7 @@ class UploadContainer extends Component {
           value={this.state.caption}
           onChange={this.captionInputChange}
         />
-        <div>
-          {
-            this.state.uploadPhotoName === '' ? null :
-            <div>
-              <p>{this.state.uploadedFile.name}</p>
-            </div>
-          }
-        </div>
+        <div />
         {
           this.state.uploadedFile ?
             <p
