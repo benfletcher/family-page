@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import AnnouncementNode from './AnnouncementNode';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
+import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import UploadAnnouncement from './UploadAnnouncement';
@@ -15,6 +16,14 @@ export class App extends Component {
   }
 
   render() {
+    // need to add logic
+      // if that message has no comments then don't include CommentsContainer in return
+        // instead return messageReplyFooter
+    // pass down:
+    // <CommentsContainer
+    //   message={message}
+    //   key={message._id}
+    // />
     return (
       <div className="container">
         <Header />
@@ -32,8 +41,8 @@ export class App extends Component {
               </li>
             ))
           }
-
         </ul>
+
         <UploadAnnouncement userPhoto={'./JamieDavella.png'} />
         {
           this.props.messages.map((message) => {
