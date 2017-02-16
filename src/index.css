@@ -72,6 +72,27 @@ ul.userPhotoIcon {
 	display: none;
 }
 
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
+}
+
+.logoImage {
+  height: 88px;
+}
+
+
+.loginImage {
+  height: 40px;
+}
+
 .announcementTextNode {
 	height: 100px;
   background-color: #F5F8F2;
@@ -388,5 +409,5 @@ img.imageDropPreview {
     .zoomedPhotoContainer {
       width: 40%;
     }
-  
+
 }

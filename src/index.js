@@ -10,6 +10,7 @@ import { Router, Route, hashHistory } from 'react-router';
 import './index.css';
 
 import App from './components/App'; // eslint-disable-line
+import Login from './components/Login';
 import Upload from './components/Upload';
 import Gallery from './components/Gallery';
 import statusReducer from './reducers';
@@ -26,6 +27,7 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
+      <Route path="/login" component={Login} />
       <Route path="/" component={App} />
       <Route path="/upload" component={Upload} />
       <Route path="/gallery" component={Gallery} />
