@@ -13,6 +13,10 @@ a {
     color: white;
 }
 
+a:hover {
+  color: #EE930E;
+}
+
 body {
 	background-color: #1DA1F2;
 	height: 100%;
@@ -31,6 +35,7 @@ img.userIcon {
 }
 
 img.familyPhoto {
+  margin-top: 5px;
 	width: 100%;
 }
 
@@ -50,16 +55,76 @@ ul.userPhotoIcon {
 	display: none;
 }
 
+.announcementTextNode {
+	height: 100px;
+  background-color: #F5F8F2;
+	margin-bottom: 4px;
+}
+
+.announcementTextNodeTitle {
+  text-align: center;
+  padding-right: 43px;
+  padding-top: 14px;
+  color: #323333;
+}
+
+
 .announcementParent {
   display: flex;
   justify-content: center;
-  padding-top: 76px;
+  padding-top: 30px;
 }
 
-.announcementForm {
-  flex: 1;
-  border: 1px solid black;
-  text-align: center;
+.announcementContainer {
+  margin-top: 10px;
+  height: 150px;
+  width: 95%;
+  background-color: #F5F8F2;
+}
+
+.announcementHeader {
+  height: 40px;
+  background-color: #1DA1F2;
+}
+
+.announcementFooter {
+  margin-top: 16px;
+  height: 45px;
+  background-color: #1DA1F2;
+}
+
+.announcementInputBox {
+  display: inline;
+  float: right;
+  width: 80%;
+  margin-right: 5px;
+}
+
+.announcementInput {
+  height: 65px;
+  outline: none;
+  width: 100%;
+  background-color: #F5F8F2;
+  border: 1px solid #F5F8F2;
+}
+
+.announcementPost {
+  padding-top: 17px;
+  padding-right: 16px;
+  float: right;
+  color: white;
+}
+
+.avatarDiv {
+  width: 15%;
+  padding-left: 2%;
+  display: inline-block;
+}
+
+.avatarPhoto {
+  height: 50px;
+  margin: 5px;
+  padding-top: 5px;
 }
 
 .container {
@@ -77,15 +142,15 @@ ul.userPhotoIcon {
 
 .node {
 	padding-left: 5%;
-    padding-right: 5%;
-    padding-top: 60px;
+  padding-right: 5%;
+  padding-top: 60px;
 }
 
 .nodeTitle {
-	text-align: center;
-    padding-right: 43px;
-    padding-top: 14px;
-    color: white;
+  text-align: center;
+  padding-right: 43px;
+  padding-top: 14px;
+  color: white;
 }
 
 .photoHeader {
@@ -121,6 +186,9 @@ ul.userPhotoIcon {
 	margin: -6px;
 	filter: invert(100%);
 }
+
+.uploadButton:hover {
+  filter: brightness(100%);}
 
 .fileUpload {
   display: flex;
@@ -180,8 +248,6 @@ img.imageDropPreview {
 	text-align: center;
 }
 
-
-
 .galleryZoomed {
   display: flex;
   flex-direction: column;
@@ -189,7 +255,7 @@ img.imageDropPreview {
 	position: fixed;
 	width: 100%;
 	height: 100%;
-	padding-top: 1px;
+	padding-top: 25px;
 	padding-left: 5%;
 	padding-right: 5%;
 
@@ -199,15 +265,15 @@ img.imageDropPreview {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding-top: 87px;
-	padding-left: 5%;
+	padding-top: 105px;
 }
 
 .galleryContainer div {
-	width: 150px;
-	height: 100px;
-	background-color: powderblue;
-	margin: 5px;
+	width: 200px;
+	height: 150px;
+	background-color: #F5F8F2;
+	margin: 2px;
+  padding: 16px;
 }
 
 .galleryContainer img {
@@ -261,16 +327,24 @@ img.imageDropPreview {
     	margin: 0 auto;
     }
 
+    .announcementContainer {
+      width: 50%;
+      margin-right: 11%;
+    }
+
     .dropZoneBox {
       height: 200px;
       width: 100%;
+    }
+
+    .galleryContainer div {
+    	margin: 10px;
     }
 
     .galleryContainer {
     	padding-left: 20%;
     	padding-right: 20%;
     	padding-top: 55px;
-
     }
 
 		ul.userPhotoIcon {
@@ -294,6 +368,5 @@ img.imageDropPreview {
     .zoomedPhotoContainer {
       width: 40%;
     }
-
-
+  
 }

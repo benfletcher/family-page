@@ -1,15 +1,14 @@
 import React from 'react';
 
-const PhotoNode = props => (
+const AnnouncementNode = props => (
   <div className="node col-6">
-    <div className="photoHeader inline">
+    <div className="announcementTextNode inline">
       <img className="userIcon" src={props.memberAvatar} alt="avatar" />
-      <p className="nodeTitle">
+      <p className="announcementTextNodeTitle">
         {props.caption}
       </p>
     </div>
     <div className="photoContainer">
-      <img className="familyPhoto" src={props.photo} alt="user upload" />
       <div className="photoFooter">
         <img className="messageIcon" src="messageicon.png" alt="icon" />
       </div>
@@ -18,16 +17,14 @@ const PhotoNode = props => (
 );
 
 
-PhotoNode.defaultProps = {
+AnnouncementNode.defaultProps = {
   memberAvatar: './JamieDavella.png',
   caption: '(no caption)'
 };
 
-PhotoNode.propTypes = {
-  photo: React.PropTypes.string.isRequired,
-  user: React.PropTypes.string.isRequired,
+AnnouncementNode.propTypes = {
   memberAvatar: React.PropTypes.string,
   caption: React.PropTypes.string,
 };
 
-export default PhotoNode;
+export default AnnouncementNode;

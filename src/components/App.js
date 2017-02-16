@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import AnnouncementNode from './AnnouncementNode';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
 import { fetchMessages } from '../actions/messages';
@@ -33,20 +34,40 @@ export class App extends Component {
           }
 
         </ul>
-        <UploadAnnouncement />
+        <UploadAnnouncement userPhoto={'./JamieDavella.png'} />
         {
-          this.props.messages.map(message =>
-            <PhotoNode
-              user={message.userId}
-              photo={message.url}
-              caption={message.text}
-              memberAvatar={
-                (message.userId in this.props.members)
-                  ? this.props.members[message.userId].avatar
-                  : null
-              }
-              key={message._id}
-            />
+          this.props.messages.map((message) => {
+            console.log(message.contentType);
+            if (message.contentType === 'photo') {
+              return (
+                <PhotoNode
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                  (message.userId in this.props.members)
+                    ? this.props.members[message.userId].avatar
+                    : null
+                }
+                  key={message._id}
+                />
+              );
+            } else if (message.contentType === 'announcement') {
+              return (
+                <AnnouncementNode
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                    (message.userId in this.props.members)
+                      ? this.props.members[message.userId].avatar
+                      : null
+                  }
+                  key={message._id}
+                />
+              );
+            }
+          }
           )
         }
       </div>
