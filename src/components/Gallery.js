@@ -23,6 +23,10 @@ class Gallery extends Component {
     this.props.dispatch(fetchMembers());
   }
 
+  isPhoto(message) {
+    if (message.contentType === 'photo') return message;
+  }
+
   openZoom({ photoUrl, photoIndex }) {
     this.props.dispatch(showZoomed(photoUrl, photoIndex));
   }
@@ -34,13 +38,15 @@ class Gallery extends Component {
   goLeft() {
     const currentIndex = this.props.zoomedIndex;
     const newIndex = currentIndex - 1;
-    this.props.dispatch(showZoomed(this.props.messages[newIndex].url, newIndex));
+    const photoArray = this.props.messages.filter(this.isPhoto);
+    this.props.dispatch(showZoomed(photoArray[newIndex].url, newIndex));
   }
 
   goRight() {
     const currentIndex = this.props.zoomedIndex;
     const newIndex = currentIndex + 1;
-    this.props.dispatch(showZoomed(this.props.messages[newIndex].url, newIndex));
+    const photoArray = this.props.messages.filter(this.isPhoto);
+    this.props.dispatch(showZoomed(photoArray[newIndex].url, newIndex));
   }
 
   render() {
@@ -60,14 +66,19 @@ class Gallery extends Component {
 
         <div className="galleryContainer">
           {
-            this.props.messages.map((photo, i) =>
-              <GalleryThumbnail
-                key={photo._id}
-                photoIndex={i}
-                photoUrl={photo.url}
-                user={photo.userId}
-                onClick={this.openZoom}
-              />
+            this.props.messages.map((photo, i) => {
+              if (photo.contentType === 'photo') {
+                return (
+                  <GalleryThumbnail
+                    key={photo._id}
+                    photoIndex={i}
+                    photoUrl={photo.url}
+                    user={photo.userId}
+                    onClick={this.openZoom}
+                  />
+                );
+              }
+            }
             )
           }
         </div>

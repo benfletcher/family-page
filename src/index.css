@@ -14,11 +14,15 @@ a {
     margin: 5px;
 }
 
-a:hover {
+i {
+  cursor: pointer;
+}
+
+a:hover, a:focus {
   color: #EE930E;
 }
 
-i:hover {
+i:hover, i:focus {
   color: #EE930E;
 }
 
@@ -30,10 +34,6 @@ p.announcementPost:hover {
   color: #EE930E;
 }
 
-a:hover {
-  color: #EE930E;
-}
-
 body {
 	background-color: #1DA1F2;
 	height: 100%;
@@ -42,6 +42,7 @@ body {
 button {
 	height: 40px;
 }
+
 
 img.userIcon {
 	height: 41px;
@@ -56,11 +57,16 @@ img.familyPhoto {
 	width: 100%;
 }
 
-img.messageIcon {
-	height: 41px;
+i.messageIcon {
+  font-size: 30px;
+  color: white;
 	padding-top: 5px;
 	float: right;
 	padding-right: 6px;
+}
+
+i.messageIcon:hover {
+  color: #EE930E;
 }
 
 img.galleryThumbnail {
@@ -70,6 +76,35 @@ img.galleryThumbnail {
 
 ul.userPhotoIcon {
 	display: none;
+}
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
+}
+
+.logoImage {
+  height: 88px;
+}
+
+
+.loginImage {
+  height: 40px;
+}
+
+input.announcementInput {
+  font-size: 25px;
+}
+
+.announcementBlueLine {
+  height: 4px;
+  background-color: #1DA1F2;
 }
 
 .announcementTextNode {
@@ -89,7 +124,7 @@ ul.userPhotoIcon {
 .announcementParent {
   display: flex;
   justify-content: center;
-  padding-top: 30px;
+  padding-top: 60px;
 }
 
 .announcementContainer {
@@ -100,14 +135,14 @@ ul.userPhotoIcon {
 }
 
 .announcementHeader {
-  height: 40px;
+  height: 25px;
   background-color: #1DA1F2;
 }
 
 .announcementFooter {
   margin-top: 16px;
   height: 45px;
-  background-color: #1DA1F2;
+  background-color: #323333;
 }
 
 .announcementInputBox {
@@ -126,9 +161,10 @@ ul.userPhotoIcon {
 }
 
 .announcementPost {
-  padding-top: 17px;
+  padding-top: 11px;
   padding-right: 16px;
   float: right;
+  cursor: pointer;
   color: white;
 }
 
@@ -142,6 +178,38 @@ ul.userPhotoIcon {
   height: 50px;
   margin: 5px;
   padding-top: 5px;
+}
+
+.commentInputParent {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+}
+
+.commentInputContainer {
+  width: 90%;
+  background-color: #f5f8f2;
+  padding-top: 5px;
+}
+
+input.commentBox {
+  font-size: 15px;
+  padding: 8px;
+  width: 70%;
+}
+
+p.commentSubmit {
+  float: right;
+  padding-right: 14px;
+  padding-top: 10px;
+}
+
+input.commentBox {
+  height: 100%;
+  width: 70%;
+  outline: none;
+  border: 1px solid #f5f8f2;
+  background-color: #f5f8f2;
 }
 
 .container {
@@ -181,6 +249,27 @@ ul.userPhotoIcon {
 	padding: 3px;
 	background-color: #323333;
 }
+
+/*styling for comments*/
+.commentParent {
+  display: flex;
+  justify-content: center;
+}
+
+
+.commentContainer {
+  width: 90%;
+  background-color: #f5f8f2;
+}
+
+.commentTextContainer {
+  display: inline-block;
+}
+
+.commentText {
+  padding: 10px;
+}
+/* end of comments styling*/
 
 .uploadParent {
 	display: flex;
@@ -295,6 +384,7 @@ img.imageDropPreview {
 .galleryContainer img {
 	width: 100%;
 	height: 100%;
+  cursor: pointer;
 	overflow: hidden;
 }
 
@@ -320,10 +410,13 @@ img.imageDropPreview {
  }
 
 .xIcon {
-	filter: invert(100%);
-	height: 14px;
-	margin: -6px;
+  color: white;
+	font-size: 21px;
+	margin-left: -16px;
+}
 
+.xIcon:hover {
+  color: #EE930E;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -346,6 +439,14 @@ img.imageDropPreview {
     .announcementContainer {
       width: 50%;
       margin-right: 11%;
+    }
+
+    .commentContainer {
+      width: 40%;
+    }
+
+    .commentInputContainer {
+      width: 40%;
     }
 
     .dropZoneBox {
@@ -388,5 +489,5 @@ img.imageDropPreview {
     .zoomedPhotoContainer {
       width: 40%;
     }
-  
+
 }

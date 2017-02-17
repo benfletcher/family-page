@@ -22,7 +22,6 @@ export const fetchMessages = () => (dispatch) => {
       }
     }
   )
-  // fetch('https://calm-beach-24196.herokuapp.com/photos')
   .then((res) => {
     if (!res.ok) {
       const error = new Error(res.statusText);
@@ -64,6 +63,31 @@ export const postMessage = content => (dispatch) => {
     return res;
   })
   .then(res => res.json())
+  .then(() => dispatch(fetchMessages()))
+  .catch(console.error);
+};
+
+export const postComment = commentObject => (dispatch) => {
+  console.log(commentObject);
+  const url = 'http://localhost:8080/comments';
+  const userId = 'Alex';
+  const messageId = commentObject.messageId;
+  fetch(`${url}/${userId}/${messageId}`, {
+  // fetch('https://calm-beach-24196.herokuapp.com/photos', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(commentObject)
+  })
+  .then((res) => {
+    if (!res.ok) {
+      const error = new Error(res.statusText);
+      error.response = res;
+      throw error;
+    }
+    return res;
+  })
   .then(() => dispatch(fetchMessages()))
   .catch(console.error);
 };
