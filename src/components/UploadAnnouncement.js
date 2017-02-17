@@ -61,7 +61,7 @@ class UploadAnnouncement extends Component {
               className="announcementPost"
             >
              Post
-             </p>
+            </p>
           </div>
         </div>
       </div>
