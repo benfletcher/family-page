@@ -5,6 +5,14 @@ import { postComment } from '../actions/messages';
 // need to post a comment when reply button is clicked
 
 
+// when user clicks on message bubble, screen blacks out similar to zoomedView
+// then user see an input box with a submit button and an X at the corner to exit.
+// when user submits, exits out of box.
+
+// when button is clicked action is dispatched which sets showCommentAdd to true.
+// true will display the input box in a ternary
+// need userID, and specific message Id to then dispatch action to DB.
+
 class CommentNodeSimple extends Component {
   constructor(props) {
     super(props);
