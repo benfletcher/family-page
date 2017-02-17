@@ -1,4 +1,6 @@
 import 'isomorphic-fetch';
+import cookie from 'react-cookie';
+
 
 export const GET_MEMBERS = 'GET_MEMBERS';
 export const getMembers = () => ({
@@ -14,7 +16,13 @@ export const getMembersSuccess = members => ({
 export const fetchMembers = () => (dispatch) => {
   dispatch(getMembers());
 
-  fetch('https://calm-beach-24196.herokuapp.com/members')
+  fetch('http://localhost:8080/members',
+    {
+      headers: {
+        Authorization: `bearer ${cookie.load('accessToken')}`
+      }
+    }
+  )
   .then((res) => {
     if (!res.ok) {
       const error = new Error(res.statusText);
