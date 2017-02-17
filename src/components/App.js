@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
-import CommentInput from './CommentInput';
 import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
@@ -58,7 +57,6 @@ export class App extends Component {
               }
                 key={message._id}
               />
-              <CommentInput />
               <CommentsContainer
                 message={message}
                 key={message._id + message.userId}
