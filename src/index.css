@@ -212,6 +212,26 @@ ul.userPhotoIcon {
 	background-color: #323333;
 }
 
+/*styling for comments*/
+.commentParent {
+  display: flex;
+  justify-content: center;
+}
+
+.commentContainer {
+  width: 90%;
+  background-color: #f5f8f2;
+}
+
+.commentTextContainer {
+  display: inline-block;
+}
+
+.commentText {
+  padding: 10px;
+}
+/* end of comments styling*/
+
 .uploadParent {
 	display: flex;
 	justify-content: center;

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
-// import CommentsContainer from './CommentsContainer';
+import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import UploadAnnouncement from './UploadAnnouncement';
@@ -19,10 +19,7 @@ export class App extends Component {
       // if that message has no comments then don't include CommentsContainer in return
         // instead return messageReplyFooter
     // pass down:
-    // <CommentsContainer
-    //   message={message}
-    //   key={message._id}
-    // />
+
     return (
       <div className="container">
         <Header />
@@ -46,18 +43,24 @@ export class App extends Component {
         {
           this.props.messages.map(message =>
           (
-            <PhotoNode
-              message={message}
-              user={message.userId}
-              photo={message.url}
-              caption={message.text}
-              memberAvatar={
+            <div>
+              <PhotoNode
+                message={message}
+                user={message.userId}
+                photo={message.url}
+                caption={message.text}
+                memberAvatar={
                 (message.userId in this.props.members)
                   ? this.props.members[message.userId].avatar
                   : null
               }
-              key={message._id}
-            />
+                key={message._id}
+              />
+              <CommentsContainer
+                message={message}
+                key={message._id + message.text}
+              />
+            </div>
           )
           )
         }

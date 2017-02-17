@@ -17,19 +17,18 @@ class CommentNodeSimple extends Component {
 
   render() {
     return (
-      <div className="node col-6">
-        <div className="photoHeader inline">
-          <img className="userIcon" src={this.props.fromAvatar} alt="avatar" />
-          <p className="nodeTitle">
-            {this.props.comment.from}: {this.props.comment.text}
-          </p>
-        </div>
-        <div className="photoFooter">
+      <div className="commentParent">
+        <div className="commentContainer">
+          <div className="commentTextContainer">
+            <p className="commentText">
+              {this.props.comment.from}: {this.props.comment.text}
+            </p>
+          </div>
           <img
-            className="messageIcon"
-            src="messageicon.png"
-            alt="icon"
-            onClick={this.postComment}
+            src={this.props.fromAvatar}
+            alt="avatar"
+            className="userIcon"
+            style={{ maxWidth: '50px' }}
           />
         </div>
       </div>

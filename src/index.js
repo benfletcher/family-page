@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Upload from './components/Upload';
 import Gallery from './components/Gallery';
 import statusReducer from './reducers';
+import CommentNodeSimple from './components/CommentNodeSimple';
 
 dotenv.config();
 
