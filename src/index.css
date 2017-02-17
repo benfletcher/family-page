@@ -14,11 +14,15 @@ a {
     margin: 5px;
 }
 
-a:hover {
+i {
+  cursor: pointer;
+}
+
+a:hover, a:focus {
   color: #EE930E;
 }
 
-i:hover {
+i:hover, i:focus {
   color: #EE930E;
 }
 
@@ -27,10 +31,6 @@ p.dropZoneText:hover {
 }
 
 p.announcementPost:hover {
-  color: #EE930E;
-}
-
-a:hover {
   color: #EE930E;
 }
 
@@ -159,6 +159,7 @@ ul.userPhotoIcon {
   padding-top: 11px;
   padding-right: 16px;
   float: right;
+  cursor: pointer;
   color: white;
 }
 
@@ -325,6 +326,7 @@ img.imageDropPreview {
 .galleryContainer img {
 	width: 100%;
 	height: 100%;
+  cursor: pointer;
 	overflow: hidden;
 }
 
