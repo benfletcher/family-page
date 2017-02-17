@@ -35,6 +35,7 @@ class CommentsContainer extends Component {
          <CommentNodeSimple
            loggedInUser={loggedInUser}
            comment={comment}
+           messageId={this.props.message._id}
            fromAvatar={
                 (this.props.message.userId in this.props.members)
                   ? this.props.members[this.props.message.userId].avatar

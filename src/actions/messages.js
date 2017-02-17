@@ -59,12 +59,11 @@ export const postMessage = content => (dispatch) => {
   .catch(console.error);
 };
 
-// works, however, getting unexpected token and position 0
 export const postComment = commentObject => (dispatch) => {
-  console.log('actions comment', commentObject);
+  console.log(commentObject);
   const url = 'http://localhost:8080/comments';
   const userId = 'Alex';
-  const messageId = '58a6407d39f2cd654ca0855a';
+  const messageId = commentObject.messageId;
   fetch(`${url}/${userId}/${messageId}`, {
   // fetch('https://calm-beach-24196.herokuapp.com/photos', {
     headers: {
@@ -81,7 +80,6 @@ export const postComment = commentObject => (dispatch) => {
     }
     return res;
   })
-  .then(res => res.json())
   .then(() => dispatch(fetchMessages()))
   .catch(console.error);
 };

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PhotoNode from './PhotoNode';
 import Header from './Header';
+import CommentInput from './CommentInput';
 import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
@@ -46,6 +47,7 @@ export class App extends Component {
             <div>
               <PhotoNode
                 message={message}
+                commentZoom={this.postComment}
                 user={message.userId}
                 photo={message.url}
                 caption={message.text}
@@ -56,9 +58,10 @@ export class App extends Component {
               }
                 key={message._id}
               />
+              <CommentInput />
               <CommentsContainer
                 message={message}
-                key={message._id + message.text}
+                key={message._id + message.userId}
               />
             </div>
           )
@@ -83,6 +86,7 @@ App.propTypes = {
 const mapStateToProps = state => ({
   messages: state.messages.messages,
   members: state.members.members,
+  zoomed: state.status.zoomed,
 });
 
 export default connect(mapStateToProps)(App);

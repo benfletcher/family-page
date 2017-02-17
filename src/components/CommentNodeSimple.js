@@ -21,9 +21,8 @@ class CommentNodeSimple extends Component {
   }
 
   postComment() {
-    this.props.dispatch(postComment({ from: 'Alex', to: 'Jamie', text: 'hi', userId: 'Alex', messageId: 2 }));
-    console.log('clicked message bubble ready to dispatch postComment');
-    // this.props.dispatch(postComment());
+    this.props.dispatch(postComment({ from: 'Alex', to: 'Jamie', text: this.commentText.value, userId: 'Alex', messageId: this.props.messageId }));
+    this.commentText.value = '';
   }
 
   render() {
@@ -42,6 +41,10 @@ class CommentNodeSimple extends Component {
             className="userIcon"
             style={{ maxWidth: '50px' }}
           />
+          <div className="commentInput">
+            <input ref={input => this.commentText = input}type="text" className="commentBox" />
+            <p onClick={this.postComment}>submit</p>
+          </div>
         </div>
       </div>
     );

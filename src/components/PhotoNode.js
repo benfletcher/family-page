@@ -28,6 +28,7 @@ const PhotoNode = (props) => {
         }
         <div className="photoFooter">
           <i
+            onClick={props.commentZoom}
             className="messageIcon fa fa-comment-o"
             aria-hidden="true"
           />
