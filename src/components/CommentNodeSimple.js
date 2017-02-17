@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { postComment } from '../actions/messages';
 
 // need to post a comment when reply button is clicked
 
@@ -11,6 +13,7 @@ class CommentNodeSimple extends Component {
   }
 
   postComment() {
+    this.props.dispatch(postComment({ from: 'Alex', to: 'Jamie', text: 'hi', userId: 'Alex', messageId: 2 }));
     console.log('clicked message bubble ready to dispatch postComment');
     // this.props.dispatch(postComment());
   }
@@ -25,6 +28,7 @@ class CommentNodeSimple extends Component {
             </p>
           </div>
           <img
+            onClick={this.postComment}
             src={this.props.fromAvatar}
             alt="avatar"
             className="userIcon"
@@ -49,8 +53,9 @@ CommentNodeSimple.defaultProps = {
 
 CommentNodeSimple.propTypes = {
   comment: React.PropTypes.obj,
+  dispatch: React.PropTypes.func.isRequired,
   // loggedInUser: React.PropTypes.string,
   fromAvatar: React.PropTypes.string,
 };
 
-export default CommentNodeSimple;
+export default connect()(CommentNodeSimple);

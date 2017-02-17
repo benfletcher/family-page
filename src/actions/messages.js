@@ -15,7 +15,6 @@ export const fetchMessages = () => (dispatch) => {
   dispatch(getMessages());
 
   fetch('http://localhost:8080/messages')
-  // fetch('https://calm-beach-24196.herokuapp.com/photos')
   .then((res) => {
     if (!res.ok) {
       const error = new Error(res.statusText);
@@ -46,6 +45,33 @@ export const postMessage = content => (dispatch) => {
     },
     method: 'POST',
     body: JSON.stringify({ contentType: 'photo', ...content, })
+  })
+  .then((res) => {
+    if (!res.ok) {
+      const error = new Error(res.statusText);
+      error.response = res;
+      throw error;
+    }
+    return res;
+  })
+  .then(res => res.json())
+  .then(() => dispatch(fetchMessages()))
+  .catch(console.error);
+};
+
+// works, however, getting unexpected token and position 0
+export const postComment = commentObject => (dispatch) => {
+  console.log('actions comment', commentObject);
+  const url = 'http://localhost:8080/comments';
+  const userId = 'Alex';
+  const messageId = '58a6407d39f2cd654ca0855a';
+  fetch(`${url}/${userId}/${messageId}`, {
+  // fetch('https://calm-beach-24196.herokuapp.com/photos', {
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify(commentObject)
   })
   .then((res) => {
     if (!res.ok) {
