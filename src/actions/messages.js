@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import cookie from 'react-cookie';
 
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const getMessages = () => ({
@@ -14,7 +15,13 @@ export const getMessagesSuccess = messages => ({
 export const fetchMessages = () => (dispatch) => {
   dispatch(getMessages());
 
-  fetch('http://localhost:8080/messages')
+  fetch('http://localhost:8080/messages',
+    {
+      headers: {
+        Authorization: `bearer ${cookie.load('accessToken')}`
+      }
+    }
+  )
   .then((res) => {
     if (!res.ok) {
       const error = new Error(res.statusText);
@@ -41,7 +48,8 @@ export const postMessage = content => (dispatch) => {
   fetch('http://localhost:8080/messages', {
   // fetch('https://calm-beach-24196.herokuapp.com/photos', {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `bearer ${cookie.load('accessToken')}`
     },
     method: 'POST',
     body: JSON.stringify({ contentType: 'photo', ...content, })

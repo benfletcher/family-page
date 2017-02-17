@@ -1,4 +1,5 @@
 import 'isomorphic-fetch';
+import cookie from 'react-cookie';
 
 export const SHOW_ZOOMED = 'SHOW_ZOOMED';
 export const showZoomed = (photo, index) => ({
@@ -24,3 +25,40 @@ export const getStatusSuccess = message => ({
   type: GET_STATUS_SUCCESS,
   message,
 });
+
+// AUTH
+export const HELLO_WORLD_FAILURE = 'HELLO_WORLD_FAILURE';
+export const helloWorldFailure = err => ({
+  type: HELLO_WORLD_FAILURE,
+  message: err,
+});
+
+export const HELLO_WORLD_SUCCESS = 'HELLO_WORLD_SUCCESS';
+export const helloWorldSuccess = message => ({
+  type: HELLO_WORLD_SUCCESS,
+  message,
+});
+
+export const fetchHelloWorld = () => () => {
+  console.log(cookie.load('accessToken'));
+  fetch('http://localhost:8080/helloworld',
+    {
+      headers: {
+        Authorization: `bearer ${cookie.load('accessToken')}`
+      }
+    })
+  // fetch('https://calm-beach-24196.herokuapp.com/photos')
+  .then((res) => {
+    if (!res.ok) {
+      const error = new Error(res.statusText);
+      error.response = res;
+      throw error;
+    }
+    return res;
+  })
+  .then(res => res.json())
+  .then(console.log)
+  // .then(message =>
+  //   dispatch(helloWorldSuccess(message))
+  .catch(console.error);
+};

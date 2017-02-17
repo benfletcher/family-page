@@ -3,6 +3,9 @@ import { Link } from 'react-router';
 
 const Header = () => (
   <div className="navButton">
+    <a href="http://localhost:8080/auth/google">
+      Login to Google
+    </a>
     <p className="navTitle">
       <Link to="/">
       Home
