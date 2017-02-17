@@ -1,19 +1,8 @@
 import React, { Component } from 'react';
-
-// need to post a comment when reply button is clicked
+import { connect } from 'react-redux';
 
 
 class CommentNodeSimple extends Component {
-  constructor(props) {
-    super(props);
-
-    this.postComment = this.postComment.bind(this);
-  }
-
-  postComment() {
-    console.log('clicked message bubble ready to dispatch postComment');
-    // this.props.dispatch(postComment());
-  }
 
   render() {
     return (
@@ -28,7 +17,6 @@ class CommentNodeSimple extends Component {
             src={this.props.fromAvatar}
             alt="avatar"
             className="userIcon"
-            style={{ maxWidth: '50px' }}
           />
         </div>
       </div>
@@ -49,8 +37,9 @@ CommentNodeSimple.defaultProps = {
 
 CommentNodeSimple.propTypes = {
   comment: React.PropTypes.obj,
+  dispatch: React.PropTypes.func.isRequired,
   // loggedInUser: React.PropTypes.string,
   fromAvatar: React.PropTypes.string,
 };
 
-export default CommentNodeSimple;
+export default connect()(CommentNodeSimple);
