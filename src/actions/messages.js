@@ -71,8 +71,8 @@ export const postMessage = content => (dispatch) => {
 };
 
 export const postComment = commentObject => (dispatch) => {
-  const url = 'http://localhost:8080/comments';
-  fetch(`${url}`, {
+  console.log('this is the comment object', commentObject);
+  fetch('http://localhost:8080/comments', {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `bearer ${cookie.load('accessToken')}`
@@ -88,6 +88,7 @@ export const postComment = commentObject => (dispatch) => {
     }
     return res;
   })
+  // .then(res => res.json())
   .then(() => dispatch(fetchMessages()))
   .catch(console.error);
 };
