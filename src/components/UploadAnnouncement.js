@@ -8,8 +8,12 @@ class UploadAnnouncement extends Component {
     super(props);
 
     this.state = {
-      text: ''
+      text: '',
+      currentUserName: (this.props.currentUser in this.props.members)
+        ? this.props.members[this.props.currentUser].avatar
+        : 'Alex'
     };
+
 
     this.announcementSubmit = this.announcementSubmit.bind(this);
     this.textInputChange = this.textInputChange.bind(this);
@@ -28,6 +32,7 @@ class UploadAnnouncement extends Component {
       alert('Can not post blank Announcement field'); // eslint-disable-line
     }
   }
+
 
   textInputChange(event) {
     this.setState({ text: event.target.value });
@@ -48,7 +53,7 @@ class UploadAnnouncement extends Component {
           <div className="announcementInputBox">
             <input
               className="announcementInput"
-              placeholder="ihold places..."
+              placeholder={`${this.state.currentUserName} what's on your mind`}
               value={this.state.text}
               onChange={this.textInputChange}
               type="text"
@@ -75,7 +80,9 @@ UploadAnnouncement.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userId: state.status.userId
+  userId: state.status.userId,
+  currentUser: state.messages.currentUser,
+  members: state.members,
 });
 
 export default connect(mapStateToProps)(UploadAnnouncement);
