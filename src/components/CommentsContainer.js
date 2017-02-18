@@ -46,9 +46,9 @@ class CommentsContainer extends Component {
       ? this.props.members[this.props.message.userId].nickname
       : '...loading...';
 
-    const avatar = this.props.message.userId in this.props.members
-      ? this.props.members[this.props.message.userId].avatar
-      : '...loading...';
+    const avatar = this.props.message.currentUser in this.props.members
+      ? this.props.members[this.props.message.currentUser].avatar
+      : './JamieDavella.png';
 
     return (
       <div className="container">
