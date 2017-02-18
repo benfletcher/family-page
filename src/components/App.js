@@ -9,6 +9,13 @@ import UploadAnnouncement from './UploadAnnouncement';
 
 export class App extends Component {
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      loggedInUser: ''
+    };
+  }
+
   componentDidMount() {
     this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
@@ -19,6 +26,13 @@ export class App extends Component {
       // if that message has no comments then don't include CommentsContainer in return
         // instead return messageReplyFooter
     // pass down:
+    const currentUserAvatar = this.props.currentUser in this.props.members
+      ? this.props.members[this.props.currentUser].avatar
+      : '';
+
+    const currentUserName = this.props.currentUser in this.props.members
+      ? this.props.members[this.props.currentUser].nickname
+      : '';
 
     return (
       <div className="container">
@@ -40,11 +54,8 @@ export class App extends Component {
         </ul>
 
         <UploadAnnouncement
-          userPhoto={
-            this.props.currentUser in this.props.members
-              ? this.props.members[this.props.currentUser].avatar
-              : ''
-          }
+          currentUserAvatar={currentUserAvatar}
+          currentUserName={currentUserName}
         />
         {
           this.props.messages.map(message =>
@@ -64,6 +75,7 @@ export class App extends Component {
               />
               <CommentsContainer
                 message={message}
+                currentUserAvatar={currentUserAvatar}
               />
             </div>
           )

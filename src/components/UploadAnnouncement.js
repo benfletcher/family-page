@@ -8,12 +8,8 @@ class UploadAnnouncement extends Component {
     super(props);
 
     this.state = {
-      text: '',
-      currentUserName: (this.props.currentUser in this.props.members)
-        ? this.props.members[this.props.currentUser].avatar
-        : 'Alex'
+      text: ''
     };
-
 
     this.announcementSubmit = this.announcementSubmit.bind(this);
     this.textInputChange = this.textInputChange.bind(this);
@@ -23,7 +19,6 @@ class UploadAnnouncement extends Component {
     event.preventDefault();
     if (this.state.text) {
       this.props.dispatch(postMessage({
-        userId: this.props.userId,
         contentType: 'announcement',
         text: this.state.text
       }));
@@ -47,13 +42,13 @@ class UploadAnnouncement extends Component {
             <img
               alt="avatar"
               className="avatarPhoto"
-              src={this.props.userPhoto}
+              src={this.props.currentUserAvatar}
             />
           </div>
           <div className="announcementInputBox">
             <input
               className="announcementInput"
-              placeholder={`${this.state.currentUserName} what's on your mind`}
+              placeholder={`${this.props.currentUserName}, what's on your mind`}
               value={this.state.text}
               onChange={this.textInputChange}
               type="text"
@@ -74,15 +69,21 @@ class UploadAnnouncement extends Component {
   }
 }
 
+UploadAnnouncement.defaultProps = {
+  currentUserName: null,
+  currentUserAvatar: '',
+  members: {}
+};
+
 UploadAnnouncement.propTypes = {
-  userId: React.PropTypes.string.isRequired,
+  currentUserName: React.PropTypes.string,
+  currentUserAvatar: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
-  userId: state.status.userId,
   currentUser: state.messages.currentUser,
-  members: state.members,
+  members: state.members.members,
 });
 
 export default connect(mapStateToProps)(UploadAnnouncement);

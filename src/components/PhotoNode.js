@@ -40,7 +40,7 @@ const PhotoNode = (props) => {
 
 
 PhotoNode.defaultProps = {
-  memberAvatar: './JamieDavella.png',
+  memberAvatar: '',
   caption: '(no caption)',
   photo: null,
 };
