@@ -27,8 +27,8 @@ const store = createStore(
 ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
-      <Route path="/login" component={Login} />
-      <Route path="/" component={App} />
+      <Route path="/" component={Login} />
+      <Route path="/app" component={App} />
       <Route path="/upload" component={Upload} />
       <Route path="/gallery" component={Gallery} />
     </Router>
