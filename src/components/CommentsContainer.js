@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CommentNodeSimple from './CommentNodeSimple';
+import CommentNode from './CommentNode';
 import { postComment } from '../actions/messages';
-// pass in message object either from app.js or PhotoNode.js
-// PhotoNode.js is a dumb component. Is it bad to pass down props 2 levels
 
 class CommentsContainer extends Component {
   constructor(props) {
@@ -21,11 +19,8 @@ class CommentsContainer extends Component {
   }
 
   render() {
-    const loggedInUser = this.props.loggedInUser;
-
     const eachComment = this.props.message.comments.map(comment => (
-      <CommentNodeSimple
-        loggedInUser={loggedInUser}
+      <CommentNode
         comment={comment}
         messageId={this.props.message._id}
         from={
@@ -34,8 +29,8 @@ class CommentsContainer extends Component {
               : '...loading...'
           }
         fromAvatar={
-            (this.props.message.userId in this.props.members)
-              ? this.props.members[this.props.message.userId].avatar
+            (comment.from in this.props.members)
+              ? this.props.members[comment.from].avatar
               : null
           }
         key={comment._id}
@@ -46,17 +41,13 @@ class CommentsContainer extends Component {
       ? this.props.members[this.props.message.userId].nickname
       : '...loading...';
 
-    const avatar = this.props.message.currentUser in this.props.members
-      ? this.props.members[this.props.message.currentUser].avatar
-      : './JamieDavella.png';
-
     return (
       <div className="container">
         {eachComment}
         <div className="commentInputParent">
           <div className="commentInputContainer">
             <img
-              src={avatar}
+              src={this.props.currentUserAvatar}
               alt="avatar"
               className="userIcon"
             />
@@ -76,18 +67,18 @@ class CommentsContainer extends Component {
 
 CommentsContainer.defaultProps = {
   members: {},
+  currentUserAvatar: ''
 };
 
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
-  loggedInUser: React.PropTypes.string.isRequired,
-  message: React.PropTypes.object.isRequired,
+  message: React.PropTypes.object.isRequired, // eslint-disable-line
+  currentUserAvatar: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
   members: state.members.members,
-  loggedInUser: state.status.userId,
 });
 
 export default connect(mapStateToProps)(CommentsContainer);
