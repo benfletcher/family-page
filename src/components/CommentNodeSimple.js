@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { postComment } from '../actions/messages';
 
 class CommentNodeSimple extends Component {
-
   render() {
     return (
       <div className="commentParent">
@@ -12,6 +13,7 @@ class CommentNodeSimple extends Component {
             </p>
           </div>
           <img
+            onClick={this.postComment}
             src={this.props.fromAvatar}
             alt="avatar"
             className="userIcon"
@@ -35,9 +37,8 @@ CommentNodeSimple.defaultProps = {
 
 CommentNodeSimple.propTypes = {
   comment: React.PropTypes.object,
-  // loggedInUser: React.PropTypes.string,
   fromAvatar: React.PropTypes.string,
   from: React.PropTypes.string.isRequired,
 };
 
-export default CommentNodeSimple;
+export default connect()(CommentNodeSimple);

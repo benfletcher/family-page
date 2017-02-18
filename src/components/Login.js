@@ -8,9 +8,9 @@ const Login = () => (
         <img className="logoImage" src="./familyLogo.png" alt="logo" />
       </div>
       <div className="loginContainer">
-        <Link to="/">
+        <a href="http://localhost:8080/auth/google">
           <img className="loginImage" src="./googlelogin.png" alt="login" />
-        </Link>
+        </a>
       </div>
     </div>
   </div>
