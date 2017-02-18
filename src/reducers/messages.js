@@ -1,6 +1,7 @@
 import * as actions from '../actions/messages';
 
 const initialState = {
+  currentUser: '',
   messages: [],
   loading: false,
 };
@@ -14,6 +15,7 @@ const messages = (state = initialState, action) => {
   } else if (action.type === actions.GET_MESSAGES_SUCCESS) {
     return {
       ...state,
+      currentUser: action.currentUser,
       messages: action.messages,
       loading: false,
     };

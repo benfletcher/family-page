@@ -6,15 +6,12 @@ import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import UploadAnnouncement from './UploadAnnouncement';
-import * as helloActions from '../actions/index';
 
 export class App extends Component {
 
   componentDidMount() {
     this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
-
-    this.props.dispatch(helloActions.fetchHelloWorld());
   }
 
   render() {
@@ -42,11 +39,17 @@ export class App extends Component {
           }
         </ul>
 
-        <UploadAnnouncement userPhoto={'./JamieDavella.png'} />
+        <UploadAnnouncement
+          userPhoto={
+            this.props.currentUser in this.props.members
+              ? this.props.members[this.props.currentUser].avatar
+              : ''
+          }
+        />
         {
           this.props.messages.map(message =>
           (
-            <div>
+            <div key={message._id}>
               <PhotoNode
                 message={message}
                 commentZoom={this.postComment}
@@ -57,12 +60,10 @@ export class App extends Component {
                 (message.userId in this.props.members)
                   ? this.props.members[message.userId].avatar
                   : null
-              }
-                key={message._id}
+                }
               />
               <CommentsContainer
                 message={message}
-                key={message._id + message.userId}
               />
             </div>
           )
@@ -76,15 +77,18 @@ export class App extends Component {
 App.defaultProps = {
   messages: [],
   members: {},
+  currentUser: null,
 };
 
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   messages: React.PropTypes.arrayOf(React.PropTypes.object),
   members: React.PropTypes.objectOf(React.PropTypes.object),
+  currentUser: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({
+  currentUser: state.messages.currentUser,
   messages: state.messages.messages,
   members: state.members.members,
   zoomed: state.status.zoomed,

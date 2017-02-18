@@ -7,9 +7,10 @@ export const getMessages = () => ({
 });
 
 export const GET_MESSAGES_SUCCESS = 'GET_MESSAGES_SUCCESS';
-export const getMessagesSuccess = messages => ({
+export const getMessagesSuccess = payload => ({
   type: GET_MESSAGES_SUCCESS,
-  messages,
+  currentUser: payload.currentUser,
+  messages: payload.messages,
 });
 
 export const fetchMessages = () => (dispatch) => {
@@ -31,22 +32,24 @@ export const fetchMessages = () => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(messages =>
+  .then((data) => {
     // convert Mongo date to JS date, sort messages on date
-    dispatch(getMessagesSuccess(
-      messages.map(message => ({
+    dispatch(getMessagesSuccess({
+      currentUser: data.currentUser,
+      messages: data.messages.map(message => ({
         ...message,
         date: new Date(message.date)
       }))
       .sort((x, y) => y.date - x.date)
-    ))
+    }
+  ));
+  }
   )
   .catch(console.error);
 };
 
 export const postMessage = content => (dispatch) => {
   fetch('http://localhost:8080/messages', {
-  // fetch('https://calm-beach-24196.herokuapp.com/photos', {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `bearer ${cookie.load('accessToken')}`
@@ -68,14 +71,11 @@ export const postMessage = content => (dispatch) => {
 };
 
 export const postComment = commentObject => (dispatch) => {
-  console.log(commentObject);
   const url = 'http://localhost:8080/comments';
-  const userId = 'Alex';
-  const messageId = commentObject.messageId;
-  fetch(`${url}/${userId}/${messageId}`, {
-  // fetch('https://calm-beach-24196.herokuapp.com/photos', {
+  fetch(`${url}`, {
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      Authorization: `bearer ${cookie.load('accessToken')}`
     },
     method: 'POST',
     body: JSON.stringify(commentObject)
