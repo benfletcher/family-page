@@ -43,6 +43,7 @@ button {
 	height: 40px;
 }
 
+
 img.userIcon {
 	height: 41px;
 	border-radius: 50%;
@@ -95,6 +96,10 @@ ul.userPhotoIcon {
 
 .loginImage {
   height: 40px;
+}
+
+input.announcementInput {
+  font-size: 25px;
 }
 
 .announcementBlueLine {
@@ -175,6 +180,38 @@ ul.userPhotoIcon {
   padding-top: 5px;
 }
 
+.commentInputParent {
+  display: flex;
+  justify-content: center;
+  height: 50px;
+}
+
+.commentInputContainer {
+  width: 90%;
+  background-color: #f5f8f2;
+  padding-top: 5px;
+}
+
+input.commentBox {
+  font-size: 15px;
+  padding: 8px;
+  width: 70%;
+}
+
+p.commentSubmit {
+  float: right;
+  padding-right: 14px;
+  padding-top: 10px;
+}
+
+input.commentBox {
+  height: 100%;
+  width: 70%;
+  outline: none;
+  border: 1px solid #f5f8f2;
+  background-color: #f5f8f2;
+}
+
 .container {
 	padding-bottom: 100px;
 }
@@ -218,6 +255,7 @@ ul.userPhotoIcon {
   display: flex;
   justify-content: center;
 }
+
 
 .commentContainer {
   width: 90%;
@@ -404,6 +442,10 @@ img.imageDropPreview {
     }
 
     .commentContainer {
+      width: 40%;
+    }
+
+    .commentInputContainer {
       width: 40%;
     }
 

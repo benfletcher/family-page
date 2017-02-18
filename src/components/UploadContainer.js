@@ -30,7 +30,6 @@ class UploadContainer extends Component {
   }
 
   onImageDrop(files) {
-    console.log(files);
     this.setState({
       uploadedFile: files[0],
       uploadPhotoName: files[0].name,
@@ -73,12 +72,11 @@ class UploadContainer extends Component {
         console.error(err);
       }
 
-      console.log('handleImageUpload response.body', response.body);
+      // console.log('handleImageUpload response.body', response.body);
       // https://res.cloudinary.com/family/c_thumb,g_faces,h_150,w_200/nayysx6lzbbewmjtneou.jpg
       // c_thumb,g_faces,h_400,r_5,w_400
 
       if (response.body.secure_url !== '') {
-        console.log(response.body.secure_url);
         this.props.dispatch(postMessage({
           url: response.body.secure_url,
           userId,

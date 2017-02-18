@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import Header from './Header';
 import { postMessage } from '../actions/messages';
 import UploadContainer from './UploadContainer';
-import { Link } from 'react-router';
 
 class Upload extends Component {
   constructor(props) {

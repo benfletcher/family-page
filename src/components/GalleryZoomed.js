@@ -9,8 +9,16 @@ const GalleryZoomed = props => (
       </div>
     </div>
     <div className="zoomedNav">
-      <i className="fa fa-3x white fa-arrow-left" onClick={props.goLeft} aria-hidden="true" />
-      <i className="fa fa-3x white fa-arrow-right" onClick={props.goRight} aria-hidden="true" />
+      <i
+        className="fa fa-3x white fa-arrow-left"
+        onClick={props.goLeft}
+        aria-hidden="true"
+      />
+      <i
+        className="fa fa-3x white fa-arrow-right"
+        onClick={props.goRight}
+        aria-hidden="true"
+      />
     </div>
   </div>
 );

@@ -1,52 +1,74 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import CommentNodeComplex from './CommentNodeComplex';
 import CommentNodeSimple from './CommentNodeSimple';
+import { postComment } from '../actions/messages';
 // pass in message object either from app.js or PhotoNode.js
 // PhotoNode.js is a dumb component. Is it bad to pass down props 2 levels
 
 class CommentsContainer extends Component {
   constructor(props) {
     super(props);
+    this.postComment = this.postComment.bind(this);
+  }
+
+  postComment() {
+    this.props.dispatch(postComment({
+      messageId: this.props.message._id,
+      to: this.props.message.userId,
+      text: this.commentText.value,
+    }));
+    this.commentText.value = '';
   }
 
   render() {
-    // assume I have access to the one message object passed down as props
     const loggedInUser = this.props.loggedInUser;
 
-    const eachComment = this.props.message.comments.map(comment =>
-        // determine if logged in user is the sender of the message in which
-        // case we will render the complex comment node interface
-      // if (loggedInUser === this.props.message.userId) {
-      //   return (
-      //     <CommentNodeComplex
-      //       loggedInUser={loggedInUser}
-      //       comment={comment}
-      //       fromAvatar={
-      //           (this.props.message.userId in this.props.members)
-      //             ? this.props.members[this.props.message.userId].avatar
-      //             : null
-      //         }
-      //       key={comment._id}
-      //     />
-      //   );
-      // }
-       (
-         <CommentNodeSimple
-           loggedInUser={loggedInUser}
-           comment={comment}
-           fromAvatar={
-                (this.props.message.userId in this.props.members)
-                  ? this.props.members[this.props.message.userId].avatar
-                  : null
-              }
-           key={comment._id}
-         />
-      ));
+    const eachComment = this.props.message.comments.map(comment => (
+      <CommentNodeSimple
+        loggedInUser={loggedInUser}
+        comment={comment}
+        messageId={this.props.message._id}
+        from={
+            comment.from in this.props.members
+              ? this.props.members[comment.from].nickname
+              : '...loading...'
+          }
+        fromAvatar={
+            (this.props.message.userId in this.props.members)
+              ? this.props.members[this.props.message.userId].avatar
+              : null
+          }
+        key={comment._id}
+      />
+    ));
+
+    const replyTo = this.props.message.userId in this.props.members
+      ? this.props.members[this.props.message.userId].nickname
+      : '...loading...';
+
+    const avatar = this.props.message.userId in this.props.members
+      ? this.props.members[this.props.message.userId].avatar
+      : '...loading...';
 
     return (
       <div className="container">
         {eachComment}
+        <div className="commentInputParent">
+          <div className="commentInputContainer">
+            <img
+              src={avatar}
+              alt="avatar"
+              className="userIcon"
+            />
+            <input
+              ref={input => this.commentText = input}
+              type="text"
+              placeholder={`Reply to ${replyTo}`}
+              className="commentBox"
+            />
+            <p className="commentSubmit" onClick={this.postComment}>submit</p>
+          </div>
+        </div>
       </div>
     );
   }
@@ -59,7 +81,8 @@ CommentsContainer.defaultProps = {
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
   loggedInUser: React.PropTypes.string.isRequired,
-  message: React.PropTypes.string.isRequired
+  message: React.PropTypes.object.isRequired,
+  dispatch: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
