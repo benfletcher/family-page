@@ -370,15 +370,14 @@ img.imageDropPreview {
 	display: flex;
 	flex-wrap: wrap;
 	justify-content: center;
-	padding-top: 105px;
+	padding-top: 80px;
 }
 
 .galleryContainer div {
-	width: 200px;
-	height: 150px;
+	width: 150px;
+	height: 103px;
 	background-color: #F5F8F2;
-	margin: 2px;
-  padding: 16px;
+  margin: 2px;
 }
 
 .galleryContainer img {
@@ -452,10 +451,6 @@ img.imageDropPreview {
     .dropZoneBox {
       height: 200px;
       width: 100%;
-    }
-
-    .galleryContainer div {
-    	margin: 10px;
     }
 
     .galleryContainer {

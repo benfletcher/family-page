@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { postMessage } from '../actions/messages';
 
 
-class UploadAnnouncement extends Component {
+class Announcement extends Component {
   constructor(props) {
     super(props);
 
@@ -74,7 +74,7 @@ class UploadAnnouncement extends Component {
   }
 }
 
-UploadAnnouncement.propTypes = {
+Announcement.propTypes = {
   userId: React.PropTypes.string.isRequired,
   dispatch: React.PropTypes.func.isRequired
 };
@@ -85,4 +85,4 @@ const mapStateToProps = state => ({
   members: state.members,
 });
 
-export default connect(mapStateToProps)(UploadAnnouncement);
+export default connect(mapStateToProps)(Announcement);

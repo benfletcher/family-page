@@ -5,7 +5,7 @@ import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
-import UploadAnnouncement from './UploadAnnouncement';
+import Announcement from './Announcement';
 
 export class App extends Component {
 
@@ -39,7 +39,7 @@ export class App extends Component {
           }
         </ul>
 
-        <UploadAnnouncement
+        <Announcement
           userPhoto={
             this.props.currentUser in this.props.members
               ? this.props.members[this.props.currentUser].avatar

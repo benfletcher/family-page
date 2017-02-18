@@ -23,6 +23,7 @@ class CommentsContainer extends Component {
   render() {
     const loggedInUser = this.props.loggedInUser;
 
+    console.log(this.props.loggedInAvatar);
     const eachComment = this.props.message.comments.map(comment => (
       <CommentNodeSimple
         loggedInUser={loggedInUser}
@@ -56,7 +57,7 @@ class CommentsContainer extends Component {
         <div className="commentInputParent">
           <div className="commentInputContainer">
             <img
-              src={avatar}
+              src={this.props.loggedInAvatar}
               alt="avatar"
               className="userIcon"
             />
@@ -76,6 +77,7 @@ class CommentsContainer extends Component {
 
 CommentsContainer.defaultProps = {
   members: {},
+  loggedInAvatar: 'http://cdn.patch.com/assets/layout/contribute/user-default.png',
 };
 
 CommentsContainer.propTypes = {
@@ -88,6 +90,8 @@ CommentsContainer.propTypes = {
 const mapStateToProps = state => ({
   members: state.members.members,
   loggedInUser: state.status.userId,
+  loggedInAvatar: state.messages.currentAvatar,
+  loggedNickname: state.messages.currentNickname,
 });
 
 export default connect(mapStateToProps)(CommentsContainer);
