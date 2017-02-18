@@ -1,7 +1,6 @@
 import 'isomorphic-fetch';
 import cookie from 'react-cookie';
 
-
 export const GET_MEMBERS = 'GET_MEMBERS';
 export const getMembers = () => ({
   type: GET_MEMBERS,
@@ -36,8 +35,7 @@ export const fetchMembers = () => (dispatch) => {
     const membersObj = {};
 
     membersArr.forEach((member) => {
-      // membersObj[member._id] = member;
-      membersObj[member.nickname] = member;
+      membersObj[member._id] = member;
     });
 
     dispatch(getMembersSuccess(membersObj));

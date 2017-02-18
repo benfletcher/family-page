@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-
 
 class CommentNodeSimple extends Component {
 
@@ -10,7 +8,7 @@ class CommentNodeSimple extends Component {
         <div className="commentContainer">
           <div className="commentTextContainer">
             <p className="commentText">
-              {this.props.comment.from}: {this.props.comment.text}
+              {this.props.from}: {this.props.comment.text}
             </p>
           </div>
           <img
@@ -36,10 +34,10 @@ CommentNodeSimple.defaultProps = {
 };
 
 CommentNodeSimple.propTypes = {
-  comment: React.PropTypes.obj,
-  dispatch: React.PropTypes.func.isRequired,
+  comment: React.PropTypes.object,
   // loggedInUser: React.PropTypes.string,
   fromAvatar: React.PropTypes.string,
+  from: React.PropTypes.string.isRequired,
 };
 
-export default connect()(CommentNodeSimple);
+export default CommentNodeSimple;

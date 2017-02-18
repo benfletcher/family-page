@@ -11,6 +11,12 @@ class Gallery extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      photos: this.props.messages.filter(message =>
+        message.contentType === 'photo'
+      )
+    };
+
     this.openZoom = this.openZoom.bind(this);
     this.closeZoom = this.closeZoom.bind(this);
     this.closeZoom = this.closeZoom.bind(this);
@@ -23,10 +29,6 @@ class Gallery extends Component {
     this.props.dispatch(fetchMembers());
   }
 
-  isPhoto(message) {
-    if (message.contentType === 'photo') return message;
-  }
-
   openZoom({ photoUrl, photoIndex }) {
     this.props.dispatch(showZoomed(photoUrl, photoIndex));
   }
@@ -36,17 +38,19 @@ class Gallery extends Component {
   }
 
   goLeft() {
-    const currentIndex = this.props.zoomedIndex;
-    const newIndex = currentIndex - 1;
-    const photoArray = this.props.messages.filter(this.isPhoto);
-    this.props.dispatch(showZoomed(photoArray[newIndex].url, newIndex));
+    if (this.props.zoomedIndex === 0) {
+      return;
+    }
+    const newIndex = this.props.zoomedIndex - 1;
+    this.props.dispatch(showZoomed(this.state.photos[newIndex].url, newIndex));
   }
 
   goRight() {
-    const currentIndex = this.props.zoomedIndex;
-    const newIndex = currentIndex + 1;
-    const photoArray = this.props.messages.filter(this.isPhoto);
-    this.props.dispatch(showZoomed(photoArray[newIndex].url, newIndex));
+    if (this.props.zoomedIndex === this.state.photos.length - 1) {
+      return;
+    }
+    const newIndex = this.props.zoomedIndex + 1;
+    this.props.dispatch(showZoomed(this.state.photos[newIndex].url, newIndex));
   }
 
   render() {
@@ -66,19 +70,15 @@ class Gallery extends Component {
 
         <div className="galleryContainer">
           {
-            this.props.messages.map((photo, i) => {
-              if (photo.contentType === 'photo') {
-                return (
-                  <GalleryThumbnail
-                    key={photo._id}
-                    photoIndex={i}
-                    photoUrl={photo.url}
-                    user={photo.userId}
-                    onClick={this.openZoom}
-                  />
-                );
-              }
-            }
+            this.state.photos.map((photo, i) => (
+              <GalleryThumbnail
+                key={photo._id}
+                photoIndex={i}
+                photoUrl={photo.url}
+                user={photo.userId}
+                onClick={this.openZoom}
+              />
+                )
             )
           }
         </div>

@@ -13,11 +13,9 @@ class CommentsContainer extends Component {
 
   postComment() {
     this.props.dispatch(postComment({
-      from: 'Alex',
-      to: 'Jamie',
+      messageId: this.props.message._id,
+      to: this.props.message.userId,
       text: this.commentText.value,
-      userId: 'Alex',
-      messageId: 4,
     }));
     this.commentText.value = '';
   }
@@ -25,20 +23,32 @@ class CommentsContainer extends Component {
   render() {
     const loggedInUser = this.props.loggedInUser;
 
-    const eachComment = this.props.message.comments.map(comment =>
-       (
-         <CommentNodeSimple
-           loggedInUser={loggedInUser}
-           comment={comment}
-           messageId={this.props.message._id}
-           fromAvatar={
-                (this.props.message.userId in this.props.members)
-                  ? this.props.members[this.props.message.userId].avatar
-                  : null
-              }
-           key={comment._id}
-         />
-      ));
+    const eachComment = this.props.message.comments.map(comment => (
+      <CommentNodeSimple
+        loggedInUser={loggedInUser}
+        comment={comment}
+        messageId={this.props.message._id}
+        from={
+            comment.from in this.props.members
+              ? this.props.members[comment.from].nickname
+              : '...loading...'
+          }
+        fromAvatar={
+            (this.props.message.userId in this.props.members)
+              ? this.props.members[this.props.message.userId].avatar
+              : null
+          }
+        key={comment._id}
+      />
+    ));
+
+    const replyTo = this.props.message.userId in this.props.members
+      ? this.props.members[this.props.message.userId].nickname
+      : '...loading...';
+
+    const avatar = this.props.message.userId in this.props.members
+      ? this.props.members[this.props.message.userId].avatar
+      : '...loading...';
 
     return (
       <div className="container">
@@ -46,14 +56,14 @@ class CommentsContainer extends Component {
         <div className="commentInputParent">
           <div className="commentInputContainer">
             <img
-              src="./JamieDavella.png"
+              src={avatar}
               alt="avatar"
               className="userIcon"
             />
             <input
               ref={input => this.commentText = input}
               type="text"
-              placeholder={`Reply to ${this.props.message.userId}`}
+              placeholder={`Reply to ${replyTo}`}
               className="commentBox"
             />
             <p className="commentSubmit" onClick={this.postComment}>submit</p>
@@ -71,7 +81,8 @@ CommentsContainer.defaultProps = {
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
   loggedInUser: React.PropTypes.string.isRequired,
-  message: React.PropTypes.string.isRequired
+  message: React.PropTypes.object.isRequired,
+  dispatch: React.PropTypes.func.isRequired
 };
 
 const mapStateToProps = state => ({
