@@ -39,6 +39,7 @@ class CommentInput extends Component {
           <input
             onChange={this.textInputChange}
             type="text"
+            value={this.state.text}
             placeholder={`Reply to ${this.props.replyToName}`}
             className="commentBox"
           />
