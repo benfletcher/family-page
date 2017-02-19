@@ -70,7 +70,6 @@ export class App extends Component {
                   />
                   <MessageFooter
                     currentAvatar={this.props.currentAvatar}
-                    from={this.props.currentUser}
                     messageId={message._id}
                     to={message.userId}
                     replyToName={replyToName}
@@ -96,12 +95,11 @@ export class App extends Component {
                 <CommentsContainer
                   message={message}
                   currentAvatar={this.props.currentAvatar}
-                  from={this.props.currentUser}
+                  currentUser={this.props.currentUser}
                 />
 
                 <MessageFooter
                   currentAvatar={this.props.currentAvatar}
-                  from={this.props.currentUser}
                   messageId={message._id}
                   to={message.userId}
                   replyToName={replyToName}

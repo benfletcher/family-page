@@ -21,7 +21,8 @@ class CommentsContainer extends Component {
   render() {
     // if the current user is the sender of message then Complex comments
       // where back and forth comments with input field at the end of that subConvo
-
+    if (this.props.currentUser !== this.props.message.userId) {
+    }
     // else simple Comments where one to one and do not need input field
     const eachComment = this.props.message.comments.map(comment => (
       <CommentNode
@@ -77,6 +78,7 @@ CommentsContainer.defaultProps = {
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
   message: React.PropTypes.object.isRequired, // eslint-disable-line
+  currentUser: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired
 };
