@@ -1,35 +1,18 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { postComment } from '../actions/messages';
+import CommentInput from './Reusable/CommentInput';
 
 class MessageFooter extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      text: '',
       showInput: false
     };
 
     this.onClickShowInput = this.onClickShowInput.bind(this);
-    this.textInputChange = this.textInputChange.bind(this);
-    this.postComment = this.postComment.bind(this);
   }
 
   onClickShowInput() {
-    this.setState({ showInput: true });
-  }
-
-  textInputChange(event) {
-    this.setState({ text: event.target.value });
-  }
-
-  postComment() {
-    this.props.dispatch(postComment({
-      messageId: this.props.messageId,
-      to: this.props.to,
-      text: this.state.text,
-    }));
     this.setState({ showInput: true });
   }
 
@@ -38,28 +21,12 @@ class MessageFooter extends Component {
       <div>
         {
           this.state.showInput ?
-            <div className="commentInputParent">
-              <div className="commentInputContainer">
-                <img
-                  src={this.props.currentAvatar}
-                  alt="avatar"
-                  className="userIcon"
-                />
-                <input
-                  onChange={this.textInputChange}
-                  type="text"
-                  placeholder={`Reply to ${this.props.replyToName}`}
-                  className="commentBox"
-                />
-                <p
-                  className="commentSubmit"
-                  onClick={this.postComment}
-                >
-                submit
-                </p>
-
-              </div>
-            </div>
+            <CommentInput
+              currentAvatar={this.props.currentAvatar}
+              messageId={this.props.messageId}
+              to={this.props.to}
+              replyToName={this.props.replyToName}
+            />
           : null
         }
         <div className="node col-6" style={{ paddingTop: '0px' }}>
@@ -81,7 +48,6 @@ MessageFooter.propTypes = {
   to: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string.isRequired,
   replyToName: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired
 };
 
-export default connect()(MessageFooter);
+export default MessageFooter;
