@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PhotoNode from './PhotoNode';
+import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
@@ -58,10 +58,14 @@ export class App extends Component {
 
         {
           this.props.messages.map((message) => {
+            const replyToName = message.userId in this.props.members
+              ? this.props.members[message.userId].nickname
+              : '...loading...';
+
             if (message.comments.length === 0) {
               return (
                 <div key={message._id}>
-                  <PhotoNode
+                  <MessageNode
                     message={message}
                     commentZoom={this.postComment}
                     user={message.userId}
@@ -73,13 +77,19 @@ export class App extends Component {
                         : null
                       }
                   />
-                  <MessageFooter />
+                  <MessageFooter
+                    currentAvatar={this.props.currentAvatar}
+                    from={this.props.currentUser}
+                    messageId={message._id}
+                    to={message.userId}
+                    replyTo={replyToName}
+                  />
                 </div>
               );
             }
             return (
               <div key={message._id}>
-                <PhotoNode
+                <MessageNode
                   message={message}
                   commentZoom={this.postComment}
                   user={message.userId}
@@ -91,10 +101,17 @@ export class App extends Component {
                       : null
                     }
                 />
-                <MessageFooter />
+
                 <CommentsContainer
                   message={message}
                   currentAvatar={currentAvatar}
+                />
+                <MessageFooter
+                  currentAvatar={this.props.currentAvatar}
+                  from={this.props.currentUser}
+                  messageId={message._id}
+                  to={message.userId}
+                  replyTo={replyToName}
                 />
               </div>
             );

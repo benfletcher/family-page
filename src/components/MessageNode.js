@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PhotoNode = (props) => {
+const MessageNode = (props) => {
   let parentClass = '';
   let textClass = '';
 
@@ -32,17 +32,17 @@ const PhotoNode = (props) => {
 };
 
 
-PhotoNode.defaultProps = {
+MessageNode.defaultProps = {
   memberAvatar: '',
   caption: '(no caption)',
   photo: null,
 };
 
-PhotoNode.propTypes = {
+MessageNode.propTypes = {
   photo: React.PropTypes.string,
   memberAvatar: React.PropTypes.string,
   caption: React.PropTypes.string,
   message: React.PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default PhotoNode;
+export default MessageNode;
