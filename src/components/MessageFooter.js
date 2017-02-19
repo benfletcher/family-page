@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { postComment } from '../../actions/messages';
+import { postComment } from '../actions/messages';
 
 class MessageFooter extends Component {
   constructor(props) {

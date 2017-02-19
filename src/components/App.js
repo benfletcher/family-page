@@ -6,7 +6,7 @@ import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import Announcement from './Announcement';
-import MessageFooter from './Reusable/MessageFooter';
+import MessageFooter from './MessageFooter';
 
 export class App extends Component {
 
