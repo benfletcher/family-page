@@ -212,9 +212,10 @@ input.commentBox {
   background-color: #f5f8f2;
 }
 
-.container {
+/*took this styling of comments container out when moved messageFooter beneath comments*/
+/*.container {
 	padding-bottom: 100px;
-}
+}*/
 
 .navButton {
 	color: white;

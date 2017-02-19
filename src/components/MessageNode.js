@@ -1,6 +1,6 @@
 import React from 'react';
 
-const PhotoNode = (props) => {
+const MessageNode = (props) => {
   let parentClass = '';
   let textClass = '';
 
@@ -26,30 +26,23 @@ const PhotoNode = (props) => {
             ? <img className="familyPhoto" src={props.photo} alt="user upload" />
             : null
         }
-        <div className="photoFooter">
-          <i
-            onClick={props.commentZoom}
-            className="messageIcon fa fa-comment-o"
-            aria-hidden="true"
-          />
-        </div>
       </div>
     </div>
   );
 };
 
 
-PhotoNode.defaultProps = {
+MessageNode.defaultProps = {
   memberAvatar: '',
   caption: '(no caption)',
   photo: null,
 };
 
-PhotoNode.propTypes = {
+MessageNode.propTypes = {
   photo: React.PropTypes.string,
   memberAvatar: React.PropTypes.string,
   caption: React.PropTypes.string,
   message: React.PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default PhotoNode;
+export default MessageNode;

@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import PhotoNode from './PhotoNode';
+import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import Announcement from './Announcement';
+import MessageFooter from './MessageFooter';
 
 export class App extends Component {
 
@@ -22,18 +23,6 @@ export class App extends Component {
   }
 
   render() {
-    // need to add logic
-      // if that message has no comments then don't include CommentsContainer in return
-        // instead return messageReplyFooter
-    // pass down:
-    const currentAvatar = this.props.currentUser in this.props.members
-      ? this.props.currentAvatar
-      : '';
-
-    const currentNickname = this.props.currentUser in this.props.members
-      ? this.props.currentNickname
-      : '';
-
     return (
       <div className="container">
         <Header />
@@ -54,40 +43,79 @@ export class App extends Component {
         </ul>
 
         <Announcement
-          currentAvatar={currentAvatar}
-          currentNickname={currentNickname}
+          currentAvatar={this.props.currentAvatar}
+          currentNickname={this.props.currentNickname}
         />
+
         {
-          this.props.messages.map(message =>
-          (
-            <div key={message._id}>
-              <PhotoNode
-                message={message}
-                commentZoom={this.postComment}
-                user={message.userId}
-                photo={message.url}
-                caption={message.text}
-                memberAvatar={
-                (message.userId in this.props.members)
-                  ? this.props.members[message.userId].avatar
-                  : null
-                }
-              />
-              <CommentsContainer
-                message={message}
-                currentAvatar={currentAvatar}
-              />
-            </div>
-          )
-          )
-        }
+          this.props.messages.map((message) => {
+            const replyToName = message.userId in this.props.members
+              ? this.props.members[message.userId].nickname
+              : '...loading...';
+
+            if (message.comments.length === 0) {
+              return (
+                <div key={message._id}>
+                  <MessageNode
+                    message={message}
+                    commentZoom={this.postComment}
+                    user={message.userId}
+                    photo={message.url}
+                    caption={message.text}
+                    memberAvatar={
+                      (message.userId in this.props.members)
+                        ? this.props.members[message.userId].avatar
+                        : null
+                      }
+                  />
+                  <MessageFooter
+                    currentAvatar={this.props.currentAvatar}
+                    messageId={message._id}
+                    to={message.userId}
+                    replyToName={replyToName}
+                  />
+                </div>
+              );
+            }
+            return (
+              <div key={message._id}>
+                <MessageNode
+                  message={message}
+                  commentZoom={this.postComment}
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                    (message.userId in this.props.members)
+                      ? this.props.members[message.userId].avatar
+                      : null
+                    }
+                />
+
+                <CommentsContainer
+                  message={message}
+                  currentAvatar={this.props.currentAvatar}
+                  currentUser={this.props.currentUser}
+                  members={this.props.members}
+                />
+
+                <MessageFooter
+                  currentAvatar={this.props.currentAvatar}
+                  messageId={message._id}
+                  to={message.userId}
+                  replyToName={replyToName}
+                />
+              </div>
+            );
+          })
+          }
       </div>
     );
   }
-}
+  }
 
 App.defaultProps = {
-  messages: [],
+  messages: [{}],
   members: {},
   currentUser: null,
   currentAvatar: null,

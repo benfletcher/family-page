@@ -8,8 +8,6 @@ import { postMessage } from '../actions/messages';
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 const CLOUDINARY_UPLOAD_URL = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;
 
-let placeholder = '';
-
 class UploadContainer extends Component {
   constructor(props) {
     super(props);
@@ -44,7 +42,7 @@ class UploadContainer extends Component {
       uploadedFile: null,
       uploadedFileCloudinaryUrl: '',
       size: 0,
-      previewUrl: '',
+      previewUrl: 'photoPlaceholder.jpg',
       uploadPhotoName: ''
     });
   }
@@ -55,7 +53,6 @@ class UploadContainer extends Component {
 
   saveUpload(event) {
     event.preventDefault();
-    // if ()
     this.handleImageUpload(this.state.uploadedFile, this.props.userId, this.state.caption);
     this.resetState();
     // redirect to homepage
@@ -87,12 +84,6 @@ class UploadContainer extends Component {
   }
 
   render() {
-    if (!this.state.previewUrl) {
-      placeholder = 'photoPlaceholder.jpg';
-    } else {
-      placeholder = this.state.previewUrl;
-    }
-
     return (
       <div>
         {
@@ -105,7 +96,7 @@ class UploadContainer extends Component {
         }
         <img
           className="imageDropPreview"
-          alt="preview" src={placeholder}
+          alt="preview" src={this.state.previewUrl}
           style={{ maxWidth: '200px' }}
         />
         <input
