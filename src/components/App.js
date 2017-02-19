@@ -6,6 +6,7 @@ import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import Announcement from './Announcement';
+import MessageFooter from './Reusable/MessageFooter';
 
 export class App extends Component {
 
@@ -73,6 +74,7 @@ export class App extends Component {
                   : null
                 }
               />
+              <MessageFooter />
               <CommentsContainer
                 message={message}
                 currentAvatar={currentAvatar}

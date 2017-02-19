@@ -26,13 +26,6 @@ const PhotoNode = (props) => {
             ? <img className="familyPhoto" src={props.photo} alt="user upload" />
             : null
         }
-        <div className="photoFooter">
-          <i
-            onClick={props.commentZoom}
-            className="messageIcon fa fa-comment-o"
-            aria-hidden="true"
-          />
-        </div>
       </div>
     </div>
   );
