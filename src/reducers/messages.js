@@ -16,6 +16,8 @@ const messages = (state = initialState, action) => {
     return {
       ...state,
       currentUser: action.currentUser,
+      currentAvatar: action.currentAvatar,
+      currentNickname: action.currentNickname,
       messages: action.messages,
       loading: false,
     };

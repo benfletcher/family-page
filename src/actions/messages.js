@@ -10,6 +10,8 @@ export const GET_MESSAGES_SUCCESS = 'GET_MESSAGES_SUCCESS';
 export const getMessagesSuccess = payload => ({
   type: GET_MESSAGES_SUCCESS,
   currentUser: payload.currentUser,
+  currentAvatar: payload.currentAvatar,
+  currentNickname: payload.currentNickname,
   messages: payload.messages,
 });
 
@@ -36,6 +38,8 @@ export const fetchMessages = () => (dispatch) => {
     // convert Mongo date to JS date, sort messages on date
     dispatch(getMessagesSuccess({
       currentUser: data.currentUser,
+      currentAvatar: data.currentAvatar,
+      currentNickname: data.currentNickname,
       messages: data.messages.map(message => ({
         ...message,
         date: new Date(message.date)
