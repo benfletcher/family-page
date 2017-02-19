@@ -59,7 +59,7 @@ class UploadContainer extends Component {
     this.handleImageUpload(this.state.uploadedFile, this.props.userId, this.state.caption);
     this.resetState();
     // redirect to homepage
-    hashHistory.push('/');
+    hashHistory.push('/app');
   }
 
   handleImageUpload(file, userId, caption) {

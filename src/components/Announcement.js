@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { postMessage } from '../actions/messages';
 
 
-class UploadAnnouncement extends Component {
+class Announcement extends Component {
   constructor(props) {
     super(props);
 
@@ -42,13 +42,13 @@ class UploadAnnouncement extends Component {
             <img
               alt="avatar"
               className="avatarPhoto"
-              src={this.props.currentUserAvatar}
+              src={this.props.currentAvatar}
             />
           </div>
           <div className="announcementInputBox">
             <input
               className="announcementInput"
-              placeholder={`${this.props.currentUserName}, what's on your mind`}
+              placeholder={`${this.props.currentNickname}, what's on your mind`}
               value={this.state.text}
               onChange={this.textInputChange}
               type="text"
@@ -69,15 +69,15 @@ class UploadAnnouncement extends Component {
   }
 }
 
-UploadAnnouncement.defaultProps = {
-  currentUserName: null,
-  currentUserAvatar: '',
+Announcement.defaultProps = {
+  currentNickname: null,
+  currentAvatar: '',
   members: {}
 };
 
-UploadAnnouncement.propTypes = {
-  currentUserName: React.PropTypes.string,
-  currentUserAvatar: React.PropTypes.string,
+Announcement.propTypes = {
+  currentNickname: React.PropTypes.string,
+  currentAvatar: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired
 };
 
@@ -86,4 +86,4 @@ const mapStateToProps = state => ({
   members: state.members.members,
 });
 
-export default connect(mapStateToProps)(UploadAnnouncement);
+export default connect(mapStateToProps)(Announcement);

@@ -47,7 +47,7 @@ class CommentsContainer extends Component {
         <div className="commentInputParent">
           <div className="commentInputContainer">
             <img
-              src={this.props.currentUserAvatar}
+              src={this.props.currentAvatar}
               alt="avatar"
               className="userIcon"
             />
@@ -67,13 +67,13 @@ class CommentsContainer extends Component {
 
 CommentsContainer.defaultProps = {
   members: {},
-  currentUserAvatar: ''
+  currentAvatar: 'http://cdn.patch.com/assets/layout/contribute/user-default.png'
 };
 
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
   message: React.PropTypes.object.isRequired, // eslint-disable-line
-  currentUserAvatar: React.PropTypes.string,
+  currentAvatar: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired
 };
 

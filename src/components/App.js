@@ -5,7 +5,7 @@ import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
-import UploadAnnouncement from './UploadAnnouncement';
+import Announcement from './Announcement';
 
 export class App extends Component {
 
@@ -26,12 +26,12 @@ export class App extends Component {
       // if that message has no comments then don't include CommentsContainer in return
         // instead return messageReplyFooter
     // pass down:
-    const currentUserAvatar = this.props.currentUser in this.props.members
-      ? this.props.members[this.props.currentUser].avatar
+    const currentAvatar = this.props.currentUser in this.props.members
+      ? this.props.currentAvatar
       : '';
 
-    const currentUserName = this.props.currentUser in this.props.members
-      ? this.props.members[this.props.currentUser].nickname
+    const currentNickname = this.props.currentUser in this.props.members
+      ? this.props.currentNickname
       : '';
 
     return (
@@ -53,9 +53,9 @@ export class App extends Component {
           }
         </ul>
 
-        <UploadAnnouncement
-          currentUserAvatar={currentUserAvatar}
-          currentUserName={currentUserName}
+        <Announcement
+          currentAvatar={currentAvatar}
+          currentNickname={currentNickname}
         />
         {
           this.props.messages.map(message =>
@@ -75,7 +75,7 @@ export class App extends Component {
               />
               <CommentsContainer
                 message={message}
-                currentUserAvatar={currentUserAvatar}
+                currentAvatar={currentAvatar}
               />
             </div>
           )
@@ -90,6 +90,8 @@ App.defaultProps = {
   messages: [],
   members: {},
   currentUser: null,
+  currentAvatar: null,
+  currentNickname: null,
 };
 
 App.propTypes = {
@@ -97,10 +99,14 @@ App.propTypes = {
   messages: React.PropTypes.arrayOf(React.PropTypes.object),
   members: React.PropTypes.objectOf(React.PropTypes.object),
   currentUser: React.PropTypes.string,
+  currentAvatar: React.PropTypes.string,
+  currentNickname: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({
   currentUser: state.messages.currentUser,
+  currentAvatar: state.messages.currentAvatar,
+  currentNickname: state.messages.currentNickname,
   messages: state.messages.messages,
   members: state.members.members,
   zoomed: state.status.zoomed,

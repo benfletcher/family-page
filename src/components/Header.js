@@ -4,7 +4,7 @@ import { Link } from 'react-router';
 const Header = () => (
   <div className="navButton">
     <p className="navTitle">
-      <Link to="/">
+      <Link to="/app">
       Home
       </Link>
       <span />
