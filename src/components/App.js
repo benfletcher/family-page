@@ -23,9 +23,6 @@ export class App extends Component {
   }
 
   render() {
-    // need to add logic
-      // if that message has no comments then don't include CommentsContainer in return
-        // instead return messageReplyFooter
     // pass down:
     const currentAvatar = this.props.currentUser in this.props.members
       ? this.props.currentAvatar
@@ -58,38 +55,58 @@ export class App extends Component {
           currentAvatar={currentAvatar}
           currentNickname={currentNickname}
         />
+
         {
-          this.props.messages.map(message =>
-          (
-            <div key={message._id}>
-              <PhotoNode
-                message={message}
-                commentZoom={this.postComment}
-                user={message.userId}
-                photo={message.url}
-                caption={message.text}
-                memberAvatar={
-                (message.userId in this.props.members)
-                  ? this.props.members[message.userId].avatar
-                  : null
-                }
-              />
-              <MessageFooter />
-              <CommentsContainer
-                message={message}
-                currentAvatar={currentAvatar}
-              />
-            </div>
-          )
-          )
-        }
+          this.props.messages.map((message) => {
+            if (message.comments.length === 0) {
+              return (
+                <div key={message._id}>
+                  <PhotoNode
+                    message={message}
+                    commentZoom={this.postComment}
+                    user={message.userId}
+                    photo={message.url}
+                    caption={message.text}
+                    memberAvatar={
+                      (message.userId in this.props.members)
+                        ? this.props.members[message.userId].avatar
+                        : null
+                      }
+                  />
+                  <MessageFooter />
+                </div>
+              );
+            }
+            return (
+              <div key={message._id}>
+                <PhotoNode
+                  message={message}
+                  commentZoom={this.postComment}
+                  user={message.userId}
+                  photo={message.url}
+                  caption={message.text}
+                  memberAvatar={
+                    (message.userId in this.props.members)
+                      ? this.props.members[message.userId].avatar
+                      : null
+                    }
+                />
+                <MessageFooter />
+                <CommentsContainer
+                  message={message}
+                  currentAvatar={currentAvatar}
+                />
+              </div>
+            );
+          })
+          }
       </div>
     );
   }
-}
+  }
 
 App.defaultProps = {
-  messages: [],
+  messages: [{}],
   members: {},
   currentUser: null,
   currentAvatar: null,
