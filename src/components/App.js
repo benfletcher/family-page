@@ -23,15 +23,6 @@ export class App extends Component {
   }
 
   render() {
-    // pass down:
-    const currentAvatar = this.props.currentUser in this.props.members
-      ? this.props.currentAvatar
-      : '';
-
-    const currentNickname = this.props.currentUser in this.props.members
-      ? this.props.currentNickname
-      : '';
-
     return (
       <div className="container">
         <Header />
@@ -52,8 +43,8 @@ export class App extends Component {
         </ul>
 
         <Announcement
-          currentAvatar={currentAvatar}
-          currentNickname={currentNickname}
+          currentAvatar={this.props.currentAvatar}
+          currentNickname={this.props.currentNickname}
         />
 
         {
@@ -82,7 +73,7 @@ export class App extends Component {
                     from={this.props.currentUser}
                     messageId={message._id}
                     to={message.userId}
-                    replyTo={replyToName}
+                    replyToName={replyToName}
                   />
                 </div>
               );
@@ -104,14 +95,16 @@ export class App extends Component {
 
                 <CommentsContainer
                   message={message}
-                  currentAvatar={currentAvatar}
+                  currentAvatar={this.props.currentAvatar}
+                  from={this.props.currentUser}
                 />
+
                 <MessageFooter
                   currentAvatar={this.props.currentAvatar}
                   from={this.props.currentUser}
                   messageId={message._id}
                   to={message.userId}
-                  replyTo={replyToName}
+                  replyToName={replyToName}
                 />
               </div>
             );

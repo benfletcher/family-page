@@ -19,6 +19,10 @@ class CommentsContainer extends Component {
   }
 
   render() {
+    // if the current user is the sender of message then Complex comments
+      // where back and forth comments with input field at the end of that subConvo
+
+    // else simple Comments where one to one and do not need input field
     const eachComment = this.props.message.comments.map(comment => (
       <CommentNode
         comment={comment}

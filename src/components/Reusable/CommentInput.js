@@ -1,23 +1,16 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { postComment } from '../actions/messages';
+import { connect } from 'react-redux'
 
-class MessageFooter extends Component {
+class CommentInput extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
       text: '',
-      showInput: false
     };
 
-    this.onClickShowInput = this.onClickShowInput.bind(this);
     this.textInputChange = this.textInputChange.bind(this);
     this.postComment = this.postComment.bind(this);
-  }
-
-  onClickShowInput() {
-    this.setState({ showInput: true });
   }
 
   textInputChange(event) {
@@ -35,9 +28,6 @@ class MessageFooter extends Component {
 
   render() {
     return (
-      <div>
-        {
-          this.state.showInput ?
             <div className="commentInputParent">
               <div className="commentInputContainer">
                 <img
@@ -48,7 +38,7 @@ class MessageFooter extends Component {
                 <input
                   onChange={this.textInputChange}
                   type="text"
-                  placeholder={`Reply to ${this.props.replyToName}`}
+                  placeholder={`Reply to ${this.props.replyTo}`}
                   className="commentBox"
                 />
                 <p
@@ -57,31 +47,8 @@ class MessageFooter extends Component {
                 >
                 submit
                 </p>
-
               </div>
             </div>
-          : null
-        }
-        <div className="node col-6" style={{ paddingTop: '0px' }}>
-          <div className="photoFooter">
-            <i
-              className="messageIcon fa fa-comment-o"
-              aria-hidden="true"
-              onClick={this.onClickShowInput}
-            />
-          </div>
-        </div>
-      </div>
-    );
-  }
-}
+)}
 
-MessageFooter.propTypes = {
-  messageId: React.PropTypes.string.isRequired,
-  to: React.PropTypes.string.isRequired,
-  currentAvatar: React.PropTypes.string.isRequired,
-  replyToName: React.PropTypes.string.isRequired,
-  dispatch: React.PropTypes.func.isRequired
-};
-
-export default connect()(MessageFooter);
+export default CommentInput;
