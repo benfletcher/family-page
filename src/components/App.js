@@ -96,6 +96,7 @@ export class App extends Component {
                   message={message}
                   currentAvatar={this.props.currentAvatar}
                   currentUser={this.props.currentUser}
+                  members={this.props.members}
                 />
 
                 <MessageFooter
