@@ -74,14 +74,13 @@ class MessageFooter extends Component {
       </div>
     );
   }
-
 }
 
-
-MessageFooter.defaultProps = {
-};
-
 MessageFooter.propTypes = {
+  messageId: React.PropTypes.string.isRequired,
+  to: React.PropTypes.string.isRequired,
+  currentAvatar: React.PropTypes.string.isRequired,
+  replyTo: React.PropTypes.string.isRequired,
   dispatch: React.PropTypes.func.isRequired
 };
 
