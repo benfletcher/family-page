@@ -19,7 +19,9 @@ class Gallery extends Component {
         const c = new Date(a.date);
         const d = new Date(b.date);
         return c - d;
-      })
+      }),
+      filterOn: true,
+      filterId: '58a79e7829e48da02c0bb22d',
     };
 
     this.openZoom = this.openZoom.bind(this);
@@ -75,8 +77,14 @@ class Gallery extends Component {
 
         <div className="galleryContainer">
           {
-            this.state.photos.map((photo, i) => {
+            this.state.photos.filter((photo) => {
+              if (this.state.filterOn && this.state.filterId !== photo.userId) {
+                return false;
+              }
+              return photo;
+            }).map((photo, i) => {
               const date = new Date(photo.date);
+              console.log(photo);
               console.log(date);
               return (
                 <div>
