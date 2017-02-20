@@ -1,6 +1,6 @@
 import React from 'react';
 import CommentNode from './CommentNode';
-import CommentInput from './Reusable/CommentInput';
+import CommentInput from './CommentInput';
 
 const CommentsContainer = (props) => {
     // if the current user is the sender of message then Complex comments

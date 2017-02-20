@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
-import UploadBox from './UploadBox';
 import { postMessage } from '../actions/messages';
+
+import UploadBox from './UploadBox';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
 const CLOUDINARY_UPLOAD_URL = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;

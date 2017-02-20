@@ -1,0 +1,31 @@
+exports[`test Header snapshot is the same 1`] = `
+<div
+  className="galleryZoomed">
+  <div
+    className="flexZoomedContainer">
+    <div
+      className="zoomedPhotoContainer">
+      <i
+        alt="close"
+        aria-hidden="true"
+        className="xIcon fa fa-times"
+        onClick={undefined} />
+      <img
+        alt="large"
+        className="zoomedPhoto"
+        src={undefined} />
+    </div>
+  </div>
+  <div
+    className="zoomedNav">
+    <i
+      aria-hidden="true"
+      className="fa fa-3x white fa-arrow-left"
+      onClick={undefined} />
+    <i
+      aria-hidden="true"
+      className="fa fa-3x white fa-arrow-right"
+      onClick={undefined} />
+  </div>
+</div>
+`;
