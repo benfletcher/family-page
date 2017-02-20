@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import CommentInput from './Reusable/CommentInput';
+import CommentInput from './CommentInput';
 
 class MessageFooter extends Component {
   constructor(props) {

@@ -1,8 +1,8 @@
 exports[`test Header snapshot is the same 1`] = `
-<div
-  onClick={undefined}>
+<div>
   <img
-    alt="photo thumbnail"
+    alt="thumbnail"
+    onClick={[Function]}
     src={undefined} />
 </div>
 `;

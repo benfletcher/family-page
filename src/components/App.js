@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import { fetchMessages } from '../actions/messages';
+import { fetchMembers } from '../actions/members';
+
 import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
-import { fetchMessages } from '../actions/messages';
-import { fetchMembers } from '../actions/members';
 import Announcement from './Announcement';
 import MessageFooter from './MessageFooter';
 

@@ -6,15 +6,24 @@ exports[`test Header snapshot is the same 1`] = `
     <a
       onClick={[Function]}
       style={Object {}}>
+      Home
+    </a>
+    <span />
+    <a
+      onClick={[Function]}
+      style={Object {}}>
       Gallery
+    </a>
+    <a
+      href="http://localhost:8080/auth/logout">
+      Logout
     </a>
     <a
       onClick={[Function]}
       style={Object {}}>
-      <img
-        alt="upload"
-        className="uploadButton"
-        src="upload.png" />
+      <i
+        aria-hidden="true"
+        className="fa fa-cloud-upload fa-2x uploadButton" />
     </a>
   </p>
 </div>
