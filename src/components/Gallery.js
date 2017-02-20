@@ -15,7 +15,11 @@ class Gallery extends Component {
     this.state = {
       photos: this.props.messages.filter(message =>
         message.contentType === 'photo'
-      )
+      ).sort((a, b) => {
+        const c = new Date(a.date);
+        const d = new Date(b.date);
+        return c - d;
+      })
     };
 
     this.openZoom = this.openZoom.bind(this);
@@ -71,15 +75,21 @@ class Gallery extends Component {
 
         <div className="galleryContainer">
           {
-            this.state.photos.map((photo, i) => (
-              <GalleryThumbnail
-                key={photo._id}
-                photoIndex={i}
-                photoUrl={photo.url}
-                user={photo.userId}
-                onClick={this.openZoom}
-              />
-                )
+            this.state.photos.map((photo, i) => {
+              const date = new Date(photo.date);
+              console.log(date);
+              return (
+                <div>
+                  <GalleryThumbnail
+                    key={photo._id}
+                    photoIndex={i}
+                    photoUrl={photo.url}
+                    user={photo.userId}
+                    onClick={this.openZoom}
+                  />
+                </div>
+              );
+            }
             )
           }
         </div>
