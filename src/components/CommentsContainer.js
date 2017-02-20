@@ -5,14 +5,11 @@ import CommentInput from './CommentInput';
 const CommentsContainer = (props) => {
     // if the current user is the sender of message then Complex comments
       // where back and forth comments with input field at the end of that subConvo
-    // if (this.props.currentUser === this.props.message.userId) {
-    //
-    // }
-    // else simple Comments where one to one and do not need input field
 
     // sentTo = [Lauryn, Matt, Dad, Mom, Tara, UncleJoe, AuntCathy]
     // map over each person in sentTo
     // comments array filter(personName)
+    // each comment = filtered array
   if (props.message.userId === props.currentUser) {
     let sentTo = [];
     props.message.comments.map((comment) => {
@@ -21,10 +18,24 @@ const CommentsContainer = (props) => {
       }
     });
     sentTo = sentTo.filter((elem, i, array) => array.indexOf(elem) === i);
-    console.log(sentTo);
+    // console.log(sentTo);
+
+    const segment = {};
+    sentTo.map((sender) => {
+      // console.log('sender ', sender);
+      segment[sender] = props.message.comments.filter((comment) => {
+        if (comment.to === sender || comment.from === sender) {
+          return true;
+        }
+      });
+    });
+    // console.log('segment ', segment);
+    // now have an object with key of userId and array of comments by that user as value
+    // this object has all the comments of the message
+    const eachSegment = Object.values(segment);
+    console.log(eachSegment);
+    // gives you an array of arrays
   }
-    // props.comments.filter(comment =>
-    //   comments.from === 'photo'
 
   const eachComment = props.message.comments.map(comment => (
     <CommentNode
