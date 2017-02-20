@@ -212,11 +212,6 @@ input.commentBox {
   background-color: #f5f8f2;
 }
 
-/*took this styling of comments container out when moved messageFooter beneath comments*/
-/*.container {
-	padding-bottom: 100px;
-}*/
-
 .navButton {
 	color: white;
 	height: 46px;
@@ -331,12 +326,12 @@ img.imageDropPreview {
   display: none;
 }
 
-.formButton {
-	height: 23px;
-	margin-top: 15px;
-	border-radius: 14px;
-	color: white;
+.filterParent {
+  display: flex;
+  justify-content: center;
+  padding-top: 77px;
 }
+
 .uploadParent {
 	display: flex;
 	justify-content: center;

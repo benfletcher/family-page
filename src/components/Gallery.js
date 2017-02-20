@@ -60,10 +60,31 @@ class Gallery extends Component {
     this.props.dispatch(showZoomed(this.state.photos[newIndex].url, newIndex));
   }
 
+  filterPhotos(id) {
+    alert(id);
+    this.setState({ filterId: id });
+  }
+
   render() {
     return (
       <div>
         <Header />
+        <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
+          {
+              Object.keys(this.props.members).map(member => (
+                <li
+                  key={this.props.members[member]._id}
+                  onClick={this.filterPhotos.bind(this, this.props.members[member]._id)}
+                >
+                  <img
+                    src={this.props.members[member].avatar}
+                    alt="avatar"
+                    style={{ maxWidth: '50px', borderRadius: '50%' }}
+                  />
+                </li>
+              ))
+            }
+        </ul>
         {
           this.props.zoomed ?
             <GalleryZoomed
@@ -78,6 +99,7 @@ class Gallery extends Component {
         <div className="galleryContainer">
           {
             this.state.photos.filter((photo) => {
+              console.log(photo);
               if (this.state.filterOn && this.state.filterId !== photo.userId) {
                 return false;
               }
@@ -87,15 +109,13 @@ class Gallery extends Component {
               console.log(photo);
               console.log(date);
               return (
-                <div>
-                  <GalleryThumbnail
-                    key={photo._id}
-                    photoIndex={i}
-                    photoUrl={photo.url}
-                    user={photo.userId}
-                    onClick={this.openZoom}
-                  />
-                </div>
+                <GalleryThumbnail
+                  key={photo._id}
+                  photoIndex={i}
+                  photoUrl={photo.url}
+                  user={photo.userId}
+                  onClick={this.openZoom}
+                />
               );
             }
             )
