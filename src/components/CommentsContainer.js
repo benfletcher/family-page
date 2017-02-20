@@ -9,6 +9,23 @@ const CommentsContainer = (props) => {
     //
     // }
     // else simple Comments where one to one and do not need input field
+
+    // sentTo = [Lauryn, Matt, Dad, Mom, Tara, UncleJoe, AuntCathy]
+    // map over each person in sentTo
+    // comments array filter(personName)
+  if (props.message.userId === props.currentUser) {
+    let sentTo = [];
+    props.message.comments.map((comment) => {
+      if (comment.from !== props.currentUser) {
+        sentTo.push(comment.from);
+      }
+    });
+    sentTo = sentTo.filter((elem, i, array) => array.indexOf(elem) === i);
+    console.log(sentTo);
+  }
+    // props.comments.filter(comment =>
+    //   comments.from === 'photo'
+
   const eachComment = props.message.comments.map(comment => (
     <CommentNode
       comment={comment}
