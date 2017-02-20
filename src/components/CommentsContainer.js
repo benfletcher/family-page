@@ -3,13 +3,6 @@ import CommentNode from './CommentNode';
 import CommentInput from './CommentInput';
 
 const CommentsContainer = (props) => {
-    // if the current user is the sender of message then Complex comments
-      // where back and forth comments with input field at the end of that subConvo
-
-    // sentTo = [Lauryn, Matt, Dad, Mom, Tara, UncleJoe, AuntCathy]
-    // map over each person in sentTo
-    // comments array filter(personName)
-    // each comment = filtered array
   if (props.message.userId === props.currentUser) {
     let sentTo = [];
     props.message.comments.map((comment) => {
@@ -18,23 +11,72 @@ const CommentsContainer = (props) => {
       }
     });
     sentTo = sentTo.filter((elem, i, array) => array.indexOf(elem) === i);
-    // console.log(sentTo);
 
     const segment = {};
     sentTo.map((sender) => {
-      // console.log('sender ', sender);
       segment[sender] = props.message.comments.filter((comment) => {
         if (comment.to === sender || comment.from === sender) {
           return true;
         }
       });
     });
-    // console.log('segment ', segment);
-    // now have an object with key of userId and array of comments by that user as value
+    console.log('segment ', segment);
+    // now have an object with key of sender's userId and array of comments with that user as value
     // this object has all the comments of the message
-    const eachSegment = Object.values(segment);
-    console.log(eachSegment);
-    // gives you an array of arrays
+
+    // const eachSegment = '';
+    // const eachComment = ((segment) => {
+    //   console.log('segment inside eachComment', segment);
+    //   for (const key in segment) {
+    //     console.log('segment key/value inside eachComment for loop', key, segment[key]);
+    //     if (segment.hasOwnProperty(key)) {
+    //       const commentSegment = segment[key];
+    //       if (commentSegment.length > 0) {
+    //         const eachSegment = commentSegment.map((comment) => {
+    //           console.log('comment inside eachComment', comment);
+    //           return (
+    //             <CommentNode
+    //               comment={comment}
+    //               messageId={props.message._id}
+    //               from={
+    //             comment.from in props.members
+    //               ? props.members[comment.from].nickname
+    //               : '...loading...'
+    //           }
+    //               fromAvatar={
+    //             (comment.from in props.members)
+    //               ? props.members[comment.from].avatar
+    //               : null
+    //           }
+    //               key={comment._id}
+    //             />
+    //           );
+    //         });
+    //         const replyToName = key in props.members
+    //         ? props.members[props.message.userId].nickname
+    //         : '...loading...';
+    //
+    //         return (
+    //           <div>
+    //             {eachSegment}
+    //             <CommentInput
+    //               currentAvatar={props.currentAvatar}
+    //               messageId={props.message._id}
+    //               to={key}
+    //               replyToName={replyToName}
+    //             />
+    //           </div>
+    //         );
+    //       }
+    //     }
+    //   }
+    // });
+    //
+    // return (
+    //   <div className="container">
+    //     {eachComment}
+    //   </div>
+    // );
   }
 
   const eachComment = props.message.comments.map(comment => (
