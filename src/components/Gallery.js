@@ -88,7 +88,7 @@ class Gallery extends Component {
       const date = new Date(photo.date);
       if (previousMonth !== `${date.getMonth()}-${date.getYear() + 1900}`) {
         previousMonth = `${date.getMonth()}-${date.getYear() + 1900}`;
-        photos123.push(<div className="separator">{previousMonth}</div>);
+        photos123.push(<div className="gallerySeparator">{previousMonth}</div>);
       }
       photos123.push(
         // sometimes get a div here, but not wrap it all in a div
