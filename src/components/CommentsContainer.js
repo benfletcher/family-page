@@ -24,59 +24,53 @@ const CommentsContainer = (props) => {
     // now have an object with key of sender's userId and array of comments with that user as value
     // this object has all the comments of the message
 
-    // const eachSegment = '';
-    // const eachComment = ((segment) => {
-    //   console.log('segment inside eachComment', segment);
-    //   for (const key in segment) {
-    //     console.log('segment key/value inside eachComment for loop', key, segment[key]);
-    //     if (segment.hasOwnProperty(key)) {
-    //       const commentSegment = segment[key];
-    //       if (commentSegment.length > 0) {
-    //         const eachSegment = commentSegment.map((comment) => {
-    //           console.log('comment inside eachComment', comment);
-    //           return (
-    //             <CommentNode
-    //               comment={comment}
-    //               messageId={props.message._id}
-    //               from={
-    //             comment.from in props.members
-    //               ? props.members[comment.from].nickname
-    //               : '...loading...'
-    //           }
-    //               fromAvatar={
-    //             (comment.from in props.members)
-    //               ? props.members[comment.from].avatar
-    //               : null
-    //           }
-    //               key={comment._id}
-    //             />
-    //           );
-    //         });
-    //         const replyToName = key in props.members
-    //         ? props.members[props.message.userId].nickname
-    //         : '...loading...';
-    //
-    //         return (
-    //           <div>
-    //             {eachSegment}
-    //             <CommentInput
-    //               currentAvatar={props.currentAvatar}
-    //               messageId={props.message._id}
-    //               to={key}
-    //               replyToName={replyToName}
-    //             />
-    //           </div>
-    //         );
-    //       }
-    //     }
-    //   }
-    // });
-    //
-    // return (
-    //   <div className="container">
-    //     {eachComment}
-    //   </div>
-    // );
+    const eachComment = ((segment) => {
+      // console.log('segment inside eachComment', segment);
+      for (const key in segment) {
+        // console.log('segment key/value inside eachComment for loop', key, segment[key]);
+        if (segment.hasOwnProperty(key)) {
+          const commentSegment = segment[key];
+          if (commentSegment.length > 0) {
+            const eachSegment = commentSegment.map(comment =>
+              // console.log('comment inside eachComment', comment);
+               (
+                 <CommentNode
+                   comment={comment}
+                   messageId={props.message._id}
+                   from={
+                comment.from in props.members
+                  ? props.members[comment.from].nickname
+                  : '...loading...'
+              }
+                   fromAvatar={
+                (comment.from in props.members)
+                  ? props.members[comment.from].avatar
+                  : null
+              }
+                   key={comment._id}
+                 />
+              ));
+            const replyToName = key in props.members
+            ? props.members[props.message.userId].nickname
+            : '...loading...';
+
+            console.log('this is eachSegment after map', eachSegment);
+            return (
+              <div className="container">
+                {eachSegment}
+                <CommentInput
+                  currentAvatar={props.currentAvatar}
+                  messageId={props.message._id}
+                  to={key}
+                  replyToName={replyToName}
+                />
+              </div>
+            );
+          }
+        }
+      }
+    });
+    eachComment(segment);
   }
 
   const eachComment = props.message.comments.map(comment => (
@@ -101,6 +95,7 @@ const CommentsContainer = (props) => {
       ? props.members[props.message.userId].nickname
       : '...loading...';
 
+  console.log('this is eachComment for simple comment', eachComment);
   return (
     <div className="container">
       {eachComment}
