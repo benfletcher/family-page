@@ -369,7 +369,14 @@ img.imageDropPreview {
 	padding-top: 80px;
 }
 
-.galleryContainer div {
+.gallerySeperator {
+  width: 100%;
+  height: 2px;
+  border: 1px solid;
+  padding: 16px;
+}
+
+.galleryThumbnail {
 	width: 150px;
 	height: 103px;
 	background-color: #F5F8F2;

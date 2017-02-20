@@ -24,6 +24,7 @@ class Gallery extends Component {
       filterId: '58a79e7829e48da02c0bb22d',
     };
 
+    this.renderPhotos = this.renderPhotos.bind(this);
     this.openZoom = this.openZoom.bind(this);
     this.closeZoom = this.closeZoom.bind(this);
     this.closeZoom = this.closeZoom.bind(this);
@@ -62,10 +63,45 @@ class Gallery extends Component {
 
   filterPhotos(id) {
     this.setState({ filterId: id });
-    if (!this.state.filterOn) return this.setState({ filterOn: true });
-    if (id === this.state.filterId) {
-      this.setState({ filterOn: false });
+    if (!this.state.filterOn) {
+      return this.setState({ filterOn: true });
     }
+    if (id === this.state.filterId) {
+      return this.setState({ filterOn: false });
+    }
+  }
+
+  renderPhotos(photos) {
+    let filteredPhotos = photos;
+    if (this.state.filterOn) {
+      filteredPhotos = filteredPhotos.filter((photo) => {
+        if (this.state.filterId !== photo.userId) {
+          return false;
+        }
+        return photo;
+      }); //
+    }
+
+    let previousMonth = '';
+    const photos123 = [];
+    filteredPhotos.forEach((photo, i) => {
+      const date = new Date(photo.date);
+      if (previousMonth !== `${date.getMonth()}-${date.getYear() + 1900}`) {
+        previousMonth = `${date.getMonth()}-${date.getYear() + 1900}`;
+        photos123.push(<div className="separator">{previousMonth}</div>);
+      }
+      photos123.push(
+        // sometimes get a div here, but not wrap it all in a div
+        <GalleryThumbnail
+          key={photo._id}
+          photoIndex={i}
+          photoUrl={photo.url}
+          user={photo.userId}
+          onClick={this.openZoom}
+        />
+      );
+    });
+    return photos123;
   }
 
   render() {
@@ -77,7 +113,9 @@ class Gallery extends Component {
               Object.keys(this.props.members).map(member => (
                 <li
                   key={this.props.members[member]._id}
-                  onClick={this.filterPhotos.bind(this, this.props.members[member]._id)}
+                  onClick={this.filterPhotos.bind(
+                    this, this.props.members[member]._id
+                  )}
                 >
                   <img
                     src={this.props.members[member].avatar}
@@ -100,28 +138,7 @@ class Gallery extends Component {
         }
 
         <div className="galleryContainer">
-          {
-            this.state.photos.filter((photo) => {
-              if (this.state.filterOn && this.state.filterId !== photo.userId) {
-                return false;
-              }
-              return photo;
-            }).map((photo, i) => {
-              const date = new Date(photo.date);
-              console.log(photo);
-              console.log(date);
-              return (
-                <GalleryThumbnail
-                  key={photo._id}
-                  photoIndex={i}
-                  photoUrl={photo.url}
-                  user={photo.userId}
-                  onClick={this.openZoom}
-                />
-              );
-            }
-            )
-          }
+          {this.renderPhotos(this.state.photos)}
         </div>
       </div>
     );
