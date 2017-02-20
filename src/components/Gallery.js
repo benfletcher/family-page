@@ -20,7 +20,7 @@ class Gallery extends Component {
         const d = new Date(b.date);
         return c - d;
       }),
-      filterOn: true,
+      filterOn: false,
       filterId: '58a79e7829e48da02c0bb22d',
     };
 
@@ -61,8 +61,11 @@ class Gallery extends Component {
   }
 
   filterPhotos(id) {
-    alert(id);
     this.setState({ filterId: id });
+    if (!this.state.filterOn) return this.setState({ filterOn: true });
+    if (id === this.state.filterId) {
+      this.setState({ filterOn: false });
+    }
   }
 
   render() {
@@ -99,7 +102,6 @@ class Gallery extends Component {
         <div className="galleryContainer">
           {
             this.state.photos.filter((photo) => {
-              console.log(photo);
               if (this.state.filterOn && this.state.filterId !== photo.userId) {
                 return false;
               }
@@ -132,6 +134,7 @@ Gallery.defaultProps = {
 };
 
 Gallery.propTypes = {
+  members: React.PropTypes.objectOf(React.PropTypes.object),
   dispatch: React.PropTypes.func.isRequired,
   messages: React.PropTypes.arrayOf(React.PropTypes.object),
   zoomed: React.PropTypes.bool.isRequired,
