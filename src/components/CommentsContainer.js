@@ -1,19 +1,21 @@
 import React from 'react';
 import CommentNode from './CommentNode';
-import CommentInput from './CommentInput';
+import CommentsThread from './CommentsThread';
+
 
 const CommentsContainer = (props) => {
+  // create an object with a key of userId and value of an array of comments
+    // where that userId is involved as either a to or from.
   const commentBuckets = {};
-
   props.message.comments.forEach((comment) => {
-    // console.log(props.currentUser);
     if (comment.from === props.currentUser) {
       if (!commentBuckets[comment.to]) { commentBuckets[comment.to] = []; }
       commentBuckets[comment.to].push(
-        <div>
+        <div key={comment._id}>
           <CommentNode
             comment={comment}
             messageId={props.message._id}
+            currentUser={props.currentUser}
             from={
           comment.from in props.members
            ? props.members[comment.from].nickname
@@ -29,50 +31,36 @@ const CommentsContainer = (props) => {
         </div>);
     } else {
       if (!commentBuckets[comment.from]) { commentBuckets[comment.from] = []; }
-      commentBuckets[comment.from].push(<div>
-        <CommentNode
-          comment={comment}
-          messageId={props.message._id}
-          from={
-     comment.from in props.members
-       ? props.members[comment.from].nickname
-       : '...loading...'
-   }
-          fromAvatar={
-     (comment.from in props.members)
-       ? props.members[comment.from].avatar
-       : null
-   }
-          key={comment._id}
-        />
-      </div>);
+      commentBuckets[comment.from].push(
+        <div key={comment._id}>
+          <CommentNode
+            comment={comment}
+            messageId={props.message._id}
+            currentUser={props.currentUser}
+            from={
+         comment.from in props.members
+           ? props.members[comment.from].nickname
+           : '...loading...'
+         }
+            fromAvatar={
+         (comment.from in props.members)
+           ? props.members[comment.from].avatar
+           : null
+         }
+            key={comment._id}
+          />
+        </div>);
     }
   });
 
-  const CommentsThread = (p) => {
-    const replyToName = p.to in p.members
-    ? p.members[p.to].nickname
-    : '...loading...';
-
-    console.log('this is props.children inside commentsThread', p.children);
-    return (
-      <div>
-        {p.children}
-        <CommentInput
-          currentAvatar={p.currentAvatar}
-          messageId={p.messageId}
-          to={p.to}
-          replyToName={replyToName}
-        />
-      </div>
-    );
-  };
-
-  const xyz = [];
+  // create an array of jsx objects so that we can render each comment
+    // thread with an input field to reply to that user at the bottom of each thread
+  const commentsThread = [];
   for (const key in commentBuckets) {
     if (commentBuckets.hasOwnProperty(key)) {
-      xyz.push(
+      commentsThread.push(
         <CommentsThread
+          key={key}
           to={key}
           currentAvatar={props.currentAvatar}
           messageId={props.message._id}
@@ -85,11 +73,9 @@ const CommentsContainer = (props) => {
     }
   }
 
-  console.log('final buckets', commentBuckets);
-
   return (
     <div className="container">
-      {xyz}
+      {commentsThread}
     </div>
   );
 };
@@ -103,7 +89,7 @@ CommentsContainer.defaultProps = {
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
   message: React.PropTypes.object.isRequired, // eslint-disable-line
-  currentUser: React.PropTypes.string.isRequired,
+  currentUser: React.PropTypes.string.isRequired, // eslint-disable-line
   currentAvatar: React.PropTypes.string,
 };
 
