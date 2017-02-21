@@ -96,3 +96,21 @@ export const postComment = commentObject => (dispatch) => {
   .then(() => dispatch(fetchMessages()))
   .catch(console.error);
 };
+
+// delete a message
+export const deleteMessage = messageId => dispatch => fetch(`http://localhost:8080/messages/${messageId}`, {
+  headers: {
+    Authorization: `bearer ${cookie.load('accessToken')}`
+  },
+  method: 'DELETE'
+})
+  .then(() => dispatch(fetchMessages()));
+
+// delete a comment
+export const deleteComment = (messageId, commentId) => dispatch => fetch(`http://localhost:8080/comments/${messageId}/${commentId}`, {
+  headers: {
+    Authorization: `bearer ${cookie.load('accessToken')}`
+  },
+  method: 'DELETE'
+})
+  .then(() => dispatch(fetchMessages()));
