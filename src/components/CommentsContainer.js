@@ -67,19 +67,22 @@ const CommentsContainer = (props) => {
       </div>
     );
   };
-  const xyz = [];
 
+  const xyz = [];
   for (const key in commentBuckets) {
-    xyz.push(<CommentsThread
-      to={key}
-      currentAvatar={props.currentAvatar}
-      messageId={props.message._id}
-      messageUserId={props.message.userId}
-      members={props.members}
-    >
-      {commentBuckets[key]}
-    </CommentsThread>
-  );
+    if (commentBuckets.hasOwnProperty(key)) {
+      xyz.push(
+        <CommentsThread
+          to={key}
+          currentAvatar={props.currentAvatar}
+          messageId={props.message._id}
+          messageUserId={props.message.userId}
+          members={props.members}
+        >
+          {commentBuckets[key]}
+        </CommentsThread>
+      );
+    }
   }
 
   console.log('final buckets', commentBuckets);
