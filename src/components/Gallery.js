@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
-import { showZoomed, hideZoomed } from '../actions';
+import { showZoomed, hideZoomed } from '../actions/gallery';
 
 import GalleryThumbnail from './GalleryThumbnail';
 import GalleryZoomed from './GalleryZoomed';
 import Header from './Header';
-import UserPhotoIcons from './UserPhotoIcons';
+// import UserPhotoIcons from './UserPhotoIcons';
 
 class Gallery extends Component {
   constructor(props) {
