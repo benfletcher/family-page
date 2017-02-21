@@ -503,6 +503,19 @@ img.memberIconClickable:hover {
   flex-direction: row-reverse;
 }
 
+.deleteIcon {
+  font-size: 30px;
+  padding: 5px;
+  width: 100%;
+  height: 300px;
+
+}
+
+.deleteIcon:hover {
+  color: white;
+
+}
+
 @media only screen and (min-width: 1000px) {
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
