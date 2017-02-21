@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
+import { fetchCurrentUser } from '../actions/current-user';
 
 import MessageNode from './MessageNode';
 import Header from './Header';
@@ -23,6 +24,7 @@ export class App extends Component {
   componentDidMount() {
     this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
+    this.props.dispatch(fetchCurrentUser());
   }
 
   render() {
