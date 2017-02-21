@@ -9,6 +9,7 @@ import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import Announcement from './Announcement';
 import MessageFooter from './MessageFooter';
+import UserPhotoIcons from './UserPhotoIcons';
 
 export class App extends Component {
 
@@ -28,22 +29,7 @@ export class App extends Component {
     return (
       <div className="container">
         <Header />
-        <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
-          {
-            Object.keys(this.props.members).map(member => (
-              <li
-                key={this.props.members[member]._id}
-              >
-                <img
-                  src={this.props.members[member].avatar}
-                  alt="avatar"
-                  style={{ maxWidth: '50px', borderRadius: '50%' }}
-                />
-              </li>
-            ))
-          }
-        </ul>
-
+        <UserPhotoIcons members={this.props.members} />
         <Announcement
           currentAvatar={this.props.currentAvatar}
           currentNickname={this.props.currentNickname}
