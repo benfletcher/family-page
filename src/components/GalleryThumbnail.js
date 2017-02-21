@@ -6,7 +6,7 @@ const GalleryThumbnail = (props) => {
   };
 
   return (
-    <div>
+    <div className="galleryThumbnail">
       <img
         alt="thumbnail"
         src={props.photoUrl}

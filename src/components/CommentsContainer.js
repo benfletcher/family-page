@@ -1,48 +1,85 @@
 import React from 'react';
 import CommentNode from './CommentNode';
-import CommentInput from './CommentInput';
+import CommentsThread from './CommentsThread';
+
 
 const CommentsContainer = (props) => {
-    // if the current user is the sender of message then Complex comments
-      // where back and forth comments with input field at the end of that subConvo
-    // if (this.props.currentUser === this.props.message.userId) {
-    //
-    // }
-    // else simple Comments where one to one and do not need input field
-  const eachComment = props.message.comments.map(comment => (
-    <CommentNode
-      comment={comment}
-      messageId={props.message._id}
-      from={
-            comment.from in props.members
-              ? props.members[comment.from].nickname
-              : '...loading...'
+  // create an object with a key of userId and value of an array of comments
+    // where that userId is involved as either a to or from.
+  const commentBuckets = {};
+  props.message.comments.forEach((comment) => {
+    if (comment.from === props.currentUser) {
+      if (!commentBuckets[comment.to]) { commentBuckets[comment.to] = []; }
+      commentBuckets[comment.to].push(
+        <div key={comment._id}>
+          <CommentNode
+            comment={comment}
+            messageId={props.message._id}
+            currentUser={props.currentUser}
+            from={
+          comment.from in props.members
+           ? props.members[comment.from].nickname
+           : '...loading...'
           }
-      fromAvatar={
-            (comment.from in props.members)
-              ? props.members[comment.from].avatar
-              : null
+            fromAvatar={
+          (comment.from in props.members)
+           ? props.members[comment.from].avatar
+           : null
           }
-      key={comment._id}
-    />
-    ));
+            key={comment._id}
+          />
+        </div>);
+    } else {
+      if (!commentBuckets[comment.from]) { commentBuckets[comment.from] = []; }
+      commentBuckets[comment.from].push(
+        <div key={comment._id}>
+          <CommentNode
+            comment={comment}
+            messageId={props.message._id}
+            currentUser={props.currentUser}
+            from={
+         comment.from in props.members
+           ? props.members[comment.from].nickname
+           : '...loading...'
+         }
+            fromAvatar={
+         (comment.from in props.members)
+           ? props.members[comment.from].avatar
+           : null
+         }
+            key={comment._id}
+          />
+        </div>);
+    }
+  });
 
-  const replyToName = props.message.userId in props.members
-      ? props.members[props.message.userId].nickname
-      : '...loading...';
+  // create an array of jsx objects so that we can render each comment
+    // thread with an input field to reply to that user at the bottom of each thread
+  const commentsThread = [];
+  for (const key in commentBuckets) {
+    if (commentBuckets.hasOwnProperty(key)) {
+      commentsThread.push(
+        <CommentsThread
+          key={key}
+          to={key}
+          currentAvatar={props.currentAvatar}
+          messageId={props.message._id}
+          messageUserId={props.message.userId}
+          members={props.members}
+        >
+          {commentBuckets[key]}
+        </CommentsThread>
+      );
+    }
+  }
 
   return (
     <div className="container">
-      {eachComment}
-      <CommentInput
-        currentAvatar={props.currentAvatar}
-        messageId={props.message._id}
-        to={props.message.userId}
-        replyToName={replyToName}
-      />
+      {commentsThread}
     </div>
   );
 };
+
 
 CommentsContainer.defaultProps = {
   members: {},
@@ -52,7 +89,7 @@ CommentsContainer.defaultProps = {
 CommentsContainer.propTypes = {
   members: React.PropTypes.objectOf(React.PropTypes.object),
   message: React.PropTypes.object.isRequired, // eslint-disable-line
-  currentUser: React.PropTypes.string.isRequired,
+  currentUser: React.PropTypes.string.isRequired, // eslint-disable-line
   currentAvatar: React.PropTypes.string,
 };
 

@@ -18,6 +18,14 @@ i {
   cursor: pointer;
 }
 
+hr {
+  background: white;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 2px;
+  border: white;
+}
+
 a:hover, a:focus {
   color: #EE930E;
 }
@@ -212,11 +220,6 @@ input.commentBox {
   background-color: #f5f8f2;
 }
 
-/*took this styling of comments container out when moved messageFooter beneath comments*/
-/*.container {
-	padding-bottom: 100px;
-}*/
-
 .navButton {
 	color: white;
 	height: 46px;
@@ -293,9 +296,6 @@ input.commentBox {
 	margin: -6px;
 }
 
-.uploadButton:hover {
-  filter: brightness(100%);}
-
 .fileUpload {
   display: flex;
   justify-content: center;
@@ -331,12 +331,12 @@ img.imageDropPreview {
   display: none;
 }
 
-.formButton {
-	height: 23px;
-	margin-top: 15px;
-	border-radius: 14px;
-	color: white;
+.filterParent {
+  display: flex;
+  justify-content: center;
+  padding-top: 77px;
 }
+
 .uploadParent {
 	display: flex;
 	justify-content: center;
@@ -352,6 +352,14 @@ img.imageDropPreview {
 .uploadForm {
 	width: 50%;
 	text-align: center;
+}
+
+img.memberIconClickable {
+  border: 2px solid white;
+}
+
+img.memberIconClickable:hover {
+  border: 2px solid #EE930E;;
 }
 
 .galleryZoomed {
@@ -374,11 +382,28 @@ img.imageDropPreview {
 	padding-top: 80px;
 }
 
-.galleryContainer div {
+.gallerySeparator {
+  width: 100%;
+  height: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 47px;
+}
+
+.gallerySeparator p {
+  color: white;
+  font-size: 20px;
+}
+
+.galleryThumbnail {
 	width: 150px;
 	height: 103px;
 	background-color: #F5F8F2;
 	margin: 2px;
+}
+
+.galleryThumbnail:hover {
+  box-shadow: 7px 10px 0px #323333;
 }
 
 .galleryContainer img {
@@ -457,7 +482,7 @@ img.imageDropPreview {
     .galleryContainer {
     	padding-left: 20%;
     	padding-right: 20%;
-    	padding-top: 55px;
+    	padding-top: 82px;
     }
 
 		ul.userPhotoIcon {
@@ -474,6 +499,7 @@ img.imageDropPreview {
 
 		ul.userPhotoIcon img {
 			padding: 1px;
+      margin: 3px;
 		}
 
     .flexZoomedContainer {
