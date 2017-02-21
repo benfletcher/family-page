@@ -2,18 +2,22 @@ import React from 'react';
 
 const CommentNode = (props) => {
   let commentPosition = '';
+  let replyTextPosition = '';
+
 
   if (props.comment.from === props.currentUser) {
     commentPosition = 'commentRight';
+    replyTextPosition = 'commentTextContainer';
   } else {
     commentPosition = 'commentLeft';
+    replyTextPosition = 'replyCommentTextContainer';
   }
   return (
     <div className="commentParent">
       <div className="commentContainer">
-        <div className="commentTextContainer">
-          <p className="commentText">
-            {props.from}: {props.comment.text}
+        <div className={`${replyTextPosition}`}>
+          <p>
+            <span className="bold">{props.from}</span>: {props.comment.text}
           </p>
         </div>
         <img
