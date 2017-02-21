@@ -18,6 +18,14 @@ i {
   cursor: pointer;
 }
 
+hr {
+  background: white;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 2px;
+  border: white;
+}
+
 a:hover, a:focus {
   color: #EE930E;
 }
@@ -288,9 +296,6 @@ input.commentBox {
 	margin: -6px;
 }
 
-.uploadButton:hover {
-  filter: brightness(100%);}
-
 .fileUpload {
   display: flex;
   justify-content: center;
@@ -372,8 +377,9 @@ img.imageDropPreview {
 .gallerySeparator {
   width: 100%;
   height: 2px;
-  border: 1px solid;
-  padding: 16px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 47px;
 }
 
 .galleryThumbnail {
@@ -381,6 +387,10 @@ img.imageDropPreview {
 	height: 103px;
 	background-color: #F5F8F2;
 	margin: 2px;
+}
+
+.galleryThumbnail:hover {
+  box-shadow: 7px 10px 0px #323333;
 }
 
 .galleryContainer img {
@@ -459,7 +469,7 @@ img.imageDropPreview {
     .galleryContainer {
     	padding-left: 20%;
     	padding-right: 20%;
-    	padding-top: 55px;
+    	padding-top: 82px;
     }
 
 		ul.userPhotoIcon {

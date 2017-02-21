@@ -91,7 +91,7 @@ class Gallery extends Component {
       const date = new Date(photo.date);
       if (previousMonth !== `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`) {
         previousMonth = `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`;
-        separatedPhotos.push(<div className="gallerySeparator">{previousMonth}</div>);
+        separatedPhotos.push(<div className="gallerySeparator">{previousMonth}<hr /></div>);
       } separatedPhotos.push(
         <GalleryThumbnail
           key={photo._id}
