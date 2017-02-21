@@ -7,6 +7,7 @@ import { showZoomed, hideZoomed } from '../actions';
 import GalleryThumbnail from './GalleryThumbnail';
 import GalleryZoomed from './GalleryZoomed';
 import Header from './Header';
+import UserPhotoIcons from './UserPhotoIcons';
 
 class Gallery extends Component {
   constructor(props) {
@@ -83,15 +84,26 @@ class Gallery extends Component {
     }
 
     let previousMonth = '';
-    const monthNames = ['January', 'February', 'March', 'April', 'May', 'June',
+    const monthNames = [
+      'January', 'February', 'March', 'April', 'May', 'June',
       'July', 'August', 'September', 'October', 'November', 'December'
     ];
     const separatedPhotos = [];
     filteredPhotos.forEach((photo, i) => {
       const date = new Date(photo.date);
-      if (previousMonth !== `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`) {
-        previousMonth = `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`;
-        separatedPhotos.push(<div className="gallerySeparator">{previousMonth}<hr /></div>);
+      if (previousMonth !==
+        `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`) {
+        previousMonth =
+        `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`;
+        separatedPhotos.push(
+          <div
+            className="gallerySeparator"
+          >
+            <p>
+              {previousMonth}
+            </p>
+            <hr />
+          </div>);
       } separatedPhotos.push(
         <GalleryThumbnail
           key={photo._id}
@@ -119,6 +131,7 @@ class Gallery extends Component {
                   )}
                 >
                   <img
+                    className="memberIconClickable"
                     src={this.props.members[member].avatar}
                     alt="avatar"
                     style={{ maxWidth: '50px', borderRadius: '50%' }}

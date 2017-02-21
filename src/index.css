@@ -354,6 +354,14 @@ img.imageDropPreview {
 	text-align: center;
 }
 
+img.memberIconClickable {
+  border: 2px solid white;
+}
+
+img.memberIconClickable:hover {
+  border: 2px solid #EE930E;;
+}
+
 .galleryZoomed {
   display: flex;
   flex-direction: column;
@@ -380,6 +388,11 @@ img.imageDropPreview {
   padding-left: 5px;
   padding-right: 5px;
   padding-bottom: 47px;
+}
+
+.gallerySeparator p {
+  color: white;
+  font-size: 20px;
 }
 
 .galleryThumbnail {
@@ -486,6 +499,7 @@ img.imageDropPreview {
 
 		ul.userPhotoIcon img {
 			padding: 1px;
+      margin: 3px;
 		}
 
     .flexZoomedContainer {
