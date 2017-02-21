@@ -86,7 +86,6 @@ img.userIcon.commentLeft {
 
 .photoContainer {
   position: relative;
-  z-index: -1;
 }
 
 .replyCommentTextContainer {
@@ -272,6 +271,7 @@ input.commentBox {
 	width: 100%;
 	position: fixed;
 	padding: 15px;
+  z-index: 34234;
 	background-color: #323333;
 }
 
@@ -503,18 +503,20 @@ img.memberIconClickable:hover {
   flex-direction: row-reverse;
 }
 
-.deleteIcon {
+.delete:hover {
+  opacity: 1;
+
+}
+.delete {
   font-size: 30px;
   padding: 5px;
   width: 100%;
   height: 300px;
+  opacity: 0;
+  z-index: 5px;
 
 }
 
-.deleteIcon:hover {
-  color: white;
-
-}
 
 @media only screen and (min-width: 1000px) {
 	.col-1 {width: 8.33%;}

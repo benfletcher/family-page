@@ -25,7 +25,7 @@ const MessageNode = (props) => {
           props.message.contentType === 'photo'
             ?
               <div>
-                <div className="delete"><i className="fa fa-trash-o deleteIcon" aria-hidden="true" /></div>
+                <div className="delete"><i onClick={() => alert('do')} className="fa fa-trash-o deleteIcon" aria-hidden="true" /></div>
                 <img className="familyPhoto" src={props.photo} alt="user upload" />
               </div>
             : null
