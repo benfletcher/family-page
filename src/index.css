@@ -77,6 +77,18 @@ img.userIcon.commentLeft {
   font-weight: bold;
 }
 
+.delete {
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  padding: 6px;
+}
+
+.photoContainer {
+  position: relative;
+  z-index: -1;
+}
+
 .replyCommentTextContainer {
   display: inline-block;
   width: 85%;

@@ -23,7 +23,11 @@ const MessageNode = (props) => {
       <div className="photoContainer">
         {
           props.message.contentType === 'photo'
-            ? <img className="familyPhoto" src={props.photo} alt="user upload" />
+            ?
+              <div>
+                <div className="delete">x</div>
+                <img className="familyPhoto" src={props.photo} alt="user upload" />
+              </div>
             : null
         }
       </div>
