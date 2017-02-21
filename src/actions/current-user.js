@@ -1,6 +1,8 @@
 import 'isomorphic-fetch';
 import cookie from 'react-cookie';
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 export const GET_CURRENT_USER = 'GET_CURRENT_USER';
 export const getCurrentUser = () => ({
   type: GET_CURRENT_USER,
@@ -17,7 +19,7 @@ export const getCurrentUserSuccess = payload => ({
 export const fetchCurrentUser = () => (dispatch) => {
   dispatch(getCurrentUser());
 
-  fetch('http://localhost:8080/user',
+  fetch(`${serverUrl}/user`,
     {
       headers: {
         Authorization: `bearer ${cookie.load('accessToken')}`
