@@ -91,13 +91,22 @@ img.userIcon.commentLeft {
 
 .replyCommentTextContainer {
   display: inline-block;
-  width: 85%;
-  margin-left: 68px;
+  width: 86%;
   height: 41px;
   padding-top: 2px;
   padding-left: 10px;
   background-color: lightgrey;
  }
+
+ .commentTextContainer {
+   display: inline-block;
+   width: 85%;
+   height: 41px;
+   padding-top: 2px;
+   padding-left: 10px;
+
+ }
+
 
 i.messageIcon {
   font-size: 30px;
@@ -303,9 +312,6 @@ input.commentBox {
   background-color: #f5f8f2;
 }
 
-.commentTextContainer {
-  display: inline-block;
-}
 
 .commentText {
   padding: 10px;
@@ -481,6 +487,22 @@ img.memberIconClickable:hover {
   color: #EE930E;
 }
 
+.commentNotMessedUp {
+  width: 90%;
+  background-color: white;
+
+}
+
+.comContainer {
+  display: flex;
+  flex-direction: row;
+}
+
+.replyContainer {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
 @media only screen and (min-width: 1000px) {
 	.col-1 {width: 8.33%;}
 	.col-2 {width: 16.66%;}
@@ -503,7 +525,7 @@ img.memberIconClickable:hover {
       margin-right: 11%;
     }
 
-    .commentContainer {
+    .commentNotMessedUp {
       width: 40%;
     }
 
@@ -529,6 +551,11 @@ img.memberIconClickable:hover {
 			padding-top: 76px;
 			color: white;
 		}
+
+
+    .replyCommentTextContainer {
+      margin-left: 8%;
+     }
 
     .uploadChild {
       width: 60%;
