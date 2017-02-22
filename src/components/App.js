@@ -112,24 +112,21 @@ export class App extends Component {
 App.defaultProps = {
   messages: [{}],
   members: {},
-  currentUser: null,
-  currentAvatar: null,
-  currentNickname: null,
 };
 
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   messages: React.PropTypes.arrayOf(React.PropTypes.object),
   members: React.PropTypes.objectOf(React.PropTypes.object),
-  currentUser: React.PropTypes.string,
-  currentAvatar: React.PropTypes.string,
-  currentNickname: React.PropTypes.string,
+  currentUser: React.PropTypes.string.isRequired,
+  currentAvatar: React.PropTypes.string.isRequired,
+  currentNickname: React.PropTypes.string.isRequired,
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.messages.currentUser,
-  currentAvatar: state.messages.currentAvatar,
-  currentNickname: state.messages.currentNickname,
+  currentUser: state.currentUser.id,
+  currentAvatar: state.currentUser.avatar,
+  currentNickname: state.currentUser.name,
   messages: state.messages.messages,
   members: state.members.members,
   zoomed: state.status.zoomed,
