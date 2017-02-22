@@ -1,6 +1,8 @@
 import 'isomorphic-fetch';
 import cookie from 'react-cookie';
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 export const GET_MESSAGES = 'GET_MESSAGES';
 export const getMessages = () => ({
   type: GET_MESSAGES,
@@ -18,7 +20,7 @@ export const getMessagesSuccess = payload => ({
 export const fetchMessages = () => (dispatch) => {
   dispatch(getMessages());
 
-  fetch('http://localhost:8080/messages',
+  fetch(`${serverUrl}/messages`,
     {
       headers: {
         Authorization: `bearer ${cookie.load('accessToken')}`
@@ -53,7 +55,7 @@ export const fetchMessages = () => (dispatch) => {
 };
 
 export const postMessage = content => (dispatch) => {
-  fetch('http://localhost:8080/messages', {
+  fetch(`${serverUrl}/messages`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `bearer ${cookie.load('accessToken')}`
@@ -76,7 +78,7 @@ export const postMessage = content => (dispatch) => {
 
 export const postComment = commentObject => (dispatch) => {
   console.log('this is the comment object', commentObject);
-  fetch('http://localhost:8080/comments', {
+  fetch(`${serverUrl}/comments`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `bearer ${cookie.load('accessToken')}`
@@ -96,3 +98,21 @@ export const postComment = commentObject => (dispatch) => {
   .then(() => dispatch(fetchMessages()))
   .catch(console.error);
 };
+
+// delete a message
+export const deleteMessage = messageId => dispatch => fetch(`http://localhost:8080/messages/${messageId}`, {
+  headers: {
+    Authorization: `bearer ${cookie.load('accessToken')}`
+  },
+  method: 'DELETE'
+})
+  .then(() => dispatch(fetchMessages()));
+
+// delete a comment
+export const deleteComment = (messageId, commentId) => dispatch => fetch(`http://localhost:8080/comments/${messageId}/${commentId}`, {
+  headers: {
+    Authorization: `bearer ${cookie.load('accessToken')}`
+  },
+  method: 'DELETE'
+})
+  .then(() => dispatch(fetchMessages()));

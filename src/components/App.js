@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import cookie from 'react-cookie';
 
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
+import { fetchCurrentUser } from '../actions/current-user';
 
 import MessageNode from './MessageNode';
 import Header from './Header';
@@ -21,8 +23,13 @@ export class App extends Component {
   }
 
   componentDidMount() {
+    if (this.props.location.query.token) {
+      cookie.save('accessToken', this.props.location.query.token);
+    }
+    console.log(this.props.location.query.token);
     this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
+    this.props.dispatch(fetchCurrentUser());
   }
 
   render() {

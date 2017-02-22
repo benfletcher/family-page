@@ -1,5 +1,7 @@
 import React from 'react';
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 const Login = () => (
   <div>
     <div>
@@ -7,7 +9,7 @@ const Login = () => (
         <img className="logoImage" src="./familyLogo.png" alt="logo" />
       </div>
       <div className="loginContainer">
-        <a href="http://localhost:8080/auth/google">
+        <a href={`${serverUrl}/auth/google`}>
           <img className="loginImage" src="./googlelogin.png" alt="login" />
         </a>
       </div>
