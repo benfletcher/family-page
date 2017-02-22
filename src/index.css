@@ -54,7 +54,7 @@ button {
 
 img.userIcon{
 	height: 46px;
-	/*border-radius: 50%;*/
+	border-radius: 50%;
 	padding: 5px;
 	display: inline;
 	float: left;
@@ -87,25 +87,6 @@ img.userIcon.commentLeft {
 .photoContainer {
   position: relative;
 }
-
-.replyCommentTextContainer {
-  display: inline-block;
-  width: 93%;
-  height: 41px;
-  padding-top: 2px;
-  padding-left: 10px;
-  background-color: lightgrey;
- }
-
- .commentTextContainer {
-   display: inline-block;
-   width: 93%;
-   height: 41px;
-   padding-top: 2px;
-   padding-left: 10px;
-
- }
-
 
 i.messageIcon {
   font-size: 30px;
@@ -307,10 +288,6 @@ input.commentBox {
 }
 
 
-.commentContainer {
-  width: 90%;
-  background-color: #f5f8f2;
-}
 
 
 .commentText {
@@ -487,20 +464,46 @@ img.memberIconClickable:hover {
   color: #EE930E;
 }
 
-.commentNotMessedUp {
+/*.replyCommentTextContainer {
+  display: inline-block;
+  width: 87%;
+  height: 41px;
+  padding-top: 2px;
+  padding-left: 10px;
+  background-color: lightgrey;
+ }
+
+ .commentTextContainer {
+   display: inline-block;
+   width: 87%;
+   height: 41px;
+   padding-top: 2px;
+   padding-left: 10px;
+
+ }
+
+.commentContainer {
   width: 90%;
-  background-color: white;
-
-}
-
-.comContainer {
-  display: flex;
-  flex-direction: row;
+  background-color: #f5f8f2;
 }
 
 .replyContainer {
   display: flex;
   flex-direction: row-reverse;
+}*/
+
+.commentContainer {
+  width: 90%;
+  background-color: #f5f8f2;
+}
+
+.commentTextContainer {
+  display: inline-block;
+  width: 100%;
+}
+
+.commentText {
+  padding: 10px;
 }
 
 .delete:hover {
@@ -540,7 +543,7 @@ img.memberIconClickable:hover {
       margin-right: 11%;
     }
 
-    .commentNotMessedUp {
+    .commentContainer {
       width: 40%;
     }
 
