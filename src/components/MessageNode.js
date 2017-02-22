@@ -16,6 +16,18 @@ const MessageNode = (props) => {
     <div className="node col-6">
       <div className={`${parentClass} inline`}>
         <img className="userIcon" src={props.memberAvatar} alt="avatar" />
+        {
+          props.message.contentType === 'announcement'
+            ?
+              <div className="deleteAnnouncement" >
+                <i
+                  onClick={() => alert('do')}
+                  className="fa fa-trash-o deleteIcon"
+                  aria-hidden="true"
+                />
+              </div>
+          : null
+        }
         <p className={textClass}>
           {props.caption}
         </p>
@@ -23,7 +35,19 @@ const MessageNode = (props) => {
       <div className="photoContainer">
         {
           props.message.contentType === 'photo'
-            ? <img className="familyPhoto" src={props.photo} alt="user upload" />
+            ?
+              <div>
+                <div
+                  className="delete"
+                >
+                  <i
+                    onClick={() => alert('do')}
+                    className="fa fa-trash-o deleteIcon"
+                    aria-hidden="true"
+                  />
+                </div>
+                <img className="familyPhoto" src={props.photo} alt="user upload" />
+              </div>
             : null
         }
       </div>

@@ -52,8 +52,8 @@ button {
 }
 
 
-img.userIcon {
-	height: 41px;
+img.userIcon{
+	height: 46px;
 	border-radius: 50%;
 	padding: 5px;
 	display: inline;
@@ -63,6 +63,29 @@ img.userIcon {
 img.familyPhoto {
   margin-top: 5px;
 	width: 100%;
+}
+/*option1 float right, option2 indent*/
+img.userIcon.commentLeft {
+  display: inline;
+  height: 46px;
+  padding: 5px;
+  float: right;
+  /*padding-left: 20px;*/
+}
+
+.bold {
+  font-weight: bold;
+}
+
+.delete {
+  position: absolute;
+  width: 100%;
+  text-align: right;
+  padding: 6px;
+}
+
+.photoContainer {
+  position: relative;
 }
 
 i.messageIcon {
@@ -108,6 +131,9 @@ ul.userPhotoIcon {
 
 input.announcementInput {
   font-size: 25px;
+  word-wrap: break-word;
+  word-break: break-all;
+  height: auto;
 }
 
 .announcementBlueLine {
@@ -226,6 +252,7 @@ input.commentBox {
 	width: 100%;
 	position: fixed;
 	padding: 15px;
+  z-index: 34234;
 	background-color: #323333;
 }
 
@@ -261,14 +288,7 @@ input.commentBox {
 }
 
 
-.commentContainer {
-  width: 90%;
-  background-color: #f5f8f2;
-}
 
-.commentTextContainer {
-  display: inline-block;
-}
 
 .commentText {
   padding: 10px;
@@ -415,18 +435,30 @@ img.memberIconClickable:hover {
 
 .zoomedNav {
 	text-align: center;
+  position: absolute;
+  z-index: 100;
+  padding-top: 220px;
+  width: 48%;
+}
+
+.zoomedPhotoContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.arrowLeft {
+  float: left;
+}
+
+.arrowRight {
+  float: right;
 }
 
 .zoomedPhoto {
   width: 100%;
   max-height: 90%;
-}
-
-.zoomedNav img {
-	filter: invert(100%);
-	height: 45px;
-	margin: 100px;
-	box-shadow: 2px 141px 173px;
+  padding-top: 54px;
+  position: relative;
 }
 
 .white {
@@ -442,6 +474,46 @@ img.memberIconClickable:hover {
 
 .xIcon:hover {
   color: #EE930E;
+}
+
+.commentContainer {
+  width: 90%;
+  background-color: #f5f8f2;
+}
+
+.commentTextContainer {
+  display: inline-block;
+  width: 100%;
+  z-index: 3;
+}
+
+.commentText {
+  padding: 10px;
+}
+
+.delete:hover {
+  opacity: 1;
+
+}
+.delete {
+  font-size: 30px;
+  padding: 9px;
+  width: 100%;
+  height: 300px;
+  opacity: 0;
+}
+
+.deleteAnnouncement {
+  float: right;
+  padding: 7px;
+}
+
+.deleteComment {
+  font-size: 20px;
+  padding: 9px;
+  /*opacity: 0;*/
+  float: right;
+  z-index: 8;
 }
 
 @media only screen and (min-width: 1000px) {
@@ -492,6 +564,11 @@ img.memberIconClickable:hover {
 			padding-top: 76px;
 			color: white;
 		}
+
+
+    .replyCommentTextContainer {
+      margin-left: 8%;
+     }
 
     .uploadChild {
       width: 60%;

@@ -7,7 +7,6 @@ import { showZoomed, hideZoomed } from '../actions/gallery';
 import GalleryThumbnail from './GalleryThumbnail';
 import GalleryZoomed from './GalleryZoomed';
 import Header from './Header';
-// import UserPhotoIcons from './UserPhotoIcons';
 
 class Gallery extends Component {
   constructor(props) {
@@ -80,7 +79,7 @@ class Gallery extends Component {
           return false;
         }
         return photo;
-      }); //
+      });
     }
 
     let previousMonth = '';

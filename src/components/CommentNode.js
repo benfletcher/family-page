@@ -1,30 +1,30 @@
 import React from 'react';
 
-const CommentNode = (props) => {
-  let commentPosition = '';
-
-  if (props.comment.from === props.currentUser) {
-    commentPosition = 'commentRight';
-  } else {
-    commentPosition = 'commentLeft';
-  }
-  return (
-    <div className="commentParent">
-      <div className="commentContainer">
-        <div className="commentTextContainer">
-          <p className="commentText">
-            {props.from}: {props.comment.text}
-          </p>
+const CommentNode = props => (
+  <div className="commentParent">
+    <div className="commentContainer">
+      <div className="commentTextContainer">
+        <div
+          className="deleteComment"
+        >
+          <i
+            className="fa fa-trash-o deleteIcon"
+            aria-hidden="true"
+          />
         </div>
         <img
           src={props.fromAvatar}
           alt="avatar"
-          className={`userIcon ${commentPosition}`}
+          className="userIcon"
         />
+        <p className="commentText">
+          {props.from}: {props.comment.text}
+        </p>
       </div>
     </div>
+  </div>
   );
-};
+
 
 CommentNode.defaultProps = {
   fromAvatar: '',
