@@ -11,9 +11,6 @@ export const getMessages = () => ({
 export const GET_MESSAGES_SUCCESS = 'GET_MESSAGES_SUCCESS';
 export const getMessagesSuccess = payload => ({
   type: GET_MESSAGES_SUCCESS,
-  currentUser: payload.currentUser,
-  currentAvatar: payload.currentAvatar,
-  currentNickname: payload.currentNickname,
   messages: payload.messages,
 });
 
@@ -37,11 +34,8 @@ export const fetchMessages = () => (dispatch) => {
   })
   .then(res => res.json())
   .then((data) => {
-    // convert Mongo date to JS date, sort messages on date
+    // convert ISO date to JS date object, sort messages on date
     dispatch(getMessagesSuccess({
-      currentUser: data.currentUser,
-      currentAvatar: data.currentAvatar,
-      currentNickname: data.currentNickname,
       messages: data.messages.map(message => ({
         ...message,
         date: new Date(message.date)
@@ -77,7 +71,6 @@ export const postMessage = content => (dispatch) => {
 };
 
 export const postComment = commentObject => (dispatch) => {
-  console.log('this is the comment object', commentObject);
   fetch(`${serverUrl}/comments`, {
     headers: {
       'Content-Type': 'application/json',
@@ -94,7 +87,6 @@ export const postComment = commentObject => (dispatch) => {
     }
     return res;
   })
-  // .then(res => res.json())
   .then(() => dispatch(fetchMessages()))
   .catch(console.error);
 };
