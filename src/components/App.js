@@ -11,6 +11,7 @@ import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import Announcement from './Announcement';
 import MessageFooter from './MessageFooter';
+import CommentInput from './CommentInput';
 import UserPhotoIcons from './UserPhotoIcons';
 
 export class App extends Component {
@@ -26,7 +27,6 @@ export class App extends Component {
     if (this.props.location.query.token) {
       cookie.save('accessToken', this.props.location.query.token);
     }
-    console.log(this.props.location.query.token);
     this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
     this.props.dispatch(fetchCurrentUser());
@@ -48,22 +48,34 @@ export class App extends Component {
               ? this.props.members[message.userId].nickname
               : '...loading...';
 
-            if (message.comments.length === 0) {
+            if ((message.comments.length === 0) && (message.userId === this.props.currentUser)) {
+              return (
+                <div>
+                  <MessageNode
+                    message={message}
+                    currentUser={this.props.currentUser}
+                    memberAvatar={
+                    (message.userId in this.props.members)
+                      ? this.props.members[message.userId].avatar
+                      : null
+                    }
+                  />
+                  <MessageFooter />
+                </div>
+              );
+            } else if (message.comments.length === 0) {
               return (
                 <div key={message._id}>
                   <MessageNode
                     message={message}
-                    commentZoom={this.postComment}
-                    user={message.userId}
-                    photo={message.url}
-                    caption={message.text}
+                    currentUser={this.props.currentUser}
                     memberAvatar={
                       (message.userId in this.props.members)
                         ? this.props.members[message.userId].avatar
                         : null
                       }
                   />
-                  <MessageFooter
+                  <CommentInput
                     currentAvatar={this.props.currentAvatar}
                     messageId={message._id}
                     to={message.userId}
@@ -76,10 +88,7 @@ export class App extends Component {
               <div key={message._id}>
                 <MessageNode
                   message={message}
-                  commentZoom={this.postComment}
-                  user={message.userId}
-                  photo={message.url}
-                  caption={message.text}
+                  currentUser={this.props.currentUser}
                   memberAvatar={
                     (message.userId in this.props.members)
                       ? this.props.members[message.userId].avatar
@@ -92,13 +101,6 @@ export class App extends Component {
                   currentAvatar={this.props.currentAvatar}
                   currentUser={this.props.currentUser}
                   members={this.props.members}
-                />
-
-                <MessageFooter
-                  currentAvatar={this.props.currentAvatar}
-                  messageId={message._id}
-                  to={message.userId}
-                  replyToName={replyToName}
                 />
               </div>
             );

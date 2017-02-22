@@ -1,72 +1,85 @@
-import React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { deleteMessage } from '../actions/messages';
 
-const MessageNode = (props) => {
-  let parentClass = '';
-  let textClass = '';
+class MessageNode extends Component {
+  constructor(props) {
+    super(props);
 
-  if (props.message.contentType === 'photo') {
-    parentClass = 'photoHeader';
-    textClass = 'nodeTitle';
-  } else {
-    parentClass = 'announcementTextNode';
-    textClass = 'announcementTextNodeTitle';
+    this.state = {
+      parentClass: this.props.message.contentType === 'photo' ? 'photoHeader' : 'announcementTextNode',
+      textClass: this.props.message.contentType === 'photo' ? 'nodeTitle' : 'announcementTextNodeTitle',
+    };
+
+    this.deleteMessage = this.deleteMessage.bind(this);
   }
 
-  return (
-    <div className="node col-6">
-      <div className={`${parentClass} inline`}>
-        <img className="userIcon" src={props.memberAvatar} alt="avatar" />
-        {
-          props.message.contentType === 'announcement'
+  deleteMessage() {
+    this.props.dispatch(deleteMessage(this.props.message._id));
+  }
+
+  render() {
+    return (
+      <div className="node col-6">
+        <div className={`${this.state.parentClass} inline`}>
+          <img className="userIcon" src={this.props.memberAvatar} alt="avatar" />
+          {
+          this.props.message.contentType === 'announcement'
             ?
               <div className="deleteAnnouncement" >
-                <i
-                  onClick={() => alert('do')}
-                  className="fa fa-trash-o deleteIcon"
-                  aria-hidden="true"
-                />
-              </div>
-          : null
-        }
-        <p className={textClass}>
-          {props.caption}
-        </p>
-      </div>
-      <div className="photoContainer">
-        {
-          props.message.contentType === 'photo'
-            ?
-              <div>
-                <div
-                  className="delete"
-                >
+                {(this.props.message.userId === this.props.currentUser)
+                ?
                   <i
-                    onClick={() => alert('do')}
+                    onClick={this.deleteMessage}
                     className="fa fa-trash-o deleteIcon"
                     aria-hidden="true"
                   />
+              : null
+            }
+              </div>
+          : null
+        }
+          <p className={this.state.textClass}>
+            {this.props.message.text}
+          </p>
+        </div>
+        <div className="photoContainer">
+          {
+          this.props.message.contentType === 'photo'
+            ?
+              <div>
+                <div className="delete" >
+                  {(this.props.message.userId === this.props.currentUser)
+                  ?
+                    <i
+                      onClick={this.deleteMessage}
+                      className="fa fa-trash-o deleteIcon"
+                      aria-hidden="true"
+                    />
+                : null
+                }
+
                 </div>
-                <img className="familyPhoto" src={props.photo} alt="user upload" />
+                <img className="familyPhoto" src={this.props.message.url} alt="user upload" />
               </div>
             : null
         }
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 
 MessageNode.defaultProps = {
   memberAvatar: '',
-  caption: '(no caption)',
-  photo: null,
 };
 
 MessageNode.propTypes = {
-  photo: React.PropTypes.string,
+  currentUser: React.PropTypes.string.isRequired,
   memberAvatar: React.PropTypes.string,
-  caption: React.PropTypes.string,
+  dispatch: React.PropTypes.func.isRequired,
   message: React.PropTypes.object.isRequired, // eslint-disable-line
 };
 
-export default MessageNode;
+export default connect()(MessageNode);
