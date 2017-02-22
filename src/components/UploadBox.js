@@ -9,6 +9,7 @@ const UploadBox = props => (
       accept="image/*"
       onDrop={props.onImageDrop}
     >
+      <i className="fa fa-cloud-upload fa-2x uploadIcon" aria-hidden="true" />
       <p className="imgDropText">Click to upload, or drag image</p>
     </Dropzone>
   </div>
