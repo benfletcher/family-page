@@ -1,4 +1,4 @@
-import * as actions from '../actions';
+import * as actions from '../actions/gallery';
 
 const initialState = {
   message: '',
@@ -12,18 +12,7 @@ const initialState = {
 };
 
 const status = (state = initialState, action) => {
-  if (action.type === actions.GET_STATUS) {
-    return {
-      ...state,
-      loading: true,
-    };
-  } else if (action.type === actions.GET_STATUS_SUCCESS) {
-    return {
-      ...state,
-      message: action.message,
-      loading: false,
-    };
-  } else if (action.type === actions.SHOW_ZOOMED) {
+  if (action.type === actions.SHOW_ZOOMED) {
     return {
       ...state,
       zoomed: true,
