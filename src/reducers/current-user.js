@@ -3,13 +3,13 @@ import * as actions from '../actions/current-user';
 const initialState = {
   id: '',
   avatar: '',
-  nickname: '',
+  name: '',
   fullname: '',
   families: [],
   loading: false,
 };
 
-const messages = (state = initialState, action) => {
+const currentUser = (state = initialState, action) => {
   if (action.type === actions.GET_CURRENT_USER) {
     return {
       ...state,
@@ -20,7 +20,7 @@ const messages = (state = initialState, action) => {
       ...state,
       id: action.id,
       avatar: action.avatar,
-      nickname: action.nickname,
+      name: action.name,
       fullname: action.fullname,
       families: action.families,
       loading: false,
@@ -30,4 +30,4 @@ const messages = (state = initialState, action) => {
   return state;
 };
 
-export default messages;
+export default currentUser;

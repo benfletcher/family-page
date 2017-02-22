@@ -11,9 +11,11 @@ export const getCurrentUser = () => ({
 export const GET_CURRENT_USER_SUCCESS = 'GET_CURRENT_USER_SUCCESS';
 export const getCurrentUserSuccess = payload => ({
   type: GET_CURRENT_USER_SUCCESS,
-  currentUser: payload.currentUser,
-  currentAvatar: payload.currentAvatar,
-  currentNickname: payload.currentNickname,
+  id: payload.id,
+  avatar: payload.avatar,
+  name: payload.name,
+  fullname: payload.fullname,
+  families: payload.families,
 });
 
 export const fetchCurrentUser = () => (dispatch) => {
@@ -40,7 +42,7 @@ export const fetchCurrentUser = () => (dispatch) => {
       dispatch(getCurrentUserSuccess({
         id: data.currentUser.id,
         avatar: data.currentUser.avatar,
-        nickname: data.currentUser.nickname,
+        name: data.currentUser.nickname,
         fullname: data.currentUser.fullname,
         families: [],
       }));
