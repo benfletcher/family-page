@@ -10,7 +10,6 @@ import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import Announcement from './Announcement';
-import MessageFooter from './MessageFooter';
 import CommentInput from './CommentInput';
 import UserPhotoIcons from './UserPhotoIcons';
 
@@ -60,7 +59,6 @@ export class App extends Component {
                       : null
                     }
                   />
-                  <MessageFooter />
                 </div>
               );
             } else if (message.comments.length === 0) {
