@@ -82,7 +82,7 @@ Announcement.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.messages.currentUser,
+  currentUser: state.currentUser.id,
   members: state.members.members,
 });
 
