@@ -17,7 +17,9 @@ const GalleryZoomed = props => (
           />
         </div>
         <i onClick={props.zoom} className="xIcon fa fa-times" aria-hidden="true"alt="close" />
-        <img className="zoomedPhoto" src={props.photoUrl} alt="large" />
+        <div>
+          <img className="zoomedPhoto" src={props.photoUrl} alt="large" />
+        </div>
       </div>
     </div>
   </div>

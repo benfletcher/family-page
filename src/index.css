@@ -437,8 +437,8 @@ img.memberIconClickable:hover {
 	text-align: center;
   position: absolute;
   z-index: 100;
-  padding-top: 220px;
-  width: 48%;
+  padding-top: 210px;
+  width: 90%;
 }
 
 .zoomedPhotoContainer {
@@ -463,7 +463,6 @@ img.memberIconClickable:hover {
 
 .white {
   color: white;
-  margin: 45px;
  }
 
 .xIcon {
@@ -587,6 +586,10 @@ img.memberIconClickable:hover {
 
     .zoomedPhotoContainer {
       width: 40%;
+    }
+
+    .zoomedNav {
+      width: 48%;
     }
 
 }
