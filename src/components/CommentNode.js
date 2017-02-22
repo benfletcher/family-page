@@ -4,6 +4,14 @@ const CommentNode = props => (
   <div className="commentParent">
     <div className="commentContainer">
       <div className="commentTextContainer">
+        <div
+          className="deleteComment"
+        >
+          <i
+            className="fa fa-trash-o deleteIcon"
+            aria-hidden="true"
+          />
+        </div>
         <img
           src={props.fromAvatar}
           alt="avatar"

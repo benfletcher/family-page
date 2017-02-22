@@ -16,6 +16,18 @@ const MessageNode = (props) => {
     <div className="node col-6">
       <div className={`${parentClass} inline`}>
         <img className="userIcon" src={props.memberAvatar} alt="avatar" />
+        {
+          props.message.contentType === 'announcement'
+            ?
+              <div className="deleteAnnouncement" >
+                <i
+                  onClick={() => alert('do')}
+                  className="fa fa-trash-o deleteIcon"
+                  aria-hidden="true"
+                />
+              </div>
+          : null
+        }
         <p className={textClass}>
           {props.caption}
         </p>
