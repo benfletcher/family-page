@@ -23,11 +23,10 @@ class Announcement extends Component {
         text: this.state.text
       }));
       this.setState({ text: '' });
-    } else if (!this.state.text) {
+    } else {
       alert('Can not post blank Announcement field'); // eslint-disable-line
     }
   }
-
 
   textInputChange(event) {
     this.setState({ text: event.target.value });
@@ -46,13 +45,16 @@ class Announcement extends Component {
             />
           </div>
           <div className="announcementInputBox">
-            <input
-              className="announcementInput"
-              placeholder={`${this.props.currentNickname}, what's on your mind`}
-              value={this.state.text}
-              onChange={this.textInputChange}
-              type="text"
-            />
+            <form onSubmit={this.announcementSubmit}>
+              <input
+                className="announcementInput"
+                placeholder={`${this.props.currentNickname}, what's on your mind`}
+                value={this.state.text}
+                onChange={this.textInputChange}
+                onSubmit={this.announcementSubmit}
+                type="text"
+              />
+            </form>
           </div>
           <div className="announcementFooter">
             <div className="announcementBlueLine" />
@@ -60,7 +62,7 @@ class Announcement extends Component {
               onClick={this.announcementSubmit}
               className="announcementPost"
             >
-             Post
+              Post
             </p>
           </div>
         </div>

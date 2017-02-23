@@ -17,7 +17,6 @@ import statusReducer from './reducers';
 
 dotenv.config();
 
-/* eslint-disable no-underscore-dangle, no-undef */
 const store = createStore(
   statusReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
