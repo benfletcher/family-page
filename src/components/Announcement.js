@@ -23,8 +23,6 @@ class Announcement extends Component {
         text: this.state.text
       }));
       this.setState({ text: '' });
-    } else {
-      alert('Can not post blank Announcement field'); // eslint-disable-line
     }
   }
 
@@ -61,6 +59,11 @@ class Announcement extends Component {
             <p
               onClick={this.announcementSubmit}
               className="announcementPost"
+              style={{
+                visibility: (this.state.text.length)
+                  ? 'visible'
+                  : 'hidden'
+              }}
             >
              Post
              <i className="fa fa-bullhorn postIcon" aria-hidden="true" />
