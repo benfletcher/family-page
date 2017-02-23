@@ -13,13 +13,6 @@ class Gallery extends Component {
     super(props);
 
     this.state = {
-      photos: this.props.messages.filter(message =>
-        message.contentType === 'photo'
-      ).sort((a, b) => {
-        const c = new Date(a.date);
-        const d = new Date(b.date);
-        return d - c;
-      }),
       filterOn: false,
       filterId: '58a79e7829e48da02c0bb22d',
     };
@@ -50,15 +43,15 @@ class Gallery extends Component {
       return;
     }
     const newIndex = this.props.zoomedIndex - 1;
-    this.props.dispatch(showZoomed(this.state.photos[newIndex].url, newIndex));
+    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
   }
 
   goRight() {
-    if (this.props.zoomedIndex === this.state.photos.length - 1) {
+    if (this.props.zoomedIndex === this.props.photos.length - 1) {
       return;
     }
     const newIndex = this.props.zoomedIndex + 1;
-    this.props.dispatch(showZoomed(this.state.photos[newIndex].url, newIndex));
+    this.props.dispatch(showZoomed(this.props.photos[newIndex].url, newIndex));
   }
 
   filterPhotos(id) {
@@ -146,7 +139,7 @@ class Gallery extends Component {
         }
 
         <div className="galleryContainer">
-          {this.renderPhotos(this.state.photos)}
+          {this.renderPhotos(this.props.photos)}
         </div>
       </div>
     );
@@ -159,14 +152,16 @@ Gallery.defaultProps = {
 Gallery.propTypes = {
   members: React.PropTypes.object.isRequired,
   dispatch: React.PropTypes.func.isRequired,
-  messages: React.PropTypes.array.isRequired,
+  photos: React.PropTypes.array.isRequired,
   zoomed: React.PropTypes.bool.isRequired,
   zoomedIndex: React.PropTypes.number.isRequired,
   zoomedPhoto: React.PropTypes.string,
 };
 
 const mapStateToProps = state => ({
-  messages: state.messages.messages,
+  photos: state.messages.messages
+    .filter(message => message.contentType === 'photo')
+    .sort((a, b) => new Date(b.date) - new Date(a.date)),
   members: state.members.members,
   zoomed: state.status.zoomed,
   zoomedPhoto: state.status.zoomedPhoto,
