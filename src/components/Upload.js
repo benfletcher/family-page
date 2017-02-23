@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import Header from './Header';
 import { postMessage } from '../actions/messages';
 import UploadContainer from './UploadContainer';
@@ -47,6 +48,9 @@ class Upload extends Component {
       <div>
         <Header />
         <div className="uploadParent">
+          <Link className="noMargin" to="/app">
+            <i className="xIconUpload fa fa-times" aria-hidden="true"alt="close" />
+          </Link>
           <div className="uploadChild">
             <UploadContainer />
           </div>

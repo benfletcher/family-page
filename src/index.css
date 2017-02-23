@@ -320,7 +320,13 @@ input.commentBox {
   display: flex;
   justify-content: center;
   padding-top: 10%;
+}
 
+.xIconUpload {
+  color:white;
+  font-size: 21px;
+  margin-left: -16px;
+  padding-top: 82px;
 }
 
 input.imageDescription {
@@ -329,12 +335,18 @@ input.imageDescription {
   margin: 10px;
   margin-bottom: 42px;
   text-align: center;
+  font-size: 16px;
 }
+
 
 .imgDropText {
   text-align: center;
   padding: 31px;
   color: #323333;
+  cursor: pointer;
+}
+.imgDropText:hover {
+  color: #EE930E;
 }
 
 p.dropZoneText {
@@ -342,6 +354,7 @@ p.dropZoneText {
   padding: 10px;
   margin: 10px;
   display: inline;
+  cursor: pointer;
 }
 
 img.imageDropPreview {
@@ -356,6 +369,7 @@ img.imageDropPreview {
   justify-content: center;
   padding-top: 77px;
 }
+
 
 .uploadParent {
 	display: flex;
@@ -437,8 +451,9 @@ img.memberIconClickable:hover {
 	text-align: center;
   position: absolute;
   z-index: 100;
-  padding-top: 220px;
-  width: 48%;
+  padding-top: 210px;
+  width: 90%;
+
 }
 
 .zoomedPhotoContainer {
@@ -463,13 +478,17 @@ img.memberIconClickable:hover {
 
 .white {
   color: white;
-  margin: 45px;
  }
 
 .xIcon {
   color: white;
 	font-size: 21px;
 	margin-left: -16px;
+  padding-top: 35px;
+}
+
+.noMargin {
+  margin: 0;
 }
 
 .xIcon:hover {
@@ -587,6 +606,10 @@ img.memberIconClickable:hover {
 
     .zoomedPhotoContainer {
       width: 40%;
+    }
+
+    .zoomedNav {
+      width: 48%;
     }
 
 }
