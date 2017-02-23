@@ -1,6 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router';
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 const Header = () => (
   <div className="navButton">
     <p className="navTitle">
@@ -11,7 +13,7 @@ const Header = () => (
       <Link to="/gallery">
         Gallery
       </Link>
-      <a href="http://localhost:8080/auth/logout">
+      <a href={`${serverUrl}/auth/logout`}>
         Logout
       </a>
       <Link to="/upload">

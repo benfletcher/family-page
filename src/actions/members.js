@@ -1,6 +1,8 @@
 import 'isomorphic-fetch';
 import cookie from 'react-cookie';
 
+const serverUrl = process.env.REACT_APP_SERVER_URL;
+
 export const GET_MEMBERS = 'GET_MEMBERS';
 export const getMembers = () => ({
   type: GET_MEMBERS,
@@ -15,7 +17,7 @@ export const getMembersSuccess = members => ({
 export const fetchMembers = () => (dispatch) => {
   dispatch(getMembers());
 
-  fetch('http://localhost:8080/members',
+  fetch(`${serverUrl}/members`,
     {
       headers: {
         Authorization: `bearer ${cookie.load('accessToken')}`
