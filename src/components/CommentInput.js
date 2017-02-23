@@ -38,7 +38,10 @@ class CommentInput extends Component {
             alt="avatar"
             className="userIcon"
           />
-          <form onSubmit={this.postComment}>
+          <form
+            className="commentInputForm"
+            onSubmit={this.postComment}
+          >
             <input
               onChange={this.textInputChange}
               type="text"
