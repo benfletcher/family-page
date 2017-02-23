@@ -61,6 +61,7 @@ class Announcement extends Component {
               className="announcementPost"
             >
              Post
+             <i className="fa fa-bullhorn postIcon" aria-hidden="true" />
             </p>
           </div>
         </div>

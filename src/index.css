@@ -56,7 +56,6 @@ img.userIcon{
 	height: 46px;
 	border-radius: 50%;
 	padding: 5px;
-	display: inline;
 	float: left;
 }
 
@@ -153,6 +152,9 @@ input.announcementInput {
   color: #323333;
 }
 
+.postIcon {
+  padding: 2px;
+}
 
 .announcementParent {
   display: flex;
@@ -213,6 +215,10 @@ input.announcementInput {
   padding-top: 5px;
 }
 
+.commentText span {
+  font-weight: bold;
+}
+
 .commentInputParent {
   display: flex;
   justify-content: center;
@@ -225,10 +231,12 @@ input.announcementInput {
   padding-top: 5px;
 }
 
-input.commentBox {
-  font-size: 15px;
-  padding: 8px;
-  width: 70%;
+.submitIcon {
+  padding: 2px;
+}
+
+p.commentSubmit:hover {
+  color: #EE930E;
 }
 
 p.commentSubmit {
@@ -239,7 +247,9 @@ p.commentSubmit {
 
 input.commentBox {
   height: 100%;
-  width: 70%;
+  font-size: 15px;
+  padding: 8px;
+  width: 60%;
   outline: none;
   border: 1px solid #f5f8f2;
   background-color: #f5f8f2;

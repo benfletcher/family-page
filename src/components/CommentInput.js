@@ -48,7 +48,8 @@ class CommentInput extends Component {
             onClick={this.postComment}
           >
                 submit
-                </p>
+                <i className="fa fa-share-square-o submitIcon" aria-hidden="true" />
+          </p>
         </div>
       </div>
     );
