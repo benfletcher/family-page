@@ -36,7 +36,7 @@ export class App extends Component {
 
         {
           this.props.messages.map((message) => {
-            const replyToName = message.userId in this.props.members
+            const replyToName = (message.userId in this.props.members)
               ? this.props.members[message.userId].nickname
               : '...loading...';
 
@@ -47,9 +47,9 @@ export class App extends Component {
                     message={message}
                     currentUser={this.props.currentUser}
                     memberAvatar={
-                    (message.userId in this.props.members)
-                      ? this.props.members[message.userId].avatar
-                      : null
+                      (message.userId in this.props.members)
+                        ? this.props.members[message.userId].avatar
+                        : null
                     }
                   />
                 </div>
@@ -64,7 +64,7 @@ export class App extends Component {
                       (message.userId in this.props.members)
                         ? this.props.members[message.userId].avatar
                         : null
-                      }
+                    }
                   />
                   <CommentInput
                     currentAvatar={this.props.currentAvatar}
@@ -84,7 +84,7 @@ export class App extends Component {
                     (message.userId in this.props.members)
                       ? this.props.members[message.userId].avatar
                       : null
-                    }
+                  }
                 />
 
                 <CommentsContainer
@@ -96,11 +96,11 @@ export class App extends Component {
               </div>
             );
           })
-          }
+        }
       </div>
     );
   }
-  }
+}
 
 App.defaultProps = {
 };

@@ -54,7 +54,7 @@ class CommentInput extends Component {
             className="commentSubmit"
             onClick={this.postComment}
           >
-            submit
+            submit{'\u00A0' /* non-breaking space unicode */}
             <i className="fa fa-share-square-o submitIcon" aria-hidden="true" />
           </p>
         </div>
