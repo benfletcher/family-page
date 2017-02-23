@@ -66,7 +66,7 @@ Upload.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  userId: state.status.userId
+  userId: state.currentUser.id
 });
 
 export default connect(mapStateToProps)(Upload);
