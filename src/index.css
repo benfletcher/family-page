@@ -225,6 +225,10 @@ input.announcementInput {
   font-weight: bold;
 }
 
+.commentInputForm {
+  display: inline;
+}
+
 .commentInputParent {
   display: flex;
   justify-content: center;
@@ -249,6 +253,7 @@ p.commentSubmit {
   float: right;
   padding-right: 14px;
   padding-top: 14px;
+  cursor: pointer;
 }
 
 input.commentBox {
@@ -546,9 +551,17 @@ img.memberIconClickable:hover {
   opacity: 0;
 }
 
+.deleteAnnouncement:hover {
+  opacity: 1;
+}
+
 .deleteAnnouncement {
   float: right;
   padding: 7px;
+  position: absolute;
+  height: 100px;
+  width: 90%;
+  opacity: 0;
 }
 
 .deleteComment:hover {
@@ -582,11 +595,16 @@ img.memberIconClickable:hover {
 
     .announcementContainer {
       width: 50%;
-      margin-right: 11%;
+
+    }
+
+    .deleteAnnouncement {
+      width: 40%;
     }
 
     .commentContainer {
       width: 40%;
+      margin: 0 auto;
     }
 
     .commentInputContainer {
@@ -608,6 +626,7 @@ img.memberIconClickable:hover {
 			display: initial;
 			width: 10%;
 			float: left;
+      position: absolute;
 			padding-top: 76px;
 			color: white;
 		}
