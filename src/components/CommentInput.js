@@ -31,6 +31,7 @@ class CommentInput extends Component {
     return (
       <div className="commentInputParent">
         <div className="commentInputContainer">
+          <hr className="inputHr" />
           <img
             src={this.props.currentAvatar}
             alt="avatar"

@@ -101,7 +101,7 @@ class Gallery extends Component {
             <p>
               {previousMonth}
             </p>
-            <hr />
+            <hr className="monthSeparatorHr" />
           </div>);
       } separatedPhotos.push(
         <GalleryThumbnail
