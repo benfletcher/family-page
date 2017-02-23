@@ -117,21 +117,24 @@ class UploadContainer extends Component {
         <div />
         {
           this.state.uploadedFile
-            ?
+          ?
+            <span>
               <p
                 className="dropZoneText"
                 onClick={this.saveUpload}
               >
-                Save
+              Save
               </p>
-            : null
+              <p
+                className="dropZoneText"
+                onClick={this.resetState}
+              >
+              Cancel
+              </p>
+            </span>
+          : null
         }
-        <p
-          className="dropZoneText"
-          onClick={this.resetState}
-        >
-          Cancel
-        </p>
+
       </div>
     );
   }

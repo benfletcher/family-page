@@ -62,7 +62,9 @@ class Announcement extends Component {
               onClick={this.announcementSubmit}
               className="announcementPost"
             >
-              Post
+             Post
+             <i className="fa fa-bullhorn postIcon" aria-hidden="true" />
+
             </p>
           </div>
         </div>

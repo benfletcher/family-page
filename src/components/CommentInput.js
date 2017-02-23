@@ -32,6 +32,7 @@ class CommentInput extends Component {
     return (
       <div className="commentInputParent">
         <div className="commentInputContainer">
+          <hr className="inputHr" />
           <img
             src={this.props.currentAvatar}
             alt="avatar"
@@ -42,7 +43,7 @@ class CommentInput extends Component {
               onChange={this.textInputChange}
               type="text"
               value={this.state.text}
-              placeholder={`Reply to ${this.props.replyToName}`}
+              placeholder={`Reply to ${this.props.replyToName}...`}
               className="commentBox"
             />
           </form>
@@ -51,6 +52,7 @@ class CommentInput extends Component {
             onClick={this.postComment}
           >
             submit
+            <i className="fa fa-share-square-o submitIcon" aria-hidden="true" />
           </p>
         </div>
       </div>

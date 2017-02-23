@@ -18,7 +18,12 @@ i {
   cursor: pointer;
 }
 
-hr {
+.inputHr {
+  width: 96%;
+  margin-left: 9px;
+}
+
+.monthSeparatorHr {
   background: white;
   margin-top: 3px;
   margin-bottom: 3px;
@@ -45,6 +50,7 @@ p.announcementPost:hover {
 body {
 	background-color: #1DA1F2;
 	height: 100%;
+
 }
 
 button {
@@ -56,7 +62,6 @@ img.userIcon{
 	height: 46px;
 	border-radius: 50%;
 	padding: 5px;
-	display: inline;
 	float: left;
 }
 
@@ -131,8 +136,7 @@ ul.userPhotoIcon {
 
 input.announcementInput {
   font-size: 25px;
-  word-wrap: break-word;
-  word-break: break-all;
+  padding-top: 31px;
   height: auto;
 }
 
@@ -154,11 +158,14 @@ input.announcementInput {
   color: #323333;
 }
 
+.postIcon {
+  padding: 2px;
+}
 
 .announcementParent {
   display: flex;
   justify-content: center;
-  padding-top: 60px;
+  padding-top: 36px;
 }
 
 .announcementContainer {
@@ -214,6 +221,10 @@ input.announcementInput {
   padding-top: 5px;
 }
 
+.commentText span {
+  font-weight: bold;
+}
+
 .commentInputParent {
   display: flex;
   justify-content: center;
@@ -223,24 +234,28 @@ input.announcementInput {
 .commentInputContainer {
   width: 90%;
   background-color: #f5f8f2;
-  padding-top: 5px;
+  padding-top: 3px;
 }
 
-input.commentBox {
-  font-size: 15px;
-  padding: 8px;
-  width: 70%;
+.submitIcon {
+  padding: 2px;
+}
+
+p.commentSubmit:hover {
+  color: #EE930E;
 }
 
 p.commentSubmit {
   float: right;
   padding-right: 14px;
-  padding-top: 10px;
+  padding-top: 14px;
 }
 
 input.commentBox {
-  height: 100%;
-  width: 70%;
+  height: 95%;
+  font-size: 15px;
+  padding: 8px;
+  width: 60%;
   outline: none;
   border: 1px solid #f5f8f2;
   background-color: #f5f8f2;
@@ -259,7 +274,7 @@ input.commentBox {
 .node {
 	padding-left: 5%;
   padding-right: 5%;
-  padding-top: 60px;
+  padding-top: 38px;
 }
 
 .nodeTitle {
@@ -292,6 +307,8 @@ input.commentBox {
 
 .commentText {
   padding: 10px;
+  z-index: 3;
+  position: relative;
 }
 /* end of comments styling*/
 
@@ -485,6 +502,7 @@ img.memberIconClickable:hover {
 	font-size: 21px;
 	margin-left: -16px;
   padding-top: 35px;
+  z-index: 500;
 }
 
 .noMargin {
@@ -514,6 +532,12 @@ img.memberIconClickable:hover {
   opacity: 1;
 
 }
+
+.deleteIcon {
+  float: right;
+  padding: 5px;
+}
+
 .delete {
   font-size: 30px;
   padding: 9px;
@@ -527,11 +551,15 @@ img.memberIconClickable:hover {
   padding: 7px;
 }
 
+.deleteComment:hover {
+  opacity: 1;
+}
+
 .deleteComment {
   font-size: 20px;
-  padding: 9px;
-  /*opacity: 0;*/
-  float: right;
+  width: 40%;
+  position: absolute;
+  opacity: 0;
   z-index: 8;
 }
 

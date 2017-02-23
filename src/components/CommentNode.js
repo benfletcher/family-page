@@ -35,7 +35,7 @@ class CommentNode extends Component {
               className="userIcon"
             />
             <p className="commentText">
-              {this.props.from}: {this.props.comment.text}
+              <span>{this.props.from}</span>: {this.props.comment.text}
             </p>
           </div>
         </div>

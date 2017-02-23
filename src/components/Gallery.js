@@ -18,7 +18,7 @@ class Gallery extends Component {
       ).sort((a, b) => {
         const c = new Date(a.date);
         const d = new Date(b.date);
-        return c - d;
+        return d - c;
       }),
       filterOn: false,
       filterId: '58a79e7829e48da02c0bb22d',
@@ -95,7 +95,7 @@ class Gallery extends Component {
             <p>
               {currentMonth}
             </p>
-            <hr />
+            <hr className="monthSeparatorHr" />
           </div>
         );
       }
