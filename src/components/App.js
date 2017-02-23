@@ -15,13 +15,6 @@ import UserPhotoIcons from './UserPhotoIcons';
 
 export class App extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      loggedInUser: ''
-    };
-  }
-
   componentDidMount() {
     if (this.props.location.query.token) {
       cookie.save('accessToken', this.props.location.query.token);
@@ -110,14 +103,13 @@ export class App extends Component {
   }
 
 App.defaultProps = {
-  messages: [{}],
-  members: {},
 };
 
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  messages: React.PropTypes.arrayOf(React.PropTypes.object),
-  members: React.PropTypes.objectOf(React.PropTypes.object),
+  location: React.PropTypes.object.isRequired,
+  messages: React.PropTypes.array.isRequired,
+  members: React.PropTypes.object.isRequired,
   currentUser: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string.isRequired,
   currentNickname: React.PropTypes.string.isRequired,

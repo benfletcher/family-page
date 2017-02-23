@@ -10,7 +10,6 @@ class CommentNode extends Component {
   }
 
   deleteComment() {
-    console.log('deleting comment');
     this.props.dispatch(deleteComment(this.props.messageId, this.props.comment._id));
   }
 

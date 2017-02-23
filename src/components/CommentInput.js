@@ -47,8 +47,8 @@ class CommentInput extends Component {
             className="commentSubmit"
             onClick={this.postComment}
           >
-                submit
-                </p>
+            submit
+          </p>
         </div>
       </div>
     );

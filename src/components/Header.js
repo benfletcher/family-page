@@ -7,7 +7,7 @@ const Header = () => (
   <div className="navButton">
     <p className="navTitle">
       <Link to="/app">
-      Home
+        Home
       </Link>
       <span />
       <Link to="/gallery">

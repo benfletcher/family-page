@@ -3,8 +3,8 @@ import CommentInput from './CommentInput';
 
 const CommentsThread = (props) => {
   const replyToName = props.to in props.members
-  ? props.members[props.to].nickname
-  : '...loading...';
+    ? props.members[props.to].nickname
+    : '...loading...';
 
   return (
     <div>
@@ -21,13 +21,12 @@ const CommentsThread = (props) => {
 
 CommentsThread.defaultProps = {
   children: null,
-  members: {},
   currentAvatar: 'http://cdn.patch.com/assets/layout/contribute/user-default.png'
 };
 
 CommentsThread.propTypes = {
-  children: React.PropTypes.arrayOf(React.PropTypes.object),
-  members: React.PropTypes.objectOf(React.PropTypes.object),
+  children: React.PropTypes.array,
+  members: React.PropTypes.object.isRequired,
   messageId: React.PropTypes.string.isRequired,
   to: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string,
