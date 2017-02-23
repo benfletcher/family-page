@@ -61,7 +61,7 @@ class CommentInput extends Component {
                 : 'hidden'
             }}
           >
-            submit
+            Submit
             <i className="fa fa-share-square-o submitIcon" aria-hidden="true" />
           </p>
         </div>
