@@ -16,9 +16,11 @@
     "eslint-plugin-react": "^6.9.0",
     "jest": "^18.1.0",
     "mocha": "^3.2.0",
+    "nock": "^9.0.6",
     "react-addons-test-utils": "^15.4.2",
     "react-scripts": "0.9.0",
-    "react-test-renderer": "^15.4.2"
+    "react-test-renderer": "^15.4.2",
+    "redux-mock-store": "^1.2.2"
   },
   "dependencies": {
     "babel-polyfill": "^6.22.0",

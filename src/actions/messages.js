@@ -11,7 +11,7 @@ export const getMessages = () => ({
 export const GET_MESSAGES_SUCCESS = 'GET_MESSAGES_SUCCESS';
 export const getMessagesSuccess = payload => ({
   type: GET_MESSAGES_SUCCESS,
-  messages: payload.messages,
+  messages: payload,
 });
 
 export const fetchMessages = () => (dispatch) => {
@@ -35,13 +35,12 @@ export const fetchMessages = () => (dispatch) => {
   .then(res => res.json())
   .then((data) => {
     // convert ISO date to JS date object, sort messages on date
-    dispatch(getMessagesSuccess({
-      messages: data.messages.map(message => ({
+    dispatch(getMessagesSuccess(
+      data.messages.map(message => ({
         ...message,
         date: new Date(message.date)
       }))
       .sort((x, y) => y.date - x.date)
-    }
   ));
   }
   )
