@@ -131,8 +131,7 @@ ul.userPhotoIcon {
 
 input.announcementInput {
   font-size: 25px;
-  word-wrap: break-word;
-  word-break: break-all;
+  padding-top: 31px;
   height: auto;
 }
 
@@ -292,6 +291,8 @@ input.commentBox {
 
 .commentText {
   padding: 10px;
+  z-index: 3;
+  position: relative;
 }
 /* end of comments styling*/
 
@@ -485,6 +486,7 @@ img.memberIconClickable:hover {
 	font-size: 21px;
 	margin-left: -16px;
   padding-top: 35px;
+  z-index: 500;
 }
 
 .noMargin {
@@ -514,6 +516,12 @@ img.memberIconClickable:hover {
   opacity: 1;
 
 }
+
+.deleteIcon {
+  float: right;
+  padding: 5px;
+}
+
 .delete {
   font-size: 30px;
   padding: 9px;
@@ -527,11 +535,15 @@ img.memberIconClickable:hover {
   padding: 7px;
 }
 
+.deleteComment:hover {
+  opacity: 1;
+}
+
 .deleteComment {
   font-size: 20px;
-  padding: 9px;
-  /*opacity: 0;*/
-  float: right;
+  width: 40%;
+  position: absolute;
+  opacity: 0;
   z-index: 8;
 }
 
