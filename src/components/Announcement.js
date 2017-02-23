@@ -45,14 +45,16 @@ class Announcement extends Component {
             />
           </div>
           <div className="announcementInputBox">
-            <input
-              className="announcementInput"
-              placeholder={`${this.props.currentNickname}, what's on your mind`}
-              value={this.state.text}
-              onChange={this.textInputChange}
-              onSubmit={this.announcementSubmit}
-              type="text"
-            />
+            <form onSubmit={this.announcementSubmit}>
+              <input
+                className="announcementInput"
+                placeholder={`${this.props.currentNickname}, what's on your mind`}
+                value={this.state.text}
+                onChange={this.textInputChange}
+                onSubmit={this.announcementSubmit}
+                type="text"
+              />
+            </form>
           </div>
           <div className="announcementFooter">
             <div className="announcementBlueLine" />
