@@ -42,7 +42,7 @@ export class App extends Component {
 
             if ((message.comments.length === 0) && (message.userId === this.props.currentUser)) {
               return (
-                <div>
+                <div key={message._id}>
                   <MessageNode
                     message={message}
                     currentUser={this.props.currentUser}
