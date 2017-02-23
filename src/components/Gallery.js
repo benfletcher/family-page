@@ -27,9 +27,9 @@ class Gallery extends Component {
     this.renderPhotos = this.renderPhotos.bind(this);
     this.openZoom = this.openZoom.bind(this);
     this.closeZoom = this.closeZoom.bind(this);
-    this.closeZoom = this.closeZoom.bind(this);
     this.goLeft = this.goLeft.bind(this);
     this.goRight = this.goRight.bind(this);
+    this.filterPhotos = this.filterPhotos.bind(this);
   }
 
   componentDidMount() {
@@ -63,24 +63,19 @@ class Gallery extends Component {
 
   filterPhotos(id) {
     this.setState({ filterId: id });
+
     if (!this.state.filterOn) {
-      return this.setState({ filterOn: true });
-    }
-    if (id === this.state.filterId) {
-      return this.setState({ filterOn: false });
+      this.setState({ filterOn: true });
+    } else if (id === this.state.filterId) {
+      this.setState({ filterOn: false });
     }
   }
 
   renderPhotos(photos) {
-    let filteredPhotos = photos;
-    if (this.state.filterOn) {
-      filteredPhotos = filteredPhotos.filter((photo) => {
-        if (this.state.filterId !== photo.userId) {
-          return false;
-        }
-        return photo;
-      });
-    }
+    const filteredPhotos = this.state.filterOn
+      ? photos.filter(photo =>
+          photo.userId === this.state.filterId)
+      : photos;
 
     let previousMonth = '';
     const monthNames = [
@@ -88,22 +83,24 @@ class Gallery extends Component {
       'July', 'August', 'September', 'October', 'November', 'December'
     ];
     const separatedPhotos = [];
+
     filteredPhotos.forEach((photo, i) => {
       const date = new Date(photo.date);
-      if (previousMonth !==
-        `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`) {
-        previousMonth =
-        `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`;
+      const currentMonth = `${monthNames[date.getMonth()]} ${date.getYear() + 1900}`;
+
+      if (previousMonth !== currentMonth) {
+        previousMonth = currentMonth;
         separatedPhotos.push(
-          <div
-            className="gallerySeparator"
-          >
+          <div className="gallerySeparator" key={currentMonth}>
             <p>
-              {previousMonth}
+              {currentMonth}
             </p>
             <hr className="monthSeparatorHr" />
-          </div>);
-      } separatedPhotos.push(
+          </div>
+        );
+      }
+
+      separatedPhotos.push(
         <GalleryThumbnail
           key={photo._id}
           photoIndex={i}
@@ -122,22 +119,20 @@ class Gallery extends Component {
         <Header />
         <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
           {
-              Object.keys(this.props.members).map(member => (
-                <li
-                  key={this.props.members[member]._id}
-                  onClick={this.filterPhotos.bind(
-                    this, this.props.members[member]._id
-                  )}
-                >
-                  <img
-                    className="memberIconClickable"
-                    src={this.props.members[member].avatar}
-                    alt="avatar"
-                    style={{ maxWidth: '50px', borderRadius: '50%' }}
-                  />
-                </li>
-              ))
-            }
+            Object.keys(this.props.members).map(member => (
+              <li
+                key={this.props.members[member]._id}
+                onClick={() => this.filterPhotos(this.props.members[member]._id)}
+              >
+                <img
+                  className="memberIconClickable"
+                  src={this.props.members[member].avatar}
+                  alt="avatar"
+                  style={{ maxWidth: '50px', borderRadius: '50%' }}
+                />
+              </li>
+            ))
+          }
         </ul>
         {
           this.props.zoomed ?
@@ -158,15 +153,13 @@ class Gallery extends Component {
   }
 }
 Gallery.defaultProps = {
-  messages: [],
-  members: {},
   zoomedPhoto: null,
 };
 
 Gallery.propTypes = {
-  members: React.PropTypes.objectOf(React.PropTypes.object),
+  members: React.PropTypes.object.isRequired,
   dispatch: React.PropTypes.func.isRequired,
-  messages: React.PropTypes.arrayOf(React.PropTypes.object),
+  messages: React.PropTypes.array.isRequired,
   zoomed: React.PropTypes.bool.isRequired,
   zoomedIndex: React.PropTypes.number.isRequired,
   zoomedPhoto: React.PropTypes.string,

@@ -88,41 +88,49 @@ class UploadContainer extends Component {
     return (
       <div>
         {
-          this.state.uploadedFile ?
-            <div className="imageDropPreview">
-              <img src={this.state.previewUrl} alt="preview" style={{ maxWidth: '250px' }} />
-            </div>
-          :
-            <UploadBox onImageDrop={this.onImageDrop} />
+          this.state.uploadedFile
+            ?
+              <div className="imageDropPreview">
+                <img
+                  src={this.state.previewUrl}
+                  alt="preview"
+                  style={{ maxWidth: '250px' }}
+                />
+              </div>
+            :
+              <UploadBox onImageDrop={this.onImageDrop} />
         }
         <img
           className="imageDropPreview"
           alt="preview" src={this.state.previewUrl}
           style={{ maxWidth: '200px' }}
         />
-        <input
-          className="imageDescription"
-          type="text"
-          placeholder="describe your picture"
-          value={this.state.caption}
-          onChange={this.captionInputChange}
-        />
+        <form onSubmit={this.saveUpload}>
+          <input
+            className="imageDescription"
+            type="text"
+            placeholder="describe your picture"
+            value={this.state.caption}
+            onChange={this.captionInputChange}
+          />
+        </form>
         <div />
         {
-          this.state.uploadedFile ?
+          this.state.uploadedFile
+          ?
             <span>
               <p
                 className="dropZoneText"
                 onClick={this.saveUpload}
               >
-            Save
-          </p>
+              Save
+              </p>
               <p
                 className="dropZoneText"
                 onClick={this.resetState}
               >
-            Cancel
-          </p>
+              Cancel
+              </p>
             </span>
           : null
         }
