@@ -91,7 +91,7 @@ export const postComment = commentObject => (dispatch) => {
 };
 
 // delete a message
-export const deleteMessage = messageId => dispatch => fetch(`http://localhost:8080/messages/${messageId}`, {
+export const deleteMessage = messageId => dispatch => fetch(`${serverUrl}/messages/${messageId}`, {
   headers: {
     Authorization: `bearer ${cookie.load('accessToken')}`
   },
@@ -100,7 +100,7 @@ export const deleteMessage = messageId => dispatch => fetch(`http://localhost:80
   .then(() => dispatch(fetchMessages()));
 
 // delete a comment
-export const deleteComment = (messageId, commentId) => dispatch => fetch(`http://localhost:8080/comments/${messageId}/${commentId}`, {
+export const deleteComment = (messageId, commentId) => dispatch => fetch(`${serverUrl}/comments/${messageId}/${commentId}`, {
   headers: {
     Authorization: `bearer ${cookie.load('accessToken')}`
   },

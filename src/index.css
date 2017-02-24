@@ -307,9 +307,6 @@ input.commentBox {
   justify-content: center;
 }
 
-
-
-
 .commentText {
   padding: 10px;
   z-index: 3;
@@ -359,7 +356,6 @@ input.imageDescription {
   text-align: center;
   font-size: 16px;
 }
-
 
 .imgDropText {
   text-align: center;
@@ -570,7 +566,7 @@ img.memberIconClickable:hover {
 
 .deleteComment {
   font-size: 20px;
-  width: 40%;
+  width: 90%;
   position: absolute;
   opacity: 0;
   z-index: 8;
@@ -596,6 +592,10 @@ img.memberIconClickable:hover {
     .announcementContainer {
       width: 50%;
 
+    }
+
+    .deleteComment {
+      width: 40%;
     }
 
     .deleteAnnouncement {
