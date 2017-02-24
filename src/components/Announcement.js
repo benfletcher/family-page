@@ -46,7 +46,7 @@ class Announcement extends Component {
             <form onSubmit={this.announcementSubmit}>
               <input
                 className="announcementInput"
-                placeholder={`${this.props.currentNickname}, what's on your mind`}
+                placeholder={`${this.props.currentNickname}, what's on your mind?`}
                 value={this.state.text}
                 onChange={this.textInputChange}
                 onSubmit={this.announcementSubmit}
@@ -65,9 +65,8 @@ class Announcement extends Component {
                   : 'hidden'
               }}
             >
-             Post
-             <i className="fa fa-bullhorn postIcon" aria-hidden="true" />
-
+              Post{'\u00A0' /* non-breaking space unicode */}
+              <i className="fa fa-bullhorn postIcon" aria-hidden="true" />
             </p>
           </div>
         </div>
@@ -79,7 +78,6 @@ class Announcement extends Component {
 Announcement.defaultProps = {
   currentNickname: null,
   currentAvatar: '',
-  members: {}
 };
 
 Announcement.propTypes = {
@@ -89,8 +87,7 @@ Announcement.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser.id,
-  members: state.members.members,
+  members: state.members.members.isRequired,
 });
 
 export default connect(mapStateToProps)(Announcement);

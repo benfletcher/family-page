@@ -7,8 +7,12 @@ class MessageNode extends Component {
     super(props);
 
     this.state = {
-      parentClass: this.props.message.contentType === 'photo' ? 'photoHeader' : 'announcementTextNode',
-      textClass: this.props.message.contentType === 'photo' ? 'nodeTitle' : 'announcementTextNodeTitle',
+      parentClass: (this.props.message.contentType === 'photo')
+        ? 'photoHeader'
+        : 'announcementTextNode',
+      textClass: (this.props.message.contentType === 'photo')
+        ? 'nodeTitle'
+        : 'announcementTextNodeTitle',
     };
 
     this.deleteMessage = this.deleteMessage.bind(this);
@@ -24,31 +28,9 @@ class MessageNode extends Component {
         <div className={`${this.state.parentClass} inline`}>
           <img className="userIcon" src={this.props.memberAvatar} alt="avatar" />
           {
-          this.props.message.contentType === 'announcement'
-            ?
-              <div className="deleteAnnouncement" >
-                {(this.props.message.userId === this.props.currentUser)
-                ?
-                  <i
-                    onClick={this.deleteMessage}
-                    className="fa fa-trash-o deleteIcon"
-                    aria-hidden="true"
-                  />
-              : null
-            }
-              </div>
-          : null
-        }
-          <p className={this.state.textClass}>
-            {this.props.message.text}
-          </p>
-        </div>
-        <div className="photoContainer">
-          {
-          this.props.message.contentType === 'photo'
-            ?
-              <div>
-                <div className="delete" >
+            this.props.message.contentType === 'announcement'
+              ?
+                <div className="deleteAnnouncement" >
                   {(this.props.message.userId === this.props.currentUser)
                   ?
                     <i
@@ -57,13 +39,35 @@ class MessageNode extends Component {
                       aria-hidden="true"
                     />
                 : null
-                }
-
+              }
                 </div>
-                <img className="familyPhoto" src={this.props.message.url} alt="user upload" />
-              </div>
             : null
-        }
+          }
+          <p className={this.state.textClass}>
+            {this.props.message.text}
+          </p>
+        </div>
+        <div className="photoContainer">
+          {
+            this.props.message.contentType === 'photo'
+              ?
+                <div>
+                  <div className="delete" >
+                    {
+                      (this.props.message.userId === this.props.currentUser)
+                        ?
+                          <i
+                            onClick={this.deleteMessage}
+                            className="fa fa-trash-o deleteIcon"
+                            aria-hidden="true"
+                          />
+                        : null
+                    }
+                  </div>
+                  <img className="familyPhoto" src={this.props.message.url} alt="user upload" />
+                </div>
+              : null
+          }
         </div>
       </div>
     );

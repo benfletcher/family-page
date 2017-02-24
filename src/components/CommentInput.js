@@ -61,7 +61,7 @@ class CommentInput extends Component {
                 : 'hidden'
             }}
           >
-            Submit
+            submit{'\u00A0' /* non-breaking space unicode */}
             <i className="fa fa-share-square-o submitIcon" aria-hidden="true" />
           </p>
         </div>
