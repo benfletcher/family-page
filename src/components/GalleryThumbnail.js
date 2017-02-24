@@ -11,7 +11,7 @@ const GalleryThumbnail = (props) => {
         alt="thumbnail"
         src={
           (props.photoUrl.includes('cloudinary'))
-           ? props.photoUrl.replace('image/upload', 'c_thumb,h_150,w_150')
+           ? props.photoUrl.replace('image/upload', 'c_thumb,h_103,w_136')
            : props.photoUrl
         }
         onClick={onClick}

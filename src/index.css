@@ -135,7 +135,7 @@ ul.userPhotoIcon {
 }
 
 input.announcementInput {
-  font-size: 25px;
+  font-size: 18px;
   padding-top: 31px;
   height: auto;
 }
@@ -452,7 +452,7 @@ img.memberIconClickable:hover {
 }
 
 .galleryThumbnail {
-	width: 150px;
+	width: 136px;
 	height: 103px;
 	background-color: #F5F8F2;
 	margin: 2px;

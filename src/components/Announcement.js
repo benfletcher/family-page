@@ -46,7 +46,7 @@ class Announcement extends Component {
             <form onSubmit={this.announcementSubmit}>
               <input
                 className="announcementInput"
-                placeholder={`${this.props.currentNickname}, what's on your mind?`}
+                placeholder={`${this.props.currentNickname}, say hi to the family`}
                 value={this.state.text}
                 onChange={this.textInputChange}
                 onSubmit={this.announcementSubmit}
