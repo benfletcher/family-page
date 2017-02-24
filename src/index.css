@@ -111,13 +111,12 @@ p.announcementPost:hover {
   color: #EE930E;
 }
 
-
 body {
   background-color: #1DA1F2;
   height: 100%;
 }
 
-/* Comment Styling */
+/* Comments */
 
 .commentParent {
   display: flex;
@@ -192,7 +191,7 @@ input.commentBox {
   background-color: #f5f8f2;
 }
 
-/* delete */
+/* deleteButtons */
 
 .deletePhoto:hover {
   opacity: 1;
@@ -250,7 +249,6 @@ input.commentBox {
 	padding-top: 25px;
 	padding-left: 5%;
 	padding-right: 5%;
-
 }
 
 .galleryContainer {
@@ -330,7 +328,6 @@ img.galleryThumbnail {
 .logoImage {
   height: 88px;
 }
-
 
 .loginImage {
   height: 40px;
@@ -531,6 +528,7 @@ i.messageIcon {
   float: right;
   padding-right: 6px;
 }
+
 
 ul.userPhotoIcon {
   display: none;
