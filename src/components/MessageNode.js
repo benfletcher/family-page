@@ -52,7 +52,7 @@ class MessageNode extends Component {
             this.props.message.contentType === 'photo'
               ?
                 <div>
-                  <div className="delete" >
+                  <div className="deletePhoto" >
                     {
                       (this.props.message.userId === this.props.currentUser)
                         ?

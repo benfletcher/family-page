@@ -35,7 +35,7 @@ class Announcement extends Component {
       <div className="announcementParent">
         <div className="announcementContainer">
           <div className="announcementHeader" />
-          <div className="avatarDiv">
+          <div className="announcementAvatar">
             <img
               alt="avatar"
               className="avatarPhoto"
@@ -66,7 +66,7 @@ class Announcement extends Component {
               }}
             >
               Post{'\u00A0' /* non-breaking space unicode */}
-              <i className="fa fa-bullhorn postIcon" aria-hidden="true" />
+              <i className="fa fa-bullhorn announcementPostIcon" aria-hidden="true" />
             </p>
           </div>
         </div>
