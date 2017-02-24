@@ -1,137 +1,36 @@
+@-ms-viewport{
+  width: device-width;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Work Sans', sans-serif;
     margin: 0;
 }
 
-@-ms-viewport{
-    width: device-width;
-}
-
 a {
-    text-decoration: none;
-    color: white;
-    margin: 5px;
-}
-
-i {
-  cursor: pointer;
-}
-
-.inputHr {
-  width: 96%;
-  margin-left: 9px;
-}
-
-.monthSeparatorHr {
-  background: white;
-  margin-top: 3px;
-  margin-bottom: 3px;
-  height: 2px;
-  border: white;
+  text-decoration: none;
+  color: white;
+  margin: 5px;
 }
 
 a:hover, a:focus {
   color: #EE930E;
 }
 
-i:hover, i:focus {
-  color: #EE930E;
-}
+/* Announcement */
 
-p.dropZoneText:hover {
-  color: #EE930E;
-}
-
-p.announcementPost:hover {
-  color: #EE930E;
-}
-
-body {
-	background-color: #1DA1F2;
-	height: 100%;
-
-}
-
-button {
-	height: 40px;
-}
-
-
-img.userIcon{
-	height: 46px;
-	border-radius: 50%;
-	padding: 5px;
-	float: left;
-}
-
-img.familyPhoto {
-  margin-top: 5px;
-	width: 100%;
-}
-/*option1 float right, option2 indent*/
-img.userIcon.commentLeft {
-  display: inline;
-  height: 46px;
-  padding: 5px;
-  float: right;
-  /*padding-left: 20px;*/
-}
-
-.bold {
-  font-weight: bold;
-}
-
-.delete {
-  position: absolute;
-  width: 100%;
-  text-align: right;
-  padding: 6px;
-}
-
-.photoContainer {
-  position: relative;
-}
-
-i.messageIcon {
-  font-size: 30px;
-  color: white;
-	padding-top: 5px;
-	float: right;
-	padding-right: 6px;
-}
-
-i.messageIcon:hover {
-  color: #EE930E;
-}
-
-img.galleryThumbnail {
-	width: 150px;
-	height: 100px;
-}
-
-ul.userPhotoIcon {
-	display: none;
-}
-.logoContainer {
+.announcementParent {
   display: flex;
   justify-content: center;
-  padding-top: 100px;
+  padding-top: 36px;
 }
 
-.loginContainer {
-  display: flex;
-  justify-content: center;
-  padding-top: 150px;
-}
-
-.logoImage {
-  height: 88px;
-}
-
-
-.loginImage {
-  height: 40px;
+.announcementContainer {
+  margin-top: 10px;
+  height: 150px;
+  width: 95%;
+  background-color: #F5F8F2;
 }
 
 input.announcementInput {
@@ -146,9 +45,9 @@ input.announcementInput {
 }
 
 .announcementTextNode {
-	height: 100px;
+  height: 100px;
   background-color: #F5F8F2;
-	margin-bottom: 4px;
+  margin-bottom: 4px;
 }
 
 .announcementTextNodeTitle {
@@ -158,21 +57,8 @@ input.announcementInput {
   color: #323333;
 }
 
-.postIcon {
+.announcementPostIcon {
   padding: 2px;
-}
-
-.announcementParent {
-  display: flex;
-  justify-content: center;
-  padding-top: 36px;
-}
-
-.announcementContainer {
-  margin-top: 10px;
-  height: 150px;
-  width: 95%;
-  background-color: #F5F8F2;
 }
 
 .announcementHeader {
@@ -209,7 +95,7 @@ input.announcementInput {
   color: white;
 }
 
-.avatarDiv {
+.announcementAvatar {
   width: 15%;
   padding-left: 2%;
   display: inline-block;
@@ -219,6 +105,45 @@ input.announcementInput {
   height: 50px;
   margin: 5px;
   padding-top: 5px;
+}
+
+p.announcementPost:hover {
+  color: #EE930E;
+}
+
+body {
+  background-color: #1DA1F2;
+  height: 100%;
+}
+
+/* Comments */
+
+.commentParent {
+  display: flex;
+  justify-content: center;
+}
+
+
+.commentContainer {
+  width: 90%;
+  background-color: #f5f8f2;
+}
+
+.commentTextContainer {
+  display: inline-block;
+  width: 100%;
+  z-index: 3;
+}
+
+.commentInputHr {
+  width: 96%;
+  margin-left: 9px;
+}
+
+.commentText {
+  padding: 10px;
+  z-index: 3;
+  position: relative;
 }
 
 .commentText span {
@@ -241,7 +166,7 @@ input.announcementInput {
   padding-top: 3px;
 }
 
-.submitIcon {
+.commentSubmitIcon {
   padding: 2px;
 }
 
@@ -266,6 +191,150 @@ input.commentBox {
   background-color: #f5f8f2;
 }
 
+/* deleteButtons */
+
+.deletePhoto:hover {
+  opacity: 1;
+}
+
+.deletePhoto {
+  position: absolute;
+  font-size: 30px;
+  padding: 9px;
+  width: 100%;
+  height: 300px;
+  opacity: 0;
+  color: #F5F8F2;
+}
+
+.deleteIcon {
+  float: right;
+  padding: 5px;
+}
+
+.deleteAnnouncement:hover {
+  opacity: 1;
+}
+
+.deleteAnnouncement {
+  float: right;
+  padding: 7px;
+  position: absolute;
+  height: 100px;
+  width: 90%;
+  opacity: 0;
+}
+
+.deleteComment:hover {
+  opacity: 1;
+}
+
+.deleteComment {
+  font-size: 20px;
+  width: 90%;
+  position: absolute;
+  opacity: 0;
+  z-index: 8;
+}
+
+/* GalleryPage */
+
+.galleryZoomed {
+  display: flex;
+  flex-direction: column;
+	background: rgba(0, 0, 0, 1);
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	padding-top: 25px;
+	padding-left: 5%;
+	padding-right: 5%;
+}
+
+.galleryContainer {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	padding-top: 80px;
+}
+
+.monthSeparatorHr {
+  background: white;
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 2px;
+  border: white;
+}
+
+.gallerySeparator {
+  width: 100%;
+  height: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 47px;
+  padding-top: 26px;
+}
+
+.gallerySeparator p {
+  color: white;
+  font-size: 20px;
+}
+
+.galleryThumbnail {
+	width: 136px;
+	height: 103px;
+	background-color: #F5F8F2;
+	margin: 2px;
+}
+
+.galleryThumbnail:hover {
+  box-shadow: 7px 10px 0px #323333;
+}
+
+.galleryContainer img {
+	width: 100%;
+	height: 100%;
+  cursor: pointer;
+	overflow: hidden;
+}
+
+img.memberIconClickable {
+  border: 2px solid white;
+}
+
+img.memberIconClickable:hover {
+  border: 2px solid #EE930E;;
+}
+
+img.galleryThumbnail {
+  width: 150px;
+  height: 100px;
+}
+
+/* Login */
+
+.logoContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 100px;
+}
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  padding-top: 150px;
+}
+
+.logoImage {
+  height: 88px;
+}
+
+.loginImage {
+  height: 40px;
+}
+
+/* Header Styling */
+
 .navButton {
 	color: white;
 	height: 46px;
@@ -274,6 +343,12 @@ input.commentBox {
 	padding: 15px;
   z-index: 34234;
 	background-color: #323333;
+}
+
+/* HomePage */
+
+.photoContainer {
+  position: relative;
 }
 
 .node {
@@ -301,18 +376,7 @@ input.commentBox {
 	background-color: #323333;
 }
 
-/*styling for comments*/
-.commentParent {
-  display: flex;
-  justify-content: center;
-}
-
-.commentText {
-  padding: 10px;
-  z-index: 3;
-  position: relative;
-}
-/* end of comments styling*/
+/* UploadPage */
 
 .uploadParent {
 	display: flex;
@@ -321,11 +385,16 @@ input.commentBox {
 }
 
 .uploadChild {
-	background-color: white;
+  background-color: white;
   text-align: center;
   width: 90%;
   padding: 46px;
   margin-top: 100px
+}
+
+.uploadContainer {
+	flex: 1;
+	padding-top: 50px;
 }
 
 .uploadButton {
@@ -367,6 +436,10 @@ input.imageDescription {
   color: #EE930E;
 }
 
+p.dropZoneText:hover {
+  color: #EE930E;
+}
+
 p.dropZoneText {
   color: #323333;
   padding: 10px;
@@ -382,109 +455,29 @@ img.imageDropPreview {
   display: none;
 }
 
-.filterParent {
-  display: flex;
-  justify-content: center;
-  padding-top: 77px;
-}
-
-
-.uploadParent {
-	display: flex;
-	justify-content: center;
-
-}
-
-.uploadContainer {
-	flex: 1;
-	padding-top: 50px;
-
-}
-
-.uploadForm {
-	width: 50%;
-	text-align: center;
-}
-
-img.memberIconClickable {
-  border: 2px solid white;
-}
-
-img.memberIconClickable:hover {
-  border: 2px solid #EE930E;;
-}
-
-.galleryZoomed {
-  display: flex;
-  flex-direction: column;
-	background: rgba(0, 0, 0, 1);
-	position: fixed;
-	width: 100%;
-	height: 100%;
-	padding-top: 25px;
-	padding-left: 5%;
-	padding-right: 5%;
-
-}
-
-.galleryContainer {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	padding-top: 80px;
-}
-
-.gallerySeparator {
-  width: 100%;
-  height: 2px;
-  padding-left: 5px;
-  padding-right: 5px;
-  padding-bottom: 47px;
-}
-
-.gallerySeparator p {
-  color: white;
-  font-size: 20px;
-}
-
-.galleryThumbnail {
-	width: 136px;
-	height: 103px;
-	background-color: #F5F8F2;
-	margin: 2px;
-}
-
-.galleryThumbnail:hover {
-  box-shadow: 7px 10px 0px #323333;
-}
-
-.galleryContainer img {
-	width: 100%;
-	height: 100%;
-  cursor: pointer;
-	overflow: hidden;
-}
-
-.zoomedNav {
-	text-align: center;
-  position: absolute;
-  z-index: 100;
-  padding-top: 210px;
-  width: 90%;
-
-}
+/* GalleryZoomed */
 
 .zoomedPhotoContainer {
   display: flex;
   justify-content: center;
 }
 
-.arrowLeft {
-  float: left;
+.zoomedNavigation {
+	text-align: center;
+  position: absolute;
+  z-index: 100;
+  padding-top: 210px;
+  width: 90%;
 }
 
-.arrowRight {
+.zoomedNavigationLeft {
+  float: left;
+  color: #F5F8F2;
+}
+
+.zoomedNavigationRight {
   float: right;
+  color: #F5F8F2;
 }
 
 .zoomedPhoto {
@@ -494,82 +487,51 @@ img.memberIconClickable:hover {
   position: relative;
 }
 
-.white {
-  color: white;
+ .zoomedNavigationExit:hover {
+   color: #EE930E;
  }
 
-.xIcon {
-  color: white;
+.zoomedNavigationExit {
+  color: #F5F8F2;
 	font-size: 21px;
 	margin-left: -16px;
   padding-top: 35px;
   z-index: 500;
 }
 
-.noMargin {
-  margin: 0;
+/* generalRules */
+
+i {
+  cursor: pointer;
 }
 
-.xIcon:hover {
+i:hover, i:focus {
   color: #EE930E;
 }
 
-.commentContainer {
-  width: 90%;
-  background-color: #f5f8f2;
-}
-
-.commentTextContainer {
-  display: inline-block;
-  width: 100%;
-  z-index: 3;
-}
-
-.commentText {
-  padding: 10px;
-}
-
-.delete:hover {
-  opacity: 1;
-
-}
-
-.deleteIcon {
-  float: right;
+img.userIcon{
+  height: 46px;
+  border-radius: 50%;
   padding: 5px;
+  float: left;
 }
 
-.delete {
-  font-size: 30px;
-  padding: 9px;
+img.familyPhoto {
+  margin-top: 5px;
   width: 100%;
-  height: 300px;
-  opacity: 0;
 }
 
-.deleteAnnouncement:hover {
-  opacity: 1;
-}
-
-.deleteAnnouncement {
+i.messageIcon {
+  font-size: 30px;
+  color: white;
+  padding-top: 5px;
   float: right;
-  padding: 7px;
-  position: absolute;
-  height: 100px;
-  width: 90%;
-  opacity: 0;
+  padding-right: 6px;
 }
 
-.deleteComment:hover {
-  opacity: 1;
-}
 
-.deleteComment {
-  font-size: 20px;
-  width: 90%;
-  position: absolute;
-  opacity: 0;
-  z-index: 8;
+ul.userPhotoIcon {
+  display: none;
 }
 
 @media only screen and (min-width: 1000px) {

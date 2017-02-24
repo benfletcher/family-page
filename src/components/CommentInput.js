@@ -34,7 +34,7 @@ class CommentInput extends Component {
     return (
       <div className="commentInputParent">
         <div className="commentInputContainer">
-          <hr className="inputHr" />
+          <hr className="commentInputHr" />
           <img
             src={this.props.currentAvatar}
             alt="avatar"
@@ -62,7 +62,7 @@ class CommentInput extends Component {
             }}
           >
             Submit{'\u00A0' /* non-breaking space unicode */}
-            <i className="fa fa-share-square-o submitIcon" aria-hidden="true" />
+            <i className="fa fa-share-square-o commentSubmitIcon" aria-hidden="true" />
           </p>
         </div>
       </div>
