@@ -20,12 +20,14 @@ class CommentInput extends Component {
 
   postComment(e) {
     e.preventDefault();
-    this.props.dispatch(postComment({
-      messageId: this.props.messageId,
-      to: this.props.to,
-      text: this.state.text,
-    }));
-    this.setState({ text: '' });
+    if (this.state.text.length) {
+      this.props.dispatch(postComment({
+        messageId: this.props.messageId,
+        to: this.props.to,
+        text: this.state.text,
+      }));
+      this.setState({ text: '' });
+    }
   }
 
   render() {
@@ -53,6 +55,11 @@ class CommentInput extends Component {
           <p
             className="commentSubmit"
             onClick={this.postComment}
+            style={{
+              visibility: (this.state.text.length)
+                ? 'visible'
+                : 'hidden'
+            }}
           >
             submit{'\u00A0' /* non-breaking space unicode */}
             <i className="fa fa-share-square-o submitIcon" aria-hidden="true" />

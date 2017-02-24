@@ -624,13 +624,22 @@ img.memberIconClickable:hover {
 
 		ul.userPhotoIcon {
 			display: initial;
-			width: 10%;
+			width: 175px;
 			float: left;
       position: absolute;
 			padding-top: 76px;
 			color: white;
 		}
 
+    .userPhotoName {
+      opacity: 0;
+      transition: opacity 1s linear;
+    }
+
+    .userPhotoIcon:hover .userPhotoName {
+      opacity: 0.8;
+      transition: opacity 1s linear;
+    }
 
     .replyCommentTextContainer {
       margin-left: 8%;
