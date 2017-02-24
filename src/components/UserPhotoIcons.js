@@ -1,18 +1,21 @@
 import React from 'react';
 
 
-const UserPhotoIcons = props => (
+const UserPhotoIcons = ({ members }) => (
   <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
     {
-      Object.keys(props.members).map(member => (
+      Object.keys(members).map(memberId => (
         <li
-          key={props.members[member]._id}
+          key={memberId}
         >
           <img
-            src={props.members[member].avatar}
+            src={members[memberId].avatar}
             alt="avatar"
-            style={{ maxWidth: '50px', borderRadius: '50%' }}
+            style={{ maxWidth: '75%', borderRadius: '50%' }}
           />
+          <span className="userPhotoName">
+            {members[memberId].nickname}
+          </span>
         </li>
       ))
     }
@@ -20,11 +23,10 @@ const UserPhotoIcons = props => (
 );
 
 UserPhotoIcons.defaultProps = {
-  members: {},
 };
 
 UserPhotoIcons.propTypes = {
-  members: React.PropTypes.objectOf(React.PropTypes.object),
+  members: React.PropTypes.object.isRequired,
 };
 
 export default UserPhotoIcons;
