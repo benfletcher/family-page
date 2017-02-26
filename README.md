@@ -1,3 +1,44 @@
+## Family Page
+live link: http://www.family-photos.online/#/
+
+A photo sharing app for the whole family which features private messages on announcements and photos and the ability to search by user. A perfect vault to keep memories without them being buried by a constantly updating news feed. Made to be simple enough that your Grandma could use it. App is fully responsive, providing a clean UX on both mobile and desktop. 
+
+TODO
+-Enable multiple photo upload
+-Edit size of photos being sent to the server. Currently uploads more pixles then what is being used.
+-Enable lazy loading.
+-Add multiple families feature. 
+-React Native version of app.
+
+#Mobile ios
+<img src="Simulator Screen Shot Feb 26, 2017, 11.28.29 AM_iphone7plusjetblack_portrait.png"></img>
+<img src="Simulator Screen Shot Feb 26, 2017, 11.30.01 AM_iphone7plusjetblack_portrait.png"></img>
+<img src="Simulator Screen Shot Feb 26, 2017, 11.30.29 AM_iphone7plusjetblack_portrait.png"></img>
+<img src="Simulator Screen Shot Feb 26, 2017, 11.30.46 AM_iphone7plusjetblack_portrait.png"></img>
+<img src="Simulator Screen Shot Feb 26, 2017, 11.30.56 AM_iphone7plusjetblack_portrait.png"></img>
+
+#Desktop
+<img src="familyPageScreenShot1.png"></img>
+<img src="familyPageScreenShot2.png"></img>
+<img src="familyPageScreenShot3.png"></img>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
