@@ -69,11 +69,6 @@ class UploadContainer extends Component {
       if (err) {
         console.error(err);
       }
-
-      // console.log('handleImageUpload response.body', response.body);
-      // https://res.cloudinary.com/family/c_thumb,g_faces,h_150,w_200/nayysx6lzbbewmjtneou.jpg
-      // c_thumb,g_faces,h_400,r_5,w_400
-
       if (response.body.secure_url !== '') {
         this.props.dispatch(postMessage({
           url: response.body.secure_url,
@@ -88,42 +83,53 @@ class UploadContainer extends Component {
     return (
       <div>
         {
-          this.state.uploadedFile ?
-            <div className="imageDropPreview">
-              <img src={this.state.previewUrl} alt="preview" style={{ maxWidth: '250px' }} />
-            </div>
-          :
-            <UploadBox onImageDrop={this.onImageDrop} />
+          this.state.uploadedFile
+            ?
+              <div className="imageDropPreview">
+                <img
+                  src={this.state.previewUrl}
+                  alt="preview"
+                  style={{ maxWidth: '250px' }}
+                />
+              </div>
+            :
+              <UploadBox onImageDrop={this.onImageDrop} />
         }
         <img
           className="imageDropPreview"
           alt="preview" src={this.state.previewUrl}
           style={{ maxWidth: '200px' }}
         />
-        <input
-          className="imageDescription"
-          type="text"
-          placeholder="describe your picture"
-          value={this.state.caption}
-          onChange={this.captionInputChange}
-        />
+        <form onSubmit={this.saveUpload}>
+          <input
+            className="imageDescription"
+            type="text"
+            placeholder="describe your picture"
+            value={this.state.caption}
+            onChange={this.captionInputChange}
+          />
+        </form>
         <div />
         {
-          this.state.uploadedFile ?
-            <p
-              className="dropZoneText"
-              onClick={this.saveUpload}
-            >
-            Save
-          </p>
+          this.state.uploadedFile
+          ?
+            <span>
+              <p
+                className="dropZoneText"
+                onClick={this.saveUpload}
+              >
+              Save
+              </p>
+              <p
+                className="dropZoneText"
+                onClick={this.resetState}
+              >
+              Cancel
+              </p>
+            </span>
           : null
         }
-        <p
-          className="dropZoneText"
-          onClick={this.resetState}
-        >
-          Cancel
-        </p>
+
       </div>
     );
   }

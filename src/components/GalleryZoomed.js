@@ -4,19 +4,24 @@ const GalleryZoomed = props => (
   <div className="galleryZoomed">
     <div className="flexZoomedContainer">
       <div className="zoomedPhotoContainer">
-        <div className="zoomedNav">
+        <div className="zoomedNavigation">
           <i
-            className="fa fa-3x white fa-arrow-left arrowLeft"
+            className="fa fa-3x white fa-arrow-left zoomedNavigationLeft"
             onClick={props.goLeft}
             aria-hidden="true"
           />
           <i
-            className="fa fa-3x white fa-arrow-right arrowRight"
+            className="fa fa-3x white fa-arrow-right zoomedNavigationRight"
             onClick={props.goRight}
             aria-hidden="true"
           />
         </div>
-        <i onClick={props.zoom} className="xIcon fa fa-times" aria-hidden="true"alt="close" />
+        <i
+          className="zoomedNavigationExit fa fa-times"
+          aria-hidden="true"
+          alt="close"
+          onClick={props.zoom}
+        />
         <div>
           <img className="zoomedPhoto" src={props.photoUrl} alt="large" />
         </div>

@@ -18,37 +18,52 @@ class CommentInput extends Component {
     this.setState({ text: event.target.value });
   }
 
-  postComment() {
-    this.props.dispatch(postComment({
-      messageId: this.props.messageId,
-      to: this.props.to,
-      text: this.state.text,
-    }));
-    this.setState({ text: '' });
+  postComment(e) {
+    e.preventDefault();
+    if (this.state.text.length) {
+      this.props.dispatch(postComment({
+        messageId: this.props.messageId,
+        to: this.props.to,
+        text: this.state.text,
+      }));
+      this.setState({ text: '' });
+    }
   }
 
   render() {
     return (
       <div className="commentInputParent">
         <div className="commentInputContainer">
+          <hr className="commentInputHr" />
           <img
             src={this.props.currentAvatar}
             alt="avatar"
             className="userIcon"
           />
-          <input
-            onChange={this.textInputChange}
-            type="text"
-            value={this.state.text}
-            placeholder={`Reply to ${this.props.replyToName}`}
-            className="commentBox"
-          />
+          <form
+            className="commentInputForm"
+            onSubmit={this.postComment}
+          >
+            <input
+              onChange={this.textInputChange}
+              type="text"
+              value={this.state.text}
+              placeholder={`Reply to ${this.props.replyToName}...`}
+              className="commentBox"
+            />
+          </form>
           <p
             className="commentSubmit"
             onClick={this.postComment}
+            style={{
+              visibility: (this.state.text.length)
+                ? 'visible'
+                : 'hidden'
+            }}
           >
-                submit
-                </p>
+            Submit{'\u00A0' /* non-breaking space unicode */}
+            <i className="fa fa-share-square-o commentSubmitIcon" aria-hidden="true" />
+          </p>
         </div>
       </div>
     );

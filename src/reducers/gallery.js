@@ -3,7 +3,7 @@ import * as actions from '../actions/gallery';
 const initialState = {
   zoomed: false,
   zoomedIndex: 0,
-  zoomedPhoto: '',
+  zoomedPhoto: null,
 };
 
 const status = (state = initialState, action) => {

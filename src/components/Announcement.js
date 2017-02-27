@@ -23,11 +23,8 @@ class Announcement extends Component {
         text: this.state.text
       }));
       this.setState({ text: '' });
-    } else if (!this.state.text) {
-      alert('Can not post blank Announcement field'); // eslint-disable-line
     }
   }
-
 
   textInputChange(event) {
     this.setState({ text: event.target.value });
@@ -38,7 +35,7 @@ class Announcement extends Component {
       <div className="announcementParent">
         <div className="announcementContainer">
           <div className="announcementHeader" />
-          <div className="avatarDiv">
+          <div className="announcementAvatar">
             <img
               alt="avatar"
               className="avatarPhoto"
@@ -46,21 +43,30 @@ class Announcement extends Component {
             />
           </div>
           <div className="announcementInputBox">
-            <input
-              className="announcementInput"
-              placeholder={`${this.props.currentNickname}, what's on your mind`}
-              value={this.state.text}
-              onChange={this.textInputChange}
-              type="text"
-            />
+            <form onSubmit={this.announcementSubmit}>
+              <input
+                className="announcementInput"
+                placeholder={`${this.props.currentNickname}, say hi to the family`}
+                value={this.state.text}
+                onChange={this.textInputChange}
+                onSubmit={this.announcementSubmit}
+                type="text"
+              />
+            </form>
           </div>
           <div className="announcementFooter">
             <div className="announcementBlueLine" />
             <p
               onClick={this.announcementSubmit}
               className="announcementPost"
+              style={{
+                visibility: (this.state.text.length)
+                  ? 'visible'
+                  : 'hidden'
+              }}
             >
-             Post
+              Post{'\u00A0' /* non-breaking space unicode */}
+              <i className="fa fa-bullhorn announcementPostIcon" aria-hidden="true" />
             </p>
           </div>
         </div>
@@ -72,7 +78,6 @@ class Announcement extends Component {
 Announcement.defaultProps = {
   currentNickname: null,
   currentAvatar: '',
-  members: {}
 };
 
 Announcement.propTypes = {
@@ -82,8 +87,7 @@ Announcement.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currentUser: state.currentUser.id,
-  members: state.members.members,
+  members: state.members.members.isRequired,
 });
 
 export default connect(mapStateToProps)(Announcement);
