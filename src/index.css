@@ -30,7 +30,7 @@ a:hover, a:focus {
   margin-top: 10px;
   height: 150px;
   width: 95%;
-  background-color: #F5F8F2;
+  background-color: #cccccc;
 }
 
 input.announcementInput {
@@ -41,12 +41,12 @@ input.announcementInput {
 
 .announcementBlueLine {
   height: 4px;
-  background-color: #1DA1F2;
+  background-color: #323333;
 }
 
 .announcementTextNode {
   height: 100px;
-  background-color: #F5F8F2;
+  background-color: #cccccc;
   margin-bottom: 4px;
 }
 
@@ -54,7 +54,7 @@ input.announcementInput {
   text-align: center;
   padding-right: 43px;
   padding-top: 14px;
-  color: #323333;
+  color: white;
 }
 
 .announcementPostIcon {
@@ -63,7 +63,7 @@ input.announcementInput {
 
 .announcementHeader {
   height: 25px;
-  background-color: #1DA1F2;
+  background-color: #323333;
 }
 
 .announcementFooter {
@@ -83,8 +83,8 @@ input.announcementInput {
   height: 65px;
   outline: none;
   width: 100%;
-  background-color: #F5F8F2;
-  border: 1px solid #F5F8F2;
+  background-color: #cccccc;
+  border: 1px solid #cccccc;
 }
 
 .announcementPost {
@@ -112,7 +112,7 @@ p.announcementPost:hover {
 }
 
 body {
-  background-color: #1DA1F2;
+  background-color: #323333;
   height: 100%;
 }
 
@@ -288,7 +288,7 @@ input.commentBox {
 }
 
 .galleryThumbnail:hover {
-  box-shadow: 7px 10px 0px #323333;
+  box-shadow: 1px 2px 23px pink;
 }
 
 .galleryContainer img {
