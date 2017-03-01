@@ -42,12 +42,12 @@ describe('simple messages actions', () => {
   });
 });
 
-// describe('async actions', () => {
+// describe.only('async message actions', () => {
 //   afterEach(() => {
 //     nock.cleanAll();
 //   });
 //
-//   it('creates fetchMessages when page loads', () => {
+//   it('can fetchMessages when page loads', () => {
 //     nock('http://example.com')
 //       .get('/messages')
 //       .reply(200, { body: { messages: [{
@@ -72,10 +72,28 @@ describe('simple messages actions', () => {
 //
 //     const expectedActions = [
 //       { type: 'getMessages' },
-//       { type: 'fetchMessages', body: { headers: { Authorization: 'bearer cookie' } } },
-//       { type: 'getMessagesSuccess' },
+//       { type: 'getMessagesSuccess',
+//         body: { messages: [{
+//           _id: '589b9c6705ae9f0d9cbd165d',
+//           url: 'http://lorempixel.com/900/400/nightlife',
+//           text: 'Grandma playing beach volleyball',
+//           userId: 'Alex',
+//           contentType: 'photo',
+//           tags: [],
+//           date: '2017-02-08T22:32:07.298Z',
+//           comments: [
+//             {
+//               from: 'Jamie',
+//               to: 'Ben',
+//               text: 'my nephew is getting tall',
+//               posted: Date.now()
+//             },
+//           ]
+//         }
+//         ] } },
 //     ];
 //     const store = mockStore(
+//       { messages:
 //       [{
 //         _id: '589b9c6705ae9f0d9cbd165d',
 //         url: 'http://lorempixel.com/900/400/nightlife',
@@ -93,11 +111,15 @@ describe('simple messages actions', () => {
 //           },
 //         ]
 //       }]
+//       }
 //     );
+//     console.log(store.getState());
+//     console.log(expectedActions);
+//     console.log(store.getActions());
 //
 //     return store.dispatch(actions.fetchMessages())
 //       .then(() => { // return of async actions
-//         expect(store.fetchMessages()).to.equal(expectedActions);
+//         expect(store.getActions()).toEqual(expectedActions);
 //       });
 //   });
 // });
