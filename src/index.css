@@ -288,7 +288,7 @@ input.commentBox {
 }
 
 .galleryThumbnail:hover {
-  box-shadow: 7px 10px 0px #323333;
+  box-shadow: 1px 2px 23px pink;
 }
 
 .galleryContainer img {
