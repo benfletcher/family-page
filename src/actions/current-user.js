@@ -15,7 +15,7 @@ export const getCurrentUserSuccess = payload => ({
   avatar: payload.avatar,
   name: payload.name,
   fullname: payload.fullname,
-  families: payload.families,
+  families: payload.family,
 });
 
 export const fetchCurrentUser = () => (dispatch) => {
@@ -39,14 +39,29 @@ export const fetchCurrentUser = () => (dispatch) => {
   .then(res => res.json())
   .then((data) => {
     if (data) {
+      // const family = {};
+      // data.families.forEach((fam) => {
+      //   family[fam._id] = fam;
+      // });
       dispatch(getCurrentUserSuccess({
         id: data.currentUser.id,
         avatar: data.currentUser.avatar,
         name: data.currentUser.nickname,
         fullname: data.currentUser.fullname,
-        families: [],
+        // currentFamily: data.currentUser.currentFamily
+        // family,
       }));
     }
   })
   .catch(console.error);
 };
+
+// put in new action file FamilyManagement
+export const SWITCH_FAMILY = 'SWITCH_FAMILY';
+export const switchFamily = id => ({
+  type: SWITCH_FAMILY,
+  currentFamily: id,
+});
+
+// create family
+// admin add user to a family
