@@ -5,7 +5,6 @@ const initialState = {
   avatar: '',
   name: '',
   fullname: '',
-  currentFamily: 'default id'
   families: {},
   loading: false,
 };

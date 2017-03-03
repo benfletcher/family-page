@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCurrentUser, switchFamily } from '../actions/current-user';
+import { fetchCurrentUser } from '../actions/current-user';
+import { switchFamily } from '../actions/family';
+
 
 class FamilyIcons extends Component {
   constructor(props) {
     super(props);
 
     this.selectFamily = this.selectFamily.bind(this);
+    this.familyInput = this.familyInput.bind(this);
   }
   componentDidMount() {
     this.props.dispatch(fetchCurrentUser());
@@ -16,10 +19,15 @@ class FamilyIcons extends Component {
     this.props.dispatch(switchFamily(id));
   }
 
+  familyInput() {
+    console.log('ready for form popout');
+  }
+
   render() {
     return (
-      <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
-        {
+      <div>
+        <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
+          {
       Object.keys(this.props.families).map(family => (
         <li
           key={this.props.families[family]._id}
@@ -36,7 +44,9 @@ class FamilyIcons extends Component {
         </li>
       ))
     }
-      </ul>
+        </ul>
+        <button onClick={this.familyInput}>Create a Family</button>
+      </div>
     );
   }
 }

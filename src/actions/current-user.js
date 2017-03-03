@@ -48,20 +48,9 @@ export const fetchCurrentUser = () => (dispatch) => {
         avatar: data.currentUser.avatar,
         name: data.currentUser.nickname,
         fullname: data.currentUser.fullname,
-        // currentFamily: data.currentUser.currentFamily
         // family,
       }));
     }
   })
   .catch(console.error);
 };
-
-// put in new action file FamilyManagement
-export const SWITCH_FAMILY = 'SWITCH_FAMILY';
-export const switchFamily = id => ({
-  type: SWITCH_FAMILY,
-  currentFamily: id,
-});
-
-// create family
-// admin add user to a family
