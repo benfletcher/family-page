@@ -13,6 +13,8 @@ import App from './components/App'; // eslint-disable-line
 import Login from './components/Login';
 import Upload from './components/Upload';
 import Gallery from './components/Gallery';
+import FamilyChoice from './components/FamilyChoice';
+
 import statusReducer from './reducers';
 
 dotenv.config();

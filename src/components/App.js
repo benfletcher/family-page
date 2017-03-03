@@ -12,6 +12,7 @@ import CommentsContainer from './CommentsContainer';
 import Announcement from './Announcement';
 import CommentInput from './CommentInput';
 import UserPhotoIcons from './UserPhotoIcons';
+import FamilyChoice from './FamilyChoice';
 
 export class App extends Component {
 
@@ -25,6 +26,8 @@ export class App extends Component {
   }
 
   render() {
+    // testing FamilyChoice component replaced:
+    //  <UserPhotoIcons /> with <FamilyChoice />
     return (
       <div className="container">
         <Header />

@@ -1,7 +1,7 @@
 import * as actions from '../actions/family';
 
 const initialState = {
-  currentFamily: 'default id'
+  currentFamily: 'defaultId'
 };
 
 const family = (state = initialState, action) => {
