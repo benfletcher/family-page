@@ -15,7 +15,7 @@ export const getCurrentUserSuccess = payload => ({
   avatar: payload.avatar,
   name: payload.name,
   fullname: payload.fullname,
-  families: payload.family,
+  families: payload.families,
 });
 
 export const fetchCurrentUser = () => (dispatch) => {
@@ -39,16 +39,12 @@ export const fetchCurrentUser = () => (dispatch) => {
   .then(res => res.json())
   .then((data) => {
     if (data) {
-      // const family = {};
-      // data.families.forEach((fam) => {
-      //   family[fam._id] = fam;
-      // });
       dispatch(getCurrentUserSuccess({
         id: data.currentUser.id,
         avatar: data.currentUser.avatar,
         name: data.currentUser.nickname,
         fullname: data.currentUser.fullname,
-        // family,
+        families: data.currentUser.families
       }));
     }
   })

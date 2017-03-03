@@ -15,12 +15,12 @@ import Upload from './components/Upload';
 import Gallery from './components/Gallery';
 import FamilyChoice from './components/FamilyChoice';
 
-import statusReducer from './reducers';
+import combineReducers from './reducers';
 
 dotenv.config();
 
 const store = createStore(
-  statusReducer,
+  combineReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk),
 );
@@ -29,7 +29,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={hashHistory}>
       <Route path="/" component={Login} />
-      <Route path="/app" component={FamilyChoice} />
+      <Route path="/app" component={App} />
+      <Route path="/families" component={FamilyChoice} />
       <Route path="/upload" component={Upload} />
       <Route path="/gallery" component={Gallery} />
     </Router>

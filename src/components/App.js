@@ -1,25 +1,29 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import cookie from 'react-cookie';
-
+import { hashHistory } from 'react-router';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
 import { fetchCurrentUser } from '../actions/current-user';
-
 import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
 import Announcement from './Announcement';
 import CommentInput from './CommentInput';
 import UserPhotoIcons from './UserPhotoIcons';
-import FamilyChoice from './FamilyChoice';
+
 
 export class App extends Component {
-
-  componentDidMount() {
+  componentWillMount() {
     if (this.props.location.query.token) {
       cookie.save('accessToken', this.props.location.query.token);
     }
+    if (!this.props.currentFamily) {
+      hashHistory.push('/families');
+    }
+  }
+
+  componentDidMount() {
     this.props.dispatch(fetchMessages());
     this.props.dispatch(fetchMembers());
     this.props.dispatch(fetchCurrentUser());
@@ -125,6 +129,7 @@ const mapStateToProps = state => ({
   messages: state.messages.messages,
   members: state.members.members,
   zoomed: state.status.zoomed,
+  currentFamily: state.family.currentFamily,
 });
 
 export default connect(mapStateToProps)(App);
