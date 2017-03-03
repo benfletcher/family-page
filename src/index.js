@@ -13,12 +13,14 @@ import App from './components/App'; // eslint-disable-line
 import Login from './components/Login';
 import Upload from './components/Upload';
 import Gallery from './components/Gallery';
-import statusReducer from './reducers';
+import FamilyChoice from './components/FamilyChoice';
+
+import combineReducers from './reducers';
 
 dotenv.config();
 
 const store = createStore(
-  statusReducer,
+  combineReducers,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
   applyMiddleware(thunk),
 );
@@ -28,6 +30,7 @@ ReactDOM.render(
     <Router history={hashHistory}>
       <Route path="/" component={Login} />
       <Route path="/app" component={App} />
+      <Route path="/families" component={FamilyChoice} />
       <Route path="/upload" component={Upload} />
       <Route path="/gallery" component={Gallery} />
     </Router>

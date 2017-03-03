@@ -499,6 +499,21 @@ img.imageDropPreview {
   z-index: 500;
 }
 
+/* familyChoice */
+.familiesContainer {
+  width: 100%;
+  padding: 10px;
+  color: white;
+}
+.familyContainer {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+}
+.familyNamesContainer {
+  display: inline-block;
+  padding-left: 10px;
+}
 /* generalRules */
 
 i {

@@ -3,6 +3,7 @@ import messages from './messages';
 import status from './gallery';
 import members from './members';
 import currentUser from './current-user';
+import family from './family';
 
 
 export default combineReducers({
@@ -10,4 +11,5 @@ export default combineReducers({
   messages,
   members,
   currentUser,
+  family,
 });

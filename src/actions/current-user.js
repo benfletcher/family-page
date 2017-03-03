@@ -44,7 +44,7 @@ export const fetchCurrentUser = () => (dispatch) => {
         avatar: data.currentUser.avatar,
         name: data.currentUser.nickname,
         fullname: data.currentUser.fullname,
-        families: [],
+        families: data.currentUser.families
       }));
     }
   })
