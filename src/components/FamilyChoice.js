@@ -19,32 +19,40 @@ class FamilyChoice extends Component {
     this.props.dispatch(switchFamily(id));
   }
 
-  familyInput() {
+  familyInput(event) {
+    event.preventDefault();
     console.log('ready for form popout');
   }
 
   render() {
     return (
       <div>
-        <ul className="userPhotoIcon" style={{ listStyle: 'none' }}>
+        <div className="familiesContainer" style={{ listStyle: 'none' }}>
           {
       Object.keys(this.props.families).map(family => (
-        <li
+        <div
+          className="familyContainer"
           key={this.props.families[family]._id}
           onClick={() => this.selectFamily(this.props.families[family]._id)}
         >
           <img
             src={this.props.families[family].avatar}
             alt="avatar"
-            style={{ maxWidth: '75%', borderRadius: '50%' }}
+            style={{ maxWidth: '10%', borderRadius: '50%' }}
           />
-          <span className="userPhotoName">
-            {this.props.families[family].name}
-          </span>
-        </li>
+          <div className="familyNamesContainer">
+            <div>
+              {this.props.families[family].name}
+            </div>
+            <div>
+              {this.props.families[family].members.map(member => <span>{`${member}, `}</span>)
+            }
+            </div>
+          </div>
+        </div>
       ))
     }
-        </ul>
+        </div>
         <button onClick={this.familyInput}>Create a Family</button>
       </div>
     );
@@ -56,12 +64,14 @@ FamilyChoice.defaultProps = {
     1234: {
       _id: '1234',
       avatar: 'https://gravatar.com/avatar/56c6463a0e39da49cd1ce358f196a2df?s=512&d=https://codepen.io/assets/avatars/team-avatar-512x512-a1865fd24525fb17847bd2dc53d0cb033a60f69d519d018b4e1d396c397815b1.png',
-      name: 'Thinkful'
+      name: 'Thinkful',
+      members: ['Jamie', 'Ben', 'Alex']
     },
-    defaultId: {
+    demoId: {
       _id: 'defaultId',
       avatar: 'http://veselchac.ru/ckfinder/userfiles/files/%D0%BF%D0%B5%D1%80%D1%81%D0%BE%D0%BD%D0%B0%D0%BB%20%D0%B4%D0%BB%D1%8F%20%D0%BF%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA%D0%B0.jpg',
-      name: 'Default'
+      name: 'Demo',
+      members: ['You', 'Person1', 'Person2']
     }
   }
 };
