@@ -14,10 +14,10 @@ export const getMessagesSuccess = payload => ({
   messages: payload,
 });
 
-export const fetchMessages = () => (dispatch) => {
+export const fetchMessages = familyId => (dispatch) => {
   dispatch(getMessages());
 
-  fetch(`${serverUrl}/messages`,
+  fetch(`${serverUrl}/messages/${familyId}`,
     {
       headers: {
         Authorization: `bearer ${cookie.load('accessToken')}`

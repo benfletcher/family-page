@@ -4,7 +4,6 @@ import cookie from 'react-cookie';
 import { hashHistory } from 'react-router';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
-import { fetchCurrentUser } from '../actions/current-user';
 import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
@@ -24,14 +23,11 @@ export class App extends Component {
   }
 
   componentDidMount() {
-    this.props.dispatch(fetchMessages());
-    this.props.dispatch(fetchMembers());
-    this.props.dispatch(fetchCurrentUser());
+    // this.props.dispatch(fetchMessages());
+    // this.props.dispatch(fetchMembers());
   }
 
   render() {
-    // testing FamilyChoice component replaced:
-    //  <UserPhotoIcons /> with <FamilyChoice />
     return (
       <div className="container">
         <Header />
@@ -127,7 +123,8 @@ const mapStateToProps = state => ({
   currentAvatar: state.currentUser.avatar,
   currentNickname: state.currentUser.name,
   messages: state.messages.messages,
-  members: state.members.members,
+  // members: state.members.members,
+  members: state.family.currentMembers,
   zoomed: state.status.zoomed,
   currentFamily: state.family.currentFamily,
 });

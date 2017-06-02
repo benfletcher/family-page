@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { hashHistory, Link } from 'react-router';
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
+import { fetchMessages } from '../actions/messages';
 
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
@@ -18,8 +19,15 @@ class FamilyChoice extends Component {
     this.props.dispatch(fetchCurrentUser());
   }
 
-  selectFamily(id) {
-    this.props.dispatch(switchFamily(id));
+  selectFamily(familyId, familyMembers) {
+    const membersObj = {};
+
+    familyMembers.forEach((member) => {
+      membersObj[member._id] = member;
+    });
+
+    this.props.dispatch(switchFamily(familyId, membersObj));
+    this.props.dispatch(fetchMessages(familyId));
     hashHistory.push('/app');
   }
 
@@ -43,7 +51,7 @@ class FamilyChoice extends Component {
               <div
                 className="familyContainer"
                 key={family._id}
-                onClick={() => this.selectFamily(family._id)}
+                onClick={() => this.selectFamily(family._id, family.members)}
               >
                 <img
                   src={family.avatar}

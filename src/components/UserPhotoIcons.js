@@ -26,7 +26,7 @@ UserPhotoIcons.defaultProps = {
 };
 
 UserPhotoIcons.propTypes = {
-  members: React.PropTypes.object.isRequired,
+  // members: React.PropTypes.object.isRequired,
 };
 
 export default UserPhotoIcons;

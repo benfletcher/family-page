@@ -6,9 +6,10 @@ import { fetchCurrentUser } from './current-user';
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 export const SWITCH_FAMILY = 'SWITCH_FAMILY';
-export const switchFamily = id => ({
+export const switchFamily = (id, members) => ({
   type: SWITCH_FAMILY,
   currentFamily: id,
+  currentMembers: members,
 });
 
 // create family
