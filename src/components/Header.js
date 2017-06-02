@@ -6,6 +6,9 @@ const serverUrl = process.env.REACT_APP_SERVER_URL;
 const Header = () => (
   <div className="navButton">
     <p className="navTitle">
+      <Link to="/families">
+        Families
+      </Link>
       <Link to="/app">
         Home
       </Link>

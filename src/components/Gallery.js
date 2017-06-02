@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchMessages } from '../actions/messages';
-import { fetchMembers } from '../actions/members';
 import { showZoomed, hideZoomed } from '../actions/gallery';
 
 import GalleryThumbnail from './GalleryThumbnail';
@@ -14,7 +12,7 @@ class Gallery extends Component {
 
     this.state = {
       filterOn: false,
-      filterId: '58a79e7829e48da02c0bb22d',
+      filterId: '',
     };
 
     this.renderPhotos = this.renderPhotos.bind(this);
@@ -23,11 +21,6 @@ class Gallery extends Component {
     this.goLeft = this.goLeft.bind(this);
     this.goRight = this.goRight.bind(this);
     this.filterPhotos = this.filterPhotos.bind(this);
-  }
-
-  componentDidMount() {
-    this.props.dispatch(fetchMessages());
-    this.props.dispatch(fetchMembers());
   }
 
   openZoom({ photoUrl, photoIndex }) {
@@ -147,10 +140,11 @@ class Gallery extends Component {
 }
 Gallery.defaultProps = {
   zoomedPhoto: null,
+  members: {}
 };
 
 Gallery.propTypes = {
-  members: React.PropTypes.object.isRequired,
+  members: React.PropTypes.object,
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.array.isRequired,
   zoomed: React.PropTypes.bool.isRequired,
@@ -160,9 +154,8 @@ Gallery.propTypes = {
 
 const mapStateToProps = state => ({
   photos: state.messages.messages
-    .filter(message => message.contentType === 'photo')
-    .sort((a, b) => new Date(b.date) - new Date(a.date)),
-  members: state.members.members,
+    .filter(message => message.contentType === 'photo'),
+  members: state.family.currentMembers,
   zoomed: state.status.zoomed,
   zoomedPhoto: state.status.zoomedPhoto,
   zoomedIndex: state.status.zoomedIndex,

@@ -87,7 +87,7 @@ Announcement.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  members: state.members.members.isRequired,
+  members: state.family.members,
 });
 
 export default connect(mapStateToProps)(Announcement);

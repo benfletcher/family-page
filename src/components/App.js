@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import cookie from 'react-cookie';
 import { hashHistory } from 'react-router';
-import { fetchMessages } from '../actions/messages';
-import { fetchMembers } from '../actions/members';
 import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
@@ -20,11 +18,6 @@ export class App extends Component {
     if (!this.props.currentFamily) {
       hashHistory.push('/families');
     }
-  }
-
-  componentDidMount() {
-    // this.props.dispatch(fetchMessages());
-    // this.props.dispatch(fetchMembers());
   }
 
   render() {
@@ -123,7 +116,6 @@ const mapStateToProps = state => ({
   currentAvatar: state.currentUser.avatar,
   currentNickname: state.currentUser.name,
   messages: state.messages.messages,
-  // members: state.members.members,
   members: state.family.currentMembers,
   zoomed: state.status.zoomed,
   currentFamily: state.family.currentFamily,
