@@ -28,6 +28,7 @@ export class App extends Component {
         <Announcement
           currentAvatar={this.props.currentAvatar}
           currentNickname={this.props.currentNickname}
+          currentFamily={this.props.currentFamily}
         />
 
         {

@@ -20,7 +20,8 @@ class Announcement extends Component {
     if (this.state.text) {
       this.props.dispatch(postMessage({
         contentType: 'announcement',
-        text: this.state.text
+        text: this.state.text,
+        family: this.props.currentFamily
       }));
       this.setState({ text: '' });
     }
@@ -86,8 +87,4 @@ Announcement.propTypes = {
   dispatch: React.PropTypes.func.isRequired
 };
 
-const mapStateToProps = state => ({
-  members: state.family.members,
-});
-
-export default connect(mapStateToProps)(Announcement);
+export default connect()(Announcement);
