@@ -54,13 +54,13 @@ class UploadContainer extends Component {
 
   saveUpload(event) {
     event.preventDefault();
-    this.handleImageUpload(this.state.uploadedFile, this.props.userId, this.state.caption);
+    this.handleImageUpload(this.state.uploadedFile, this.state.caption);
     this.resetState();
     // redirect to homepage
     hashHistory.push('/app');
   }
 
-  handleImageUpload(file, userId, caption) {
+  handleImageUpload(file, caption) {
     const upload = request.post(CLOUDINARY_UPLOAD_URL)
                           .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
                           .field('file', file);
@@ -72,7 +72,7 @@ class UploadContainer extends Component {
       if (response.body.secure_url !== '') {
         this.props.dispatch(postMessage({
           url: response.body.secure_url,
-          userId,
+          family: this.props.currentFamily,
           text: `${caption}`
         }));
       }
@@ -137,11 +137,11 @@ class UploadContainer extends Component {
 
 UploadContainer.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  userId: React.PropTypes.string.isRequired
+  currentFamily: React.PropTypes.string.isRequired
 };
 
 const mapStateToProps = state => ({
-  userId: state.currentUser.id
+  currentFamily: state.family.currentFamily
 });
 
 export default connect(mapStateToProps)(UploadContainer);

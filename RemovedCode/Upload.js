@@ -25,8 +25,7 @@ class Upload extends Component {
     // TODO add to input validation
     if (this.state.photoUrl && this.state.caption) {
       this.props.dispatch(postMessage({
-        family: this.props.currentFamily,
-        // userId: this.props.userId,
+        userId: this.props.userId,
         url: this.state.photoUrl,
         text: this.state.caption
       }));
@@ -67,7 +66,7 @@ Upload.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  currentFamily: state.family.currentFamily
+  userId: state.currentUser.id
 });
 
 export default connect(mapStateToProps)(Upload);
