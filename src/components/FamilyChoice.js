@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hashHistory, Link } from 'react-router';
+import { hashHistory } from 'react-router';
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
 import { fetchMessages } from '../actions/messages';

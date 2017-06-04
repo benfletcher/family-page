@@ -18,6 +18,7 @@ const CommentsContainer = (props) => {
             comment={comment}
             messageId={props.message._id}
             currentUser={props.currentUser}
+            currentFamily={props.currentFamily}
             from={comment.from in props.members
               ? props.members[comment.from].nickname
               : '...loading...'
@@ -40,6 +41,7 @@ const CommentsContainer = (props) => {
             comment={comment}
             messageId={props.message._id}
             currentUser={props.currentUser}
+            currentFamily={props.currentFamily}
             from={comment.from in props.members
               ? props.members[comment.from].nickname
               : '...loading...'

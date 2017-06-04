@@ -43,6 +43,7 @@ export class App extends Component {
                   <MessageNode
                     message={message}
                     currentUser={this.props.currentUser}
+                    currentFamily={this.props.currentFamily}
                     memberAvatar={
                       (message.userId in this.props.members)
                         ? this.props.members[message.userId].avatar
@@ -57,6 +58,7 @@ export class App extends Component {
                   <MessageNode
                     message={message}
                     currentUser={this.props.currentUser}
+                    currentFamily={this.props.currentFamily}
                     memberAvatar={
                       (message.userId in this.props.members)
                         ? this.props.members[message.userId].avatar
@@ -68,6 +70,7 @@ export class App extends Component {
                     messageId={message._id}
                     to={message.userId}
                     replyToName={replyToName}
+                    currentFamily={this.props.currentFamily}
                   />
                 </div>
               );
@@ -77,6 +80,7 @@ export class App extends Component {
                 <MessageNode
                   message={message}
                   currentUser={this.props.currentUser}
+                  currentFamily={this.props.currentFamily}
                   memberAvatar={
                     (message.userId in this.props.members)
                       ? this.props.members[message.userId].avatar
@@ -88,6 +92,7 @@ export class App extends Component {
                   message={message}
                   currentAvatar={this.props.currentAvatar}
                   currentUser={this.props.currentUser}
+                  currentFamily={this.props.currentFamily}
                   members={this.props.members}
                 />
               </div>
@@ -100,14 +105,15 @@ export class App extends Component {
 }
 
 App.defaultProps = {
+  currentFamily: ''
 };
 
 App.propTypes = {
-  dispatch: React.PropTypes.func.isRequired,
   location: React.PropTypes.object.isRequired,
   messages: React.PropTypes.array.isRequired,
   members: React.PropTypes.object.isRequired,
   currentUser: React.PropTypes.string.isRequired,
+  currentFamily: React.PropTypes.string,
   currentAvatar: React.PropTypes.string.isRequired,
   currentNickname: React.PropTypes.string.isRequired,
 };

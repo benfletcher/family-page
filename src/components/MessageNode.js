@@ -19,7 +19,10 @@ class MessageNode extends Component {
   }
 
   deleteMessage() {
-    this.props.dispatch(deleteMessage(this.props.message._id));
+    this.props.dispatch(deleteMessage(
+      this.props.message._id,
+      this.props.currentFamily
+    ));
   }
 
   render() {
@@ -77,10 +80,12 @@ class MessageNode extends Component {
 
 MessageNode.defaultProps = {
   memberAvatar: '',
+  currentFamily: ''
 };
 
 MessageNode.propTypes = {
   currentUser: React.PropTypes.string.isRequired,
+  currentFamily: React.PropTypes.string,
   memberAvatar: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
   message: React.PropTypes.object.isRequired, // eslint-disable-line

@@ -10,7 +10,11 @@ class CommentNode extends Component {
   }
 
   deleteComment() {
-    this.props.dispatch(deleteComment(this.props.messageId, this.props.comment._id));
+    this.props.dispatch(deleteComment(
+      this.props.messageId,
+      this.props.comment._id,
+      this.props.currentFamily
+    ));
   }
 
   render() {
@@ -50,7 +54,8 @@ CommentNode.defaultProps = {
     text: 'default prop comment',
     to: '',
     from: ''
-  }
+  },
+  currentFamily: ''
 };
 
 CommentNode.propTypes = {
@@ -59,6 +64,7 @@ CommentNode.propTypes = {
   fromAvatar: React.PropTypes.string,
   from: React.PropTypes.string.isRequired,
   currentUser: React.PropTypes.string.isRequired,
+  currentFamily: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
 };
 

@@ -25,6 +25,7 @@ class CommentInput extends Component {
         messageId: this.props.messageId,
         to: this.props.to,
         text: this.state.text,
+        currentFamily: this.props.currentFamily
       }));
       this.setState({ text: '' });
     }
@@ -71,7 +72,8 @@ class CommentInput extends Component {
 }
 
 CommentInput.defaultProps = {
-  currentAvatar: ''
+  currentAvatar: '',
+  currentFamily: ''
 };
 
 CommentInput.propTypes = {
@@ -80,6 +82,7 @@ CommentInput.propTypes = {
   replyToName: React.PropTypes.string.isRequired,
   to: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string,
+  currentFamily: React.PropTypes.string,
 };
 
 export default connect()(CommentInput);

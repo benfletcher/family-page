@@ -11,7 +11,7 @@ import './index.css';
 
 import App from './components/App'; // eslint-disable-line
 import Login from './components/Login';
-import Upload from './components/Upload';
+import UploadContainer from './components/UploadContainer';
 import Gallery from './components/Gallery';
 import FamilyChoice from './components/FamilyChoice';
 
@@ -31,7 +31,7 @@ ReactDOM.render(
       <Route path="/" component={Login} />
       <Route path="/app" component={App} />
       <Route path="/families" component={FamilyChoice} />
-      <Route path="/upload" component={Upload} />
+      <Route path="/upload" component={UploadContainer} />
       <Route path="/gallery" component={Gallery} />
     </Router>
   </Provider>,

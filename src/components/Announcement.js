@@ -79,11 +79,13 @@ class Announcement extends Component {
 Announcement.defaultProps = {
   currentNickname: null,
   currentAvatar: '',
+  currentFamily: ''
 };
 
 Announcement.propTypes = {
   currentNickname: React.PropTypes.string,
   currentAvatar: React.PropTypes.string,
+  currentFamily: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired
 };
 

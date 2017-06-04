@@ -86,24 +86,24 @@ export const postComment = commentObject => (dispatch) => {
     }
     return res;
   })
-  .then(() => dispatch(fetchMessages()))
+  .then(() => dispatch(fetchMessages(commentObject.currentFamily)))
   .catch(console.error);
 };
 
 // delete a message
-export const deleteMessage = messageId => dispatch => fetch(`${serverUrl}/messages/${messageId}`, {
+export const deleteMessage = (messageId, family) => dispatch => fetch(`${serverUrl}/messages/${messageId}`, {
   headers: {
     Authorization: `bearer ${cookie.load('accessToken')}`
   },
   method: 'DELETE'
 })
-  .then(() => dispatch(fetchMessages()));
+  .then(() => dispatch(fetchMessages(family)));
 
 // delete a comment
-export const deleteComment = (messageId, commentId) => dispatch => fetch(`${serverUrl}/comments/${messageId}/${commentId}`, {
+export const deleteComment = (messageId, commentId, family) => dispatch => fetch(`${serverUrl}/comments/${messageId}/${commentId}`, {
   headers: {
     Authorization: `bearer ${cookie.load('accessToken')}`
   },
   method: 'DELETE'
 })
-  .then(() => dispatch(fetchMessages()));
+  .then(() => dispatch(fetchMessages(family)));

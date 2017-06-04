@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import request from 'superagent';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
+import { hashHistory, Link } from 'react-router';
 import { postMessage } from '../actions/messages';
 
+import Header from './Header';
 import UploadBox from './UploadBox';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -82,7 +83,13 @@ class UploadContainer extends Component {
   render() {
     return (
       <div>
-        {
+        <Header />
+        <div className="uploadParent">
+          <Link className="noMargin" to="/app">
+            <i className="xIconUpload fa fa-times" aria-hidden="true"alt="close" />
+          </Link>
+          <div className="uploadChild">
+            {
           this.state.uploadedFile
             ?
               <div className="imageDropPreview">
@@ -95,22 +102,22 @@ class UploadContainer extends Component {
             :
               <UploadBox onImageDrop={this.onImageDrop} />
         }
-        <img
-          className="imageDropPreview"
-          alt="preview" src={this.state.previewUrl}
-          style={{ maxWidth: '200px' }}
-        />
-        <form onSubmit={this.saveUpload}>
-          <input
-            className="imageDescription"
-            type="text"
-            placeholder="describe your picture"
-            value={this.state.caption}
-            onChange={this.captionInputChange}
-          />
-        </form>
-        <div />
-        {
+            <img
+              className="imageDropPreview"
+              alt="preview" src={this.state.previewUrl}
+              style={{ maxWidth: '200px' }}
+            />
+            <form onSubmit={this.saveUpload}>
+              <input
+                className="imageDescription"
+                type="text"
+                placeholder="describe your picture"
+                value={this.state.caption}
+                onChange={this.captionInputChange}
+              />
+            </form>
+            <div />
+            {
           this.state.uploadedFile
           ?
             <span>
@@ -129,7 +136,8 @@ class UploadContainer extends Component {
             </span>
           : null
         }
-
+          </div>
+        </div>
       </div>
     );
   }
