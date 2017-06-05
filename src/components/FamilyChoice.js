@@ -32,7 +32,7 @@ class FamilyChoice extends Component {
   }
 
   createFamily() {
-    console.log('ready for form popout');
+    hashHistory.push('/createFamily');
   }
 
   render() {
