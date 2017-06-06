@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
-
+import { createFamily } from '../actions/current-user';
 import Header from './Header';
 
 // send link to family sudocode
@@ -15,6 +15,8 @@ import Header from './Header';
 // once user clicks link and views the group, they are added as a member to group
 
 // take an email and name
+// instead of input for email maybe allow users to select other family members
+// if the family member is not there then generate a link to send that can be copied and pasted
 // generate group link
 // make person who made group the admin
 // post new group
@@ -25,29 +27,38 @@ class CreateFamily extends Component {
     super(props);
 
     this.state = {
-      caption: ''
+      groupName: '',
+      memberEmail: ''
     };
 
     this.createFamily = this.createFamily.bind(this);
-    this.captionInputChange = this.captionInputChange.bind(this);
+    this.handleInputChange = this.handleInputChange.bind(this);
     this.resetState = this.resetState.bind(this);
   }
 
-  createFamily(event) {
-    event.preventDefault();
-    // this.props.dispatch(addFamily())
+  createFamily() {
+    console.log(this.state.groupName, this.state.memberEmail);
+    this.props.dispatch(createFamily());
     this.resetState();
-    // redirect to homepage
+    // redirect to homepage for newly made family
     hashHistory.push('/app');
+    // next make action for createFamily that sends info and then users
+    // that new family id to navigate to the app page
   }
 
-  captionInputChange(event) {
-    this.setState({ caption: event.target.value });
+  handleInputChange(event) {
+    const name = event.target.name;
+    if (name === 'groupName') {
+      this.setState({ groupName: event.target.value });
+    } else if (name === 'memberEmail') {
+      this.setState({ memberEmail: event.target.value });
+    }
   }
 
   resetState() {
     this.setState({
-      caption: '',
+      groupName: '',
+      memberEmail: ''
     });
   }
 
@@ -57,30 +68,38 @@ class CreateFamily extends Component {
         <Header />
         <br />
         <br />
+        <div style={{ paddingTop: '50px' }}>
+          <form>
+            Name the group
+            <input
+              name="groupName"
+              type="text"
+              placeholder="Group Name"
+              value={this.state.groupName}
+              onChange={this.handleInputChange}
+            />
+            <br />
 
-        <form onSubmit={this.createFamily}>
-          <label>Name the group</label>
-          <input
-            className="imageDescription"
-            type="text"
-            placeholder="email"
-            value={this.state.caption}
-            onChange={this.captionInputChange}
-          />
-          <br />
+            Family Members email
+            <input
+              name="memberEmail"
+              type="text"
+              placeholder="email"
+              value={this.state.memberEmail}
+              onChange={this.handleInputChange}
+            />
+            <br />
+            <br />
 
-          <label>Family Members email</label>
-          <input
-            className="imageDescription"
-            type="text"
-            placeholder="email"
-            value={this.state.caption}
-            onChange={this.captionInputChange}
-          />
-
-          <label>Upload Photo For the group</label>
-          <button />
-        </form>
+            <input
+              className="imageDescription"
+              type="button"
+              placeholder="email"
+              value="Submit"
+              onClick={this.createFamily}
+            />
+          </form>
+        </div>
       </div>
     );
   }
