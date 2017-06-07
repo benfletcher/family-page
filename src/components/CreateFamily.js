@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import { createFamily } from '../actions/family';
 import Header from './Header';
 
@@ -32,6 +33,12 @@ class CreateFamily extends Component {
 
     this.createFamily = this.createFamily.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.currentUser === '') {
+      hashHistory.push('/families');
+    }
   }
 
   createFamily() {
@@ -84,6 +91,11 @@ class CreateFamily extends Component {
 
 CreateFamily.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
+  currentUser: React.PropTypes.string.isRequired,
 };
 
-export default connect()(CreateFamily);
+const mapStateToProps = state => ({
+  currentUser: state.currentUser.id,
+});
+
+export default connect(mapStateToProps)(CreateFamily);

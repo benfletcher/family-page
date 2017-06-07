@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-// import cookie from 'react-cookie';
 import { hashHistory } from 'react-router';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
@@ -112,7 +111,6 @@ App.defaultProps = {
 
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  // location: React.PropTypes.object.isRequired,
   messages: React.PropTypes.array.isRequired,
   members: React.PropTypes.object.isRequired,
   currentUser: React.PropTypes.string.isRequired,
