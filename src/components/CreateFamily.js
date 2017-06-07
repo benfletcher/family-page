@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
-import { createFamily } from '../actions/current-user';
+import { createFamily } from '../actions/family';
 import Header from './Header';
 
 // send link to family sudocode
@@ -28,7 +28,7 @@ class CreateFamily extends Component {
 
     this.state = {
       groupName: '',
-      memberEmail: ''
+      avatar: 'groupPlaceholder.jpg'
     };
 
     this.createFamily = this.createFamily.bind(this);
@@ -37,21 +37,21 @@ class CreateFamily extends Component {
   }
 
   createFamily() {
-    console.log(this.state.groupName, this.state.memberEmail);
-    this.props.dispatch(createFamily());
+    this.props.dispatch(createFamily({
+      name: this.state.groupName,
+      avatar: this.state.avatar
+    }));
     this.resetState();
-    // redirect to homepage for newly made family
-    hashHistory.push('/app');
-    // next make action for createFamily that sends info and then users
-    // that new family id to navigate to the app page
+          // redirect to homepage for newly made family
+    hashHistory.push('/families');
+          // next make action for createFamily that sends info and then users
+          // that new family id to navigate to the app page
   }
 
   handleInputChange(event) {
     const name = event.target.name;
     if (name === 'groupName') {
       this.setState({ groupName: event.target.value });
-    } else if (name === 'memberEmail') {
-      this.setState({ memberEmail: event.target.value });
     }
   }
 
@@ -66,43 +66,38 @@ class CreateFamily extends Component {
     return (
       <div>
         <Header />
-        <br />
-        <br />
         <div style={{ paddingTop: '50px' }}>
-          <form>
-            Name the group
-            <input
-              name="groupName"
-              type="text"
-              placeholder="Group Name"
-              value={this.state.groupName}
-              onChange={this.handleInputChange}
+          <div className="familyContainer">
+            <img
+              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
+              alt="avatar"
+              style={{ maxWidth: '10%', borderRadius: '50%' }}
             />
-            <br />
-
-            Family Members email
-            <input
-              name="memberEmail"
-              type="text"
-              placeholder="email"
-              value={this.state.memberEmail}
-              onChange={this.handleInputChange}
-            />
-            <br />
-            <br />
-
-            <input
-              className="imageDescription"
-              type="button"
-              placeholder="email"
-              value="Submit"
-              onClick={this.createFamily}
-            />
-          </form>
+            <div className="familyNamesContainer">
+              <input
+                name="groupName"
+                type="text"
+                placeholder="Name Your Family"
+                value={this.state.groupName}
+                onChange={this.handleInputChange}
+              />
+            </div>
+          </div>
+          <input
+            className="imageDescription"
+            type="button"
+            placeholder="email"
+            value="Create Family"
+            onClick={this.createFamily}
+          />
         </div>
       </div>
     );
   }
 }
+
+CreateFamily.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
+};
 
 export default connect()(CreateFamily);

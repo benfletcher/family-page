@@ -1,20 +1,28 @@
 import 'isomorphic-fetch';
 import cookie from 'react-cookie';
 
-import { fetchCurrentUser } from './current-user';
-
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
 export const SWITCH_FAMILY = 'SWITCH_FAMILY';
-export const switchFamily = (id, members) => ({
+export const switchFamily = familyId => ({
   type: SWITCH_FAMILY,
-  currentFamily: id,
-  currentMembers: members,
+  currentFamily: familyId,
+});
+
+export const ADD_FAMILY = 'ADD_FAMILY';
+export const addFamily = () => ({
+  type: ADD_FAMILY,
+});
+
+export const ADD_FAMILY_SUCCESS = 'ADD_FAMILY_SUCCESS';
+export const addFamilySuccess = () => ({
+  type: ADD_FAMILY_SUCCESS,
 });
 
 // create family
 export const createFamily = family => (dispatch) => {
-  fetch(`${serverUrl}/user`, {
+  dispatch(addFamily());
+  fetch(`${serverUrl}/family`, {
     headers: {
       'Content-Type': 'application/json',
       Authorization: `bearer ${cookie.load('accessToken')}`
@@ -31,7 +39,9 @@ export const createFamily = family => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(() => dispatch(fetchCurrentUser()))
+  .then(() => {
+    dispatch(addFamilySuccess());
+  })
   .catch(console.error);
 };
 

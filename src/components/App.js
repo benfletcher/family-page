@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import cookie from 'react-cookie';
 import { hashHistory } from 'react-router';
+import { fetchMessages } from '../actions/messages';
+import { fetchMembers } from '../actions/members';
 import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
@@ -18,6 +20,10 @@ export class App extends Component {
     if (!this.props.currentFamily) {
       hashHistory.push('/families');
     }
+  }
+  componentDidMount() {
+    this.props.dispatch(fetchMessages(this.props.currentFamily));
+    this.props.dispatch(fetchMembers(this.props.currentFamily));
   }
 
   render() {
@@ -105,15 +111,15 @@ export class App extends Component {
 }
 
 App.defaultProps = {
-  currentFamily: ''
 };
 
 App.propTypes = {
+  dispatch: React.PropTypes.func.isRequired,
   location: React.PropTypes.object.isRequired,
   messages: React.PropTypes.array.isRequired,
   members: React.PropTypes.object.isRequired,
   currentUser: React.PropTypes.string.isRequired,
-  currentFamily: React.PropTypes.string,
+  currentFamily: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string.isRequired,
   currentNickname: React.PropTypes.string.isRequired,
 };
@@ -123,8 +129,7 @@ const mapStateToProps = state => ({
   currentAvatar: state.currentUser.avatar,
   currentNickname: state.currentUser.name,
   messages: state.messages.messages,
-  members: state.family.currentMembers,
-  zoomed: state.status.zoomed,
+  members: state.currentMembers.members,
   currentFamily: state.family.currentFamily,
 });
 

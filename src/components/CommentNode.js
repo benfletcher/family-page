@@ -55,7 +55,6 @@ CommentNode.defaultProps = {
     to: '',
     from: ''
   },
-  currentFamily: ''
 };
 
 CommentNode.propTypes = {
@@ -64,7 +63,7 @@ CommentNode.propTypes = {
   fromAvatar: React.PropTypes.string,
   from: React.PropTypes.string.isRequired,
   currentUser: React.PropTypes.string.isRequired,
-  currentFamily: React.PropTypes.string,
+  currentFamily: React.PropTypes.string.isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };
 

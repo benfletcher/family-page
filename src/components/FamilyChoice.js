@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
-import { fetchMessages } from '../actions/messages';
-
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
@@ -13,26 +11,15 @@ class FamilyChoice extends Component {
     super(props);
 
     this.selectFamily = this.selectFamily.bind(this);
-    this.createFamily = this.createFamily.bind(this);
   }
+
   componentDidMount() {
     this.props.dispatch(fetchCurrentUser());
   }
 
-  selectFamily(familyId, familyMembers) {
-    const membersObj = {};
-
-    familyMembers.forEach((member) => {
-      membersObj[member._id] = member;
-    });
-
-    this.props.dispatch(switchFamily(familyId, membersObj));
-    this.props.dispatch(fetchMessages(familyId));
+  selectFamily(familyId) {
+    this.props.dispatch(switchFamily(familyId));
     hashHistory.push('/app');
-  }
-
-  createFamily() {
-    hashHistory.push('/createFamily');
   }
 
   render() {
@@ -51,7 +38,7 @@ class FamilyChoice extends Component {
               <div
                 className="familyContainer"
                 key={family._id}
-                onClick={() => this.selectFamily(family._id, family.members)}
+                onClick={() => this.selectFamily(family._id)}
               >
                 <img
                   src={family.avatar}
@@ -71,14 +58,17 @@ class FamilyChoice extends Component {
             ))
           }
         </div>
-        <div className="familyContainer">
+        <div
+          className="familyContainer"
+          onClick={() => hashHistory.push('/createFamily')}
+        >
           <img
             src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
             alt="avatar"
             style={{ maxWidth: '5%', borderRadius: '50%' }}
           />
           <div className="familyNamesContainer">
-            <div onClick={this.createFamily}>
+            <div>
               Create a New Family
             </div>
           </div>
@@ -87,9 +77,6 @@ class FamilyChoice extends Component {
     );
   }
 }
-
-FamilyChoice.defaultProps = {
-};
 
 FamilyChoice.propTypes = {
   families: React.PropTypes.array.isRequired,

@@ -9,15 +9,15 @@ export const getMembers = () => ({
 });
 
 export const GET_MEMBERS_SUCCESS = 'GET_MEMBERS_SUCCESS';
-export const getMembersSuccess = members => ({
+export const getMembersSuccess = currentMembers => ({
   type: GET_MEMBERS_SUCCESS,
-  members,
+  currentMembers,
 });
 
-export const fetchMembers = () => (dispatch) => {
+export const fetchMembers = familyId => (dispatch) => {
   dispatch(getMembers());
 
-  fetch(`${serverUrl}/members`,
+  fetch(`${serverUrl}/members/${familyId}`,
     {
       headers: {
         Authorization: `bearer ${cookie.load('accessToken')}`

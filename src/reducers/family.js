@@ -1,8 +1,8 @@
 import * as actions from '../actions/family';
 
 const initialState = {
-  currentFamily: null,
-  currentMembers: {}
+  loading: false,
+  currentFamily: '',
 };
 
 const family = (state = initialState, action) => {
@@ -10,7 +10,16 @@ const family = (state = initialState, action) => {
     return {
       ...state,
       currentFamily: action.currentFamily,
-      currentMembers: action.currentMembers
+    };
+  } else if (action.type === actions.ADD_FAMILY) {
+    return {
+      ...state,
+      loading: true,
+    };
+  } else if (action.type === actions.ADD_FAMILY_SUCCESS) {
+    return {
+      ...state,
+      loading: false,
     };
   }
 

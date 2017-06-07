@@ -14,7 +14,7 @@ const members = (state = initialState, action) => {
   } else if (action.type === actions.GET_MEMBERS_SUCCESS) {
     return {
       ...state,
-      members: action.members,
+      members: action.currentMembers,
       loading: false,
     };
   }
