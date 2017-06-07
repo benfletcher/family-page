@@ -19,6 +19,7 @@ const family = (state = initialState, action) => {
   } else if (action.type === actions.ADD_FAMILY_SUCCESS) {
     return {
       ...state,
+      currentFamily: action.currentFamily,
       loading: false,
     };
   }

@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
 import { createFamily } from '../actions/family';
 import Header from './Header';
 
@@ -33,7 +32,6 @@ class CreateFamily extends Component {
 
     this.createFamily = this.createFamily.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
-    this.resetState = this.resetState.bind(this);
   }
 
   createFamily() {
@@ -41,11 +39,6 @@ class CreateFamily extends Component {
       name: this.state.groupName,
       avatar: this.state.avatar
     }));
-    this.resetState();
-          // redirect to homepage for newly made family
-    hashHistory.push('/families');
-          // next make action for createFamily that sends info and then users
-          // that new family id to navigate to the app page
   }
 
   handleInputChange(event) {
@@ -53,13 +46,6 @@ class CreateFamily extends Component {
     if (name === 'groupName') {
       this.setState({ groupName: event.target.value });
     }
-  }
-
-  resetState() {
-    this.setState({
-      groupName: '',
-      memberEmail: ''
-    });
   }
 
   render() {

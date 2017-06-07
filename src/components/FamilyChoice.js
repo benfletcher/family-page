@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
+import cookie from 'react-cookie';
+
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
 
@@ -11,6 +13,12 @@ class FamilyChoice extends Component {
     super(props);
 
     this.selectFamily = this.selectFamily.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.location.query.token) {
+      cookie.save('accessToken', this.props.location.query.token);
+    }
   }
 
   componentDidMount() {
@@ -79,6 +87,7 @@ class FamilyChoice extends Component {
 }
 
 FamilyChoice.propTypes = {
+  location: React.PropTypes.object.isRequired,
   families: React.PropTypes.array.isRequired,
   dispatch: React.PropTypes.func.isRequired,
 };

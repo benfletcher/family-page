@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import cookie from 'react-cookie';
+// import cookie from 'react-cookie';
 import { hashHistory } from 'react-router';
 import { fetchMessages } from '../actions/messages';
 import { fetchMembers } from '../actions/members';
@@ -14,9 +14,6 @@ import UserPhotoIcons from './UserPhotoIcons';
 
 export class App extends Component {
   componentWillMount() {
-    if (this.props.location.query.token) {
-      cookie.save('accessToken', this.props.location.query.token);
-    }
     if (!this.props.currentFamily) {
       hashHistory.push('/families');
     }
@@ -115,7 +112,7 @@ App.defaultProps = {
 
 App.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
-  location: React.PropTypes.object.isRequired,
+  // location: React.PropTypes.object.isRequired,
   messages: React.PropTypes.array.isRequired,
   members: React.PropTypes.object.isRequired,
   currentUser: React.PropTypes.string.isRequired,

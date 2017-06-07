@@ -1,5 +1,6 @@
 import 'isomorphic-fetch';
 import cookie from 'react-cookie';
+import { hashHistory } from 'react-router';
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
@@ -15,8 +16,9 @@ export const addFamily = () => ({
 });
 
 export const ADD_FAMILY_SUCCESS = 'ADD_FAMILY_SUCCESS';
-export const addFamilySuccess = () => ({
+export const addFamilySuccess = familyId => ({
   type: ADD_FAMILY_SUCCESS,
+  currentFamily: familyId
 });
 
 // create family
@@ -39,8 +41,9 @@ export const createFamily = family => (dispatch) => {
     return res;
   })
   .then(res => res.json())
-  .then(() => {
-    dispatch(addFamilySuccess());
+  .then((data) => {
+    dispatch(addFamilySuccess(data._id));
+    hashHistory.push('/app');
   })
   .catch(console.error);
 };
