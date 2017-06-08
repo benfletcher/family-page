@@ -14,6 +14,7 @@ const CommentsThread = (props) => {
         messageId={props.messageId}
         to={props.to}
         replyToName={replyToName}
+        currentFamily={props.currentFamily}
       />
     </div>
   );
@@ -28,6 +29,7 @@ CommentsThread.propTypes = {
   children: React.PropTypes.array,
   members: React.PropTypes.object.isRequired,
   messageId: React.PropTypes.string.isRequired,
+  currentFamily: React.PropTypes.string.isRequired,
   to: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string,
 };

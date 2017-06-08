@@ -64,7 +64,7 @@ export const postMessage = content => (dispatch) => {
     }
     return res;
   })
-  .then(res => res.json())
+  // .then(res => res.json())
   .then(() => dispatch(fetchMessages(content.family)))
   .catch(console.error);
 };
@@ -86,6 +86,7 @@ export const postComment = commentObject => (dispatch) => {
     }
     return res;
   })
+  // .then(res => res.json())
   .then(() => dispatch(fetchMessages(commentObject.currentFamily)))
   .catch(console.error);
 };

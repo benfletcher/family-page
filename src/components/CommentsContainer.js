@@ -68,6 +68,7 @@ const CommentsContainer = (props) => {
             messageId={props.message._id}
             messageUserId={props.message.userId}
             members={props.members}
+            currentFamily={props.currentFamily}
           >
             {commentBuckets[key]}
           </CommentsThread>
@@ -82,6 +83,7 @@ CommentsContainer.defaultProps = {
 };
 
 CommentsContainer.propTypes = {
+  currentFamily: React.PropTypes.string.isRequired,
   members: React.PropTypes.object,
   message: React.PropTypes.object.isRequired,
 };

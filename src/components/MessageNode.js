@@ -80,12 +80,12 @@ class MessageNode extends Component {
 
 MessageNode.defaultProps = {
   memberAvatar: '',
-  currentFamily: ''
+  // currentFamily: ''
 };
 
 MessageNode.propTypes = {
   currentUser: React.PropTypes.string.isRequired,
-  currentFamily: React.PropTypes.string,
+  currentFamily: React.PropTypes.string.isRequired,
   memberAvatar: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
   message: React.PropTypes.object.isRequired, // eslint-disable-line

@@ -73,7 +73,6 @@ class CommentInput extends Component {
 
 CommentInput.defaultProps = {
   currentAvatar: '',
-  currentFamily: ''
 };
 
 CommentInput.propTypes = {
@@ -82,7 +81,7 @@ CommentInput.propTypes = {
   replyToName: React.PropTypes.string.isRequired,
   to: React.PropTypes.string.isRequired,
   currentAvatar: React.PropTypes.string,
-  currentFamily: React.PropTypes.string,
+  currentFamily: React.PropTypes.string.isRequired,
 };
 
 export default connect()(CommentInput);

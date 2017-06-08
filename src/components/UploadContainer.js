@@ -29,6 +29,12 @@ class UploadContainer extends Component {
     this.captionInputChange = this.captionInputChange.bind(this);
   }
 
+  componentWillMount() {
+    if (!this.props.currentFamily) {
+      hashHistory.push('/families');
+    }
+  }
+
   onImageDrop(files) {
     this.setState({
       uploadedFile: files[0],
