@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
-import { fetchMessages } from '../actions/messages';
-import { fetchMembers } from '../actions/members';
+
 import MessageNode from './MessageNode';
 import Header from './Header';
 import CommentsContainer from './CommentsContainer';
@@ -10,16 +9,27 @@ import Announcement from './Announcement';
 import CommentInput from './CommentInput';
 import UserPhotoIcons from './UserPhotoIcons';
 
+import { fetchMessages } from '../actions/messages';
+import { fetchMembers } from '../actions/members';
+import { fetchCurrentUser } from '../actions/current-user';
+import { switchFamily } from '../actions/family';
 
 export class App extends Component {
-  componentWillMount() {
-    if (!this.props.currentFamily) {
-      hashHistory.push('/families');
-    }
-  }
+
   componentDidMount() {
-    this.props.dispatch(fetchMessages(this.props.currentFamily));
-    this.props.dispatch(fetchMembers(this.props.currentFamily));
+    if (!this.props.currentFamily && !sessionStorage.currentFamily) {
+      // check if necessary user/family information is in state or sessionStorage
+      hashHistory.push('/families');
+    } else if (!this.props.currentFamily) {
+      // if currentFamily is in sessionStorage, dispatch neccessary actions to update state
+      this.props.dispatch(fetchCurrentUser());
+      this.props.dispatch(switchFamily(sessionStorage.currentFamily));
+      this.props.dispatch(fetchMembers(sessionStorage.currentFamily));
+      this.props.dispatch(fetchMessages(sessionStorage.currentFamily));
+    } else {
+      // proceed with dispatch needed for this component
+      this.props.dispatch(fetchMessages(this.props.currentFamily));
+    }
   }
 
   render() {

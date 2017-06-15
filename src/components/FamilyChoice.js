@@ -5,6 +5,7 @@ import cookie from 'react-cookie';
 
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
+import { fetchMembers } from '../actions/members';
 
 const serverUrl = process.env.REACT_APP_SERVER_URL;
 
@@ -27,6 +28,8 @@ class FamilyChoice extends Component {
 
   selectFamily(familyId) {
     this.props.dispatch(switchFamily(familyId));
+    this.props.dispatch(fetchMembers(familyId));
+    sessionStorage.currentFamily = familyId;
     hashHistory.push('/app');
   }
 

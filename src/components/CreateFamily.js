@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { hashHistory } from 'react-router';
-import { createFamily } from '../actions/family';
+import { postFamily } from '../actions/family';
+import { fetchCurrentUser } from '../actions/current-user';
+
 import Header from './Header';
 
 // send link to family sudocode
@@ -31,21 +32,23 @@ class CreateFamily extends Component {
       avatar: 'groupPlaceholder.jpg'
     };
 
-    this.createFamily = this.createFamily.bind(this);
+    this.postFamily = this.postFamily.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
   }
 
   componentDidMount() {
-    if (this.props.currentUser === '') {
-      hashHistory.push('/families');
+    if (!this.props.currentUser) {
+      this.props.dispatch(fetchCurrentUser());
     }
   }
 
-  createFamily() {
-    this.props.dispatch(createFamily({
-      name: this.state.groupName,
-      avatar: this.state.avatar
-    }));
+  postFamily() {
+    if (this.state.groupName.length) {
+      this.props.dispatch(postFamily({
+        name: this.state.groupName,
+        avatar: this.state.avatar
+      }));
+    }
   }
 
   handleInputChange(event) {
@@ -79,9 +82,8 @@ class CreateFamily extends Component {
           <input
             className="imageDescription"
             type="button"
-            placeholder="email"
-            value="Create Family"
-            onClick={this.createFamily}
+            placeholder="Create Family"
+            onClick={this.postFamily}
           />
         </div>
       </div>

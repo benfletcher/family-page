@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import request from 'superagent';
 import { connect } from 'react-redux';
 import { hashHistory, Link } from 'react-router';
+
 import { postMessage } from '../actions/messages';
+import { fetchMembers } from '../actions/members';
+import { fetchCurrentUser } from '../actions/current-user';
+import { switchFamily } from '../actions/family';
 
 import Header from './Header';
 import UploadBox from './UploadBox';
@@ -29,9 +33,15 @@ class UploadContainer extends Component {
     this.captionInputChange = this.captionInputChange.bind(this);
   }
 
-  componentWillMount() {
-    if (!this.props.currentFamily) {
+  componentDidMount() {
+    if (!this.props.currentFamily && !sessionStorage.currentFamily) {
+      // check if necessary user/family information is in state or sessionStorage
       hashHistory.push('/families');
+    } else if (!this.props.currentFamily) {
+      // if currentFamily is in sessionStorage, dispatch neccessary actions to update state
+      this.props.dispatch(fetchCurrentUser());
+      this.props.dispatch(switchFamily(sessionStorage.currentFamily));
+      this.props.dispatch(fetchMembers(sessionStorage.currentFamily));
     }
   }
 

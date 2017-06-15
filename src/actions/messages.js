@@ -64,7 +64,6 @@ export const postMessage = content => (dispatch) => {
     }
     return res;
   })
-  // .then(res => res.json())
   .then(() => dispatch(fetchMessages(content.family)))
   .catch(console.error);
 };

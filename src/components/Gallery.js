@@ -1,10 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { hashHistory } from 'react-router';
 import { showZoomed, hideZoomed } from '../actions/gallery';
 
 import GalleryThumbnail from './GalleryThumbnail';
 import GalleryZoomed from './GalleryZoomed';
 import Header from './Header';
+
+import { fetchMessages } from '../actions/messages';
+import { fetchMembers } from '../actions/members';
+import { fetchCurrentUser } from '../actions/current-user';
+import { switchFamily } from '../actions/family';
 
 class Gallery extends Component {
   constructor(props) {
@@ -21,6 +27,19 @@ class Gallery extends Component {
     this.goLeft = this.goLeft.bind(this);
     this.goRight = this.goRight.bind(this);
     this.filterPhotos = this.filterPhotos.bind(this);
+  }
+
+  componentDidMount() {
+    if (!this.props.currentFamily && !sessionStorage.currentFamily) {
+      // check if necessary user/family information is in state or sessionStorage
+      hashHistory.push('/families');
+    } else if (!this.props.currentFamily) {
+      // if currentFamily is in sessionStorage, dispatch neccessary actions to update state
+      this.props.dispatch(fetchCurrentUser());
+      this.props.dispatch(switchFamily(sessionStorage.currentFamily));
+      this.props.dispatch(fetchMembers(sessionStorage.currentFamily));
+      this.props.dispatch(fetchMessages(sessionStorage.currentFamily));
+    }
   }
 
   openZoom({ photoUrl, photoIndex }) {
@@ -140,11 +159,13 @@ class Gallery extends Component {
 }
 Gallery.defaultProps = {
   zoomedPhoto: null,
-  members: {}
+  members: {},
+  currentFamily: ''
 };
 
 Gallery.propTypes = {
   members: React.PropTypes.object,
+  currentFamily: React.PropTypes.string,
   dispatch: React.PropTypes.func.isRequired,
   photos: React.PropTypes.array.isRequired,
   zoomed: React.PropTypes.bool.isRequired,
@@ -155,7 +176,8 @@ Gallery.propTypes = {
 const mapStateToProps = state => ({
   photos: state.messages.messages
     .filter(message => message.contentType === 'photo'),
-  members: state.family.currentMembers,
+  members: state.currentMembers.members,
+  currentFamily: state.family.currentFamily,
   zoomed: state.status.zoomed,
   zoomedPhoto: state.status.zoomedPhoto,
   zoomedIndex: state.status.zoomedIndex,
