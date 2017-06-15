@@ -47,6 +47,7 @@ export const postFamily = family => (dispatch) => {
   .then((data) => {
     dispatch(addFamilySuccess(data._id));
     dispatch(fetchMembers(data._id));
+    sessionStorage.currentFamily = data._id;
     hashHistory.push('/app');
   })
   .catch(console.error);
