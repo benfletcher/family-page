@@ -63,13 +63,18 @@ class CreateFamily extends Component {
       <div>
         <Header />
         <div style={{ paddingTop: '50px' }}>
-          <div className="familyContainer">
-            <img
-              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
-              alt="avatar"
-              style={{ maxWidth: '10%', borderRadius: '50%' }}
-            />
-            <div className="familyNamesContainer">
+          <div className="createFamilyContainer">
+            <div
+              className="createFamilyAvatar"
+              onClick={() => console.log('clicked image')}
+            >
+              <img
+                src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
+                alt="avatar"
+              />
+            </div>
+
+            <div className="createFamilyName">
               <input
                 name="groupName"
                 type="text"
@@ -79,12 +84,16 @@ class CreateFamily extends Component {
               />
             </div>
           </div>
-          <input
-            className="imageDescription"
-            type="button"
-            placeholder="Create Family"
-            onClick={this.postFamily}
-          />
+          <div>
+            <button
+              className="createFamilyButton"
+              type="submit"
+              name="createGroupButton"
+              onClick={this.postFamily}
+            >
+            Create Family
+            </button>
+          </div>
         </div>
       </div>
     );

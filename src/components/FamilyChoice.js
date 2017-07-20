@@ -54,7 +54,6 @@ class FamilyChoice extends Component {
                 <img
                   src={family.avatar}
                   alt="avatar"
-                  style={{ maxWidth: '5%', borderRadius: '50%' }}
                 />
                 <div className="familyNamesContainer">
                   <div>
@@ -76,7 +75,6 @@ class FamilyChoice extends Component {
           <img
             src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
             alt="avatar"
-            style={{ maxWidth: '5%', borderRadius: '50%' }}
           />
           <div className="familyNamesContainer">
             <div>

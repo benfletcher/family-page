@@ -2,17 +2,20 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postMessage } from '../actions/messages';
 
+import UploadContainer from './UploadContainer';
 
 class Announcement extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      text: ''
+      text: '',
+      showUpload: false,
     };
 
     this.announcementSubmit = this.announcementSubmit.bind(this);
     this.textInputChange = this.textInputChange.bind(this);
+    this.initiatePhotoUpload = this.initiatePhotoUpload.bind(this);
   }
 
   announcementSubmit(event) {
@@ -31,19 +34,29 @@ class Announcement extends Component {
     this.setState({ text: event.target.value });
   }
 
+  initiatePhotoUpload() {
+    console.log('initiatePhotoUpload');
+    this.setState({ showUpload: true });
+  }
+
   render() {
     return (
-      <div className="announcementParent">
-        <div className="announcementContainer">
-          <div className="announcementHeader" />
-          <div className="announcementAvatar">
-            <img
-              alt="avatar"
-              className="avatarPhoto"
-              src={this.props.currentAvatar}
-            />
-          </div>
-          <div className="announcementInputBox">
+      <div>
+        <div className="announcementParent">
+          <div className="announcementContainer">
+            <div className="announcementHeader" />
+            <div className="announcementAvatar">
+              <img
+                alt="avatar"
+                className="avatarPhoto"
+                src={this.props.currentAvatar}
+              />
+            </div>
+            {
+          this.state.showUpload
+          ?
+            <UploadContainer />
+          :
             <form onSubmit={this.announcementSubmit}>
               <input
                 className="announcementInput"
@@ -53,22 +66,26 @@ class Announcement extends Component {
                 onSubmit={this.announcementSubmit}
                 type="text"
               />
+              <button
+                type="button"
+                onClick={this.initiatePhotoUpload}
+              >
+              Upload Photo
+              </button>
+              <p
+                onClick={this.announcementSubmit}
+                className="announcementPost"
+                style={{
+                  visibility: (this.state.text.length)
+                    ? 'visible'
+                    : 'hidden'
+                }}
+              >
+                Post{'\u00A0' /* non-breaking space unicode */}
+                <i className="fa fa-bullhorn announcementPostIcon" aria-hidden="true" />
+              </p>
             </form>
-          </div>
-          <div className="announcementFooter">
-            <div className="announcementBlueLine" />
-            <p
-              onClick={this.announcementSubmit}
-              className="announcementPost"
-              style={{
-                visibility: (this.state.text.length)
-                  ? 'visible'
-                  : 'hidden'
-              }}
-            >
-              Post{'\u00A0' /* non-breaking space unicode */}
-              <i className="fa fa-bullhorn announcementPostIcon" aria-hidden="true" />
-            </p>
+          }
           </div>
         </div>
       </div>

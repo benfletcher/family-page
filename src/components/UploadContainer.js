@@ -8,7 +8,7 @@ import { fetchMembers } from '../actions/members';
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
 
-import Header from './Header';
+// import Header from './Header';
 import UploadBox from './UploadBox';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -99,30 +99,24 @@ class UploadContainer extends Component {
   render() {
     return (
       <div>
-        <Header />
         <div className="uploadParent">
           <Link className="noMargin" to="/app">
             <i className="xIconUpload fa fa-times" aria-hidden="true"alt="close" />
           </Link>
           <div className="uploadChild">
             {
-          this.state.uploadedFile
-            ?
-              <div className="imageDropPreview">
-                <img
-                  src={this.state.previewUrl}
-                  alt="preview"
-                  style={{ maxWidth: '250px' }}
-                />
-              </div>
-            :
-              <UploadBox onImageDrop={this.onImageDrop} />
-        }
-            <img
-              className="imageDropPreview"
-              alt="preview" src={this.state.previewUrl}
-              style={{ maxWidth: '200px' }}
-            />
+              this.state.uploadedFile
+                ?
+                  <div className="imageDropPreview">
+                    <img
+                      src={this.state.previewUrl}
+                      alt="preview"
+                      style={{ maxWidth: '250px' }}
+                    />
+                  </div>
+                :
+                  <UploadBox onImageDrop={this.onImageDrop} />
+              }
             <form onSubmit={this.saveUpload}>
               <input
                 className="imageDescription"
