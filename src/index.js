@@ -14,7 +14,6 @@ import Login from './components/Login';
 import UploadContainer from './components/UploadContainer';
 import Gallery from './components/Gallery';
 import FamilyChoice from './components/FamilyChoice';
-import CreateFamily from './components/CreateFamily';
 
 import combineReducers from './reducers';
 
@@ -32,7 +31,6 @@ ReactDOM.render(
       <Route path="/" component={Login} />
       <Route path="/app" component={App} />
       <Route path="/families" component={FamilyChoice} />
-      <Route path="/createFamily" component={CreateFamily} />
       <Route path="/upload" component={UploadContainer} />
       <Route path="/gallery" component={Gallery} />
     </Router>

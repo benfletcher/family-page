@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 import { postFamily } from '../actions/family';
 import { fetchCurrentUser } from '../actions/current-user';
 
-import Header from './Header';
-
 // send link to family sudocode
 // click create family - generate family link to group
 // form to enter email to invite Users
