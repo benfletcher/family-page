@@ -383,11 +383,38 @@ img.galleryThumbnail {
 }
 
 .createFamilyButton:hover {
-  box-shadow: 1px 2px 23px #f5f8f2;
+  box-shadow: 1px 2px 23px gray;
 }
 
+.panelContainer {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  width: 40vw;
+  height: 50vh;
+  background-color: white;
+  position: fixed;
+  top: 5%;
+  left: 30%;
+  border: 1px gray solid;
+  transition: opacity 500ms ease;
+  overflow: auto;
+  z-index: 311 !important;
+}
 
+.panelExitContainer {
+  width: 100%;
+  display: flex;
+}
+.panelExit:hover {
+  color: gray;
+}
 
+.panelExit {
+ color: black;
+ font-size: 30px;
+ padding-left: 5px;
+}
 
 /* Header Styling */
 

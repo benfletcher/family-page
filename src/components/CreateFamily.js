@@ -60,40 +60,46 @@ class CreateFamily extends Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <div style={{ paddingTop: '50px' }}>
-          <div className="createFamilyContainer">
-            <div
-              className="createFamilyAvatar"
-              onClick={() => console.log('clicked image')}
-            >
-              <img
-                src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
-                alt="avatar"
-              />
-            </div>
+      <div className="panelContainer">
+        <div className="panelExitContainer">
+          <i
+            className="panelExit fa fa-times"
+            aria-hidden="true"
+            alt="close"
+            onClick={this.props.closeFamilyModal}
+          />
+        </div>
 
-            <div className="createFamilyName">
-              <input
-                name="groupName"
-                type="text"
-                placeholder="Name Your Family"
-                value={this.state.groupName}
-                onChange={this.handleInputChange}
-              />
-            </div>
+        <div className="createFamilyContainer">
+          <div
+            className="createFamilyAvatar"
+            onClick={() => console.log('clicked image')}
+          >
+            <img
+              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
+              alt="avatar"
+            />
           </div>
-          <div>
-            <button
-              className="createFamilyButton"
-              type="submit"
-              name="createGroupButton"
-              onClick={this.postFamily}
-            >
+
+          <div className="createFamilyName">
+            <input
+              name="groupName"
+              type="text"
+              placeholder="Name Your Family"
+              value={this.state.groupName}
+              onChange={this.handleInputChange}
+            />
+          </div>
+        </div>
+        <div>
+          <button
+            className="createFamilyButton"
+            type="submit"
+            name="createGroupButton"
+            onClick={this.postFamily}
+          >
             Create Family
             </button>
-          </div>
         </div>
       </div>
     );
@@ -103,6 +109,7 @@ class CreateFamily extends Component {
 CreateFamily.propTypes = {
   dispatch: React.PropTypes.func.isRequired,
   currentUser: React.PropTypes.string.isRequired,
+  closeFamilyModal: React.PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { hashHistory } from 'react-router';
 import cookie from 'react-cookie';
 
+import CreateFamily from './CreateFamily';
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
 import { fetchMembers } from '../actions/members';
@@ -12,8 +13,12 @@ const serverUrl = process.env.REACT_APP_SERVER_URL;
 class FamilyChoice extends Component {
   constructor(props) {
     super(props);
-
+    this.state = {
+      openCreateFamily: false,
+    };
     this.selectFamily = this.selectFamily.bind(this);
+    this.createFamilyModal = this.createFamilyModal.bind(this);
+    this.closeFamilyModal = this.closeFamilyModal.bind(this);
   }
 
   componentWillMount() {
@@ -31,6 +36,14 @@ class FamilyChoice extends Component {
     this.props.dispatch(fetchMembers(familyId));
     sessionStorage.currentFamily = familyId;
     hashHistory.push('/app');
+  }
+
+  createFamilyModal() {
+    this.setState({ openCreateFamily: true });
+  }
+
+  closeFamilyModal() {
+    this.setState({ openCreateFamily: false });
   }
 
   render() {
@@ -70,7 +83,7 @@ class FamilyChoice extends Component {
         </div>
         <div
           className="familyContainer"
-          onClick={() => hashHistory.push('/createFamily')}
+          onClick={this.createFamilyModal}
         >
           <img
             src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
@@ -82,6 +95,12 @@ class FamilyChoice extends Component {
             </div>
           </div>
         </div>
+        {
+          this.state.openCreateFamily
+          ?
+            <CreateFamily closeFamilyModal={this.closeFamilyModal} />
+          : null
+        }
       </div>
     );
   }
