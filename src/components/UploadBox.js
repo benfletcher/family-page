@@ -9,13 +9,16 @@ const UploadBox = props => (
       accept="image/*"
       onDrop={props.onImageDrop}
     >
-      <i className="fa fa-cloud-upload fa-2x uploadIcon" aria-hidden="true" />
-      <p className="imgDropText">Click to upload, or drag image</p>
+      {props.children}
     </Dropzone>
   </div>
     );
 
+UploadBox.defaultProps = {
+  children: null,
+};
 UploadBox.propTypes = {
-  onImageDrop: React.PropTypes.func.isRequired
+  onImageDrop: React.PropTypes.func.isRequired,
+  children: React.PropTypes.node,
 };
 export default UploadBox;

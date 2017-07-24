@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { postFamily } from '../actions/family';
 import { fetchCurrentUser } from '../actions/current-user';
-
+import UploadBox from './UploadBox';
 // send link to family sudocode
 // click create family - generate family link to group
 // form to enter email to invite Users
@@ -27,11 +27,13 @@ class CreateFamily extends Component {
 
     this.state = {
       groupName: '',
-      avatar: 'groupPlaceholder.jpg'
+      avatar: 'groupPlaceholder.jpg',
+      showUploadBox: false,
     };
 
     this.postFamily = this.postFamily.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   componentDidMount() {
@@ -50,10 +52,13 @@ class CreateFamily extends Component {
   }
 
   handleInputChange(event) {
-    const name = event.target.name;
-    if (name === 'groupName') {
-      this.setState({ groupName: event.target.value });
-    }
+    this.setState({ groupName: event.target.value });
+  }
+
+  handleImageUpload() {
+    this.setState({ showUploadBox: true });
+    console.log('upload file clicked');
+    console.log(this.state.showUploadBox);
   }
 
   render() {
@@ -69,15 +74,17 @@ class CreateFamily extends Component {
         </div>
 
         <div className="createFamilyContainer">
-          <div
-            className="createFamilyAvatar"
-            onClick={() => console.log('clicked image')}
-          >
-            <img
-              src="https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcSS7tLRutVL3cSVqtulqbDXwVdmpD3MCyJh2k2zWVogovBy1nC_"
-              alt="avatar"
-            />
-          </div>
+          <UploadBox onDrop={() => console.log('something')}>
+            <div
+              className="createFamilyAvatar"
+              onClick={this.handleImageUpload}
+            >
+              <img
+                src={this.state.avatar}
+                alt="avatar"
+              />
+            </div>
+          </UploadBox>
 
           <div className="createFamilyName">
             <input

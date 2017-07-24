@@ -8,7 +8,6 @@ import { fetchMembers } from '../actions/members';
 import { fetchCurrentUser } from '../actions/current-user';
 import { switchFamily } from '../actions/family';
 
-// import Header from './Header';
 import UploadBox from './UploadBox';
 
 const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
@@ -115,7 +114,12 @@ class UploadContainer extends Component {
                     />
                   </div>
                 :
-                  <UploadBox onImageDrop={this.onImageDrop} />
+                  <UploadBox onImageDrop={this.onImageDrop}>
+                    <div className="dropzoneClickIcons">
+                      <i className="fa fa-cloud-upload fa-2x uploadIcon" aria-hidden="true" />
+                      <p className="imgDropText">Click to upload, or drag image</p>
+                    </div>
+                  </UploadBox>
               }
             <form onSubmit={this.saveUpload}>
               <input
