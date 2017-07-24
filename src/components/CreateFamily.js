@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import request from 'superagent';
 import { postFamily } from '../actions/family';
 import { fetchCurrentUser } from '../actions/current-user';
 import UploadBox from './UploadBox';
@@ -20,20 +21,25 @@ import UploadBox from './UploadBox';
 // make person who made group the admin
 // post new group
 
+const CLOUDINARY_UPLOAD_PRESET = process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET;
+const CLOUDINARY_UPLOAD_URL = process.env.REACT_APP_CLOUDINARY_UPLOAD_URL;
+
 
 class CreateFamily extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      groupName: '',
+      familyName: '',
       avatar: 'groupPlaceholder.jpg',
-      showUploadBox: false,
+      uploadedFile: null,
+      previewUrl: '',
     };
 
-    this.postFamily = this.postFamily.bind(this);
+    this.saveFamily = this.saveFamily.bind(this);
     this.handleInputChange = this.handleInputChange.bind(this);
     this.handleImageUpload = this.handleImageUpload.bind(this);
+    this.onImageDrop = this.onImageDrop.bind(this);
   }
 
   componentDidMount() {
@@ -42,23 +48,49 @@ class CreateFamily extends Component {
     }
   }
 
-  postFamily() {
-    if (this.state.groupName.length) {
-      this.props.dispatch(postFamily({
-        name: this.state.groupName,
-        avatar: this.state.avatar
-      }));
-    }
+  onImageDrop(files) {
+    this.setState({
+      uploadedFile: files[0],
+      uploadPhotoName: files[0].name,
+      previewUrl: files[0].preview
+    });
   }
 
   handleInputChange(event) {
-    this.setState({ groupName: event.target.value });
+    this.setState({ familyName: event.target.value });
   }
 
-  handleImageUpload() {
-    this.setState({ showUploadBox: true });
-    console.log('upload file clicked');
-    console.log(this.state.showUploadBox);
+  handleImageUpload(file, familyName) {
+    const upload = request.post(CLOUDINARY_UPLOAD_URL)
+                          .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                          .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.props.dispatch(postFamily({
+          avatar: response.body.secure_url,
+          name: `${familyName}`
+        }));
+      }
+    });
+  }
+
+  saveFamily() {
+    if (this.state.familyName.length) {
+      if (this.state.previewUrl === '') {
+        this.props.dispatch(postFamily({
+          avatar: this.state.avatar,
+          name: this.state.familyName
+        }));
+      } else {
+        this.handleImageUpload(this.state.uploadedFile, this.state.familyName);
+      }
+    } else {
+      alert('you must name your family');
+    }
   }
 
   render() {
@@ -74,24 +106,31 @@ class CreateFamily extends Component {
         </div>
 
         <div className="createFamilyContainer">
-          <UploadBox onDrop={() => console.log('something')}>
+          <UploadBox onImageDrop={this.onImageDrop}>
             <div
               className="createFamilyAvatar"
-              onClick={this.handleImageUpload}
             >
-              <img
-                src={this.state.avatar}
-                alt="avatar"
-              />
+              {
+              this.state.previewUrl
+              ?
+                <img
+                  src={this.state.previewUrl}
+                  alt="avatar"
+                />
+              :
+                <img
+                  src={this.state.avatar}
+                  alt="avatar"
+                />
+              }
             </div>
           </UploadBox>
 
           <div className="createFamilyName">
             <input
-              name="groupName"
               type="text"
               placeholder="Name Your Family"
-              value={this.state.groupName}
+              value={this.state.familyName}
               onChange={this.handleInputChange}
             />
           </div>
@@ -100,8 +139,7 @@ class CreateFamily extends Component {
           <button
             className="createFamilyButton"
             type="submit"
-            name="createGroupButton"
-            onClick={this.postFamily}
+            onClick={this.saveFamily}
           >
             Create Family
             </button>
